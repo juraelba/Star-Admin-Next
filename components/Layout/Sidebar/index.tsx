@@ -24,7 +24,7 @@ const Sidebar: React.FC = () => {
     {
       id: "spaceobjs",
       label: "Space Objects",
-      path: "/spaceobjs",
+      path: "/objects",
       icon: StarIcon,
     },
     { id: "nfts", label: "NFT’s", path: "/nfts", icon: ImageIcon },

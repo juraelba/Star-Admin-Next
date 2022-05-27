@@ -12,3 +12,15 @@ export interface Route {
   path: string;
   icon: any;
 }
+
+export interface Tab {
+  id: string;
+  name: string;
+}
+
+export interface SpaceObject {
+  id: number;
+  name: string;
+  constellation: string;
+  image: any;
+}
