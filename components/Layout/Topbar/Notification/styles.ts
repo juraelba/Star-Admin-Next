@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const NotificationContainer = styled.div`
+  display: flex;
   margin-right: 24px;
   position: relative;
 `;
