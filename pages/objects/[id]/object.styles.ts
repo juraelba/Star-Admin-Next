@@ -15,6 +15,21 @@ export const Title = styled.p`
 
 export const Body = styled.div`
   display: flex;
+  gap: 60px;
 `;
-export const DropzoneContainer = styled.div``;
-export const DetailContainer = styled.div``;
+export const DropzoneContainer = styled.div`
+  width: 364px;
+  flex-shrink: 0;
+`;
+export const DetailContainer = styled.div`
+  width: 100%;
+`;
+
+export const Footer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+
+  & > button {
+    margin-left: 24px;
+  }
+`;

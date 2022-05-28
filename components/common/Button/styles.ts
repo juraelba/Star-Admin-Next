@@ -3,7 +3,7 @@ import styled from "styled-components";
 const color = {
   light: "#FFF",
   warning: "#E45F35",
-  success: "FFF",
+  success: "#FFF",
 };
 
 const borderColor = {
