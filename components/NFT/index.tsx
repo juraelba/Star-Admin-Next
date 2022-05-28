@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Router from "next/router";
-import { SpaceObject as SpaceObjectProps } from "../../types";
+import { NFT as NFTProps } from "../../types";
 import {
   ActionContainer,
   Abbreviation,
@@ -9,7 +9,7 @@ import {
   AbbreviationValue,
   AvatarContainer,
   Body,
-  Constellation,
+  Owner,
   DeleteButton,
   DetailContainer,
   DetailInfo,
@@ -17,20 +17,20 @@ import {
   FormItem,
   Header,
   Label,
-  SpaceObjectContainer,
+  NFTContainer,
   Title,
   Value,
 } from "./styles";
 import EditIcon from "../../assets/images/icons/edit.svg";
 import TrashIcon from "../../assets/images/icons/trash.svg";
 
-const SpaceObject: React.FC<SpaceObjectProps> = (props) => {
+const NFT: React.FC<NFTProps> = (props) => {
   const handleRedirect = () => {
-    Router.push(`/objects/${props.id}/view`);
+    Router.push(`/nfts/${props.id}/view`);
   };
 
   return (
-    <SpaceObjectContainer onClick={handleRedirect}>
+    <NFTContainer onClick={handleRedirect}>
       <Header>
         <DetailContainer>
           <AvatarContainer>
@@ -43,11 +43,7 @@ const SpaceObject: React.FC<SpaceObjectProps> = (props) => {
           </AvatarContainer>
           <DetailInfo>
             <Title>{props.name}</Title>
-            <Constellation>{props.constellation}</Constellation>
-            <Abbreviation>
-              <AbbreviationLabel>Abbreviation</AbbreviationLabel>
-              <AbbreviationValue>{props.abbreviation}</AbbreviationValue>
-            </Abbreviation>
+            <Owner>{props.owner}</Owner>
           </DetailInfo>
         </DetailContainer>
         <ActionContainer>
@@ -61,24 +57,20 @@ const SpaceObject: React.FC<SpaceObjectProps> = (props) => {
       </Header>
       <Body>
         <FormItem>
-          <Label>Right Accession</Label>
-          <Value>{props.rightAccession}</Value>
+          <Label>Ranking</Label>
+          <Value>{props.ranking}</Value>
         </FormItem>
         <FormItem>
-          <Label>Declination</Label>
-          <Value>{props.declination}</Value>
+          <Label>Rarity</Label>
+          <Value>{props.rarity}</Value>
         </FormItem>
-        <FormItem>
-          <Label>Stellar Constellation</Label>
-          <Value>{props.stellar}</Value>
-        </FormItem>
-        <FormItem>
-          <Label>BV Color</Label>
-          <Value>{props.bvColor}</Value>
+        <FormItem style={{ width: "100%" }}>
+          <Label>Link to ralated Space Object</Label>
+          <Value>{props.link}</Value>
         </FormItem>
       </Body>
-    </SpaceObjectContainer>
+    </NFTContainer>
   );
 };
 
-export default SpaceObject;
+export default NFT;
