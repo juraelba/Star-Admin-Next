@@ -1,14 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import Row from "./Row";
-import Col from "./Col";
 import {
-  DataGridContainer,
-  DataTable,
-  TableHead,
-  TableBody,
-  TableHeadRow,
-  TableHeadCol,
+  CardViewContainer,
+  CardItems,
+  CardItemContainer,
   PaginationContainer,
   Pagination,
   PaginationItem,
@@ -18,17 +13,15 @@ import {
 import ArrowLeftIcon from "../../../assets/images/icons/arrow-left-light.svg";
 import ArrowRightIcon from "../../../assets/images/icons/arrow-right-light.svg";
 
-interface DataGridProps {
+interface CardViewProps {
   rows: object[];
-  cols: string[];
-  renderRow: any;
+  renderCard: any;
   pageRowCount?: number;
 }
 
-const DataGrid: React.FC<DataGridProps> = ({
+const CardView: React.FC<CardViewProps> = ({
   rows,
-  cols,
-  renderRow,
+  renderCard,
   pageRowCount = 10,
 }) => {
   const dataLength = rows.length;
@@ -53,23 +46,12 @@ const DataGrid: React.FC<DataGridProps> = ({
   }, [index]);
 
   return (
-    <DataGridContainer>
-      <DataTable>
-        <TableHead>
-          <TableHeadRow>
-            {cols.map((col: string, index: number) => (
-              <TableHeadCol key={index}>{col}</TableHeadCol>
-            ))}
-          </TableHeadRow>
-        </TableHead>
-        <TableBody>
-          {rows
-            .slice(startIndex, endIndex)
-            .map((row: object, index: number) => (
-              <React.Fragment key={index}>{renderRow(row)}</React.Fragment>
-            ))}
-        </TableBody>
-      </DataTable>
+    <CardViewContainer>
+      <CardItems>
+        {rows.slice(startIndex, endIndex).map((row: object, index: number) => (
+          <CardItemContainer key={index}>{renderCard(row)}</CardItemContainer>
+        ))}
+      </CardItems>
       <PaginationContainer>
         <Pagination>
           {Object.keys(Array.from(Array(pageCount))).map((item: string) => (
@@ -91,9 +73,8 @@ const DataGrid: React.FC<DataGridProps> = ({
           </PaginationAction>
         </PaginationActionContainer>
       </PaginationContainer>
-    </DataGridContainer>
+    </CardViewContainer>
   );
 };
 
-export default DataGrid;
-export { Col, Row };
+export default CardView;

@@ -19,9 +19,13 @@ export const Toolbar = styled.div`
 
 export const TableContainer = styled.div``;
 
+export const DetailViewContainer = styled.div`
+  display: flex;
+`;
+
 export const AvatarContainer = styled.div`
   width: 53px;
   height: 53px;
   border-radius: 30px;
   overflow: hidden;
-`
+`;
