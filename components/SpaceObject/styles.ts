@@ -46,11 +46,11 @@ export const Constellation = styled.p`
   margin-bottom: 16px;
 `;
 
-export const Appreviation = styled.p`
+export const Abbreviation = styled.p`
   display: flex;
 `;
 
-export const AppreviationLabel = styled.span`
+export const AbbreviationLabel = styled.span`
   font-family: "Montserrat";
   font-weight: 600;
   font-size: 14px;
@@ -59,7 +59,7 @@ export const AppreviationLabel = styled.span`
   margin-right: 8px;
 `;
 
-export const AppreviationValue = styled.span`
+export const AbbreviationValue = styled.span`
   font-family: "Montserrat";
   font-weight: 500;
   font-size: 14px;

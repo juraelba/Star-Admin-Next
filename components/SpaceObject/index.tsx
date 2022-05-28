@@ -4,9 +4,9 @@ import Router from "next/router";
 import { SpaceObject as SpaceObjectProps } from "../../types";
 import {
   ActionContainer,
-  Appreviation,
-  AppreviationLabel,
-  AppreviationValue,
+  Abbreviation,
+  AbbreviationLabel,
+  AbbreviationValue,
   AvatarContainer,
   Body,
   Constellation,
@@ -44,10 +44,10 @@ const SpaceObject: React.FC<SpaceObjectProps> = (props) => {
           <DetailInfo>
             <Title>{props.name}</Title>
             <Constellation>{props.constellation}</Constellation>
-            <Appreviation>
-              <AppreviationLabel>Appreviation</AppreviationLabel>
-              <AppreviationValue>{props.appreviation}</AppreviationValue>
-            </Appreviation>
+            <Abbreviation>
+              <AbbreviationLabel>Bbbreviation</AbbreviationLabel>
+              <AbbreviationValue>{props.abbreviation}</AbbreviationValue>
+            </Abbreviation>
           </DetailInfo>
         </DetailContainer>
         <ActionContainer>
@@ -70,7 +70,7 @@ const SpaceObject: React.FC<SpaceObjectProps> = (props) => {
         </FormItem>
         <FormItem>
           <Label>Stellar Constellation</Label>
-          <Value>{props.stellarConstellation}</Value>
+          <Value>{props.stellar}</Value>
         </FormItem>
         <FormItem>
           <Label>BV Color</Label>
