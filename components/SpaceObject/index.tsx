@@ -29,6 +29,11 @@ const SpaceObject: React.FC<SpaceObjectProps> = (props) => {
     Router.push(`/objects/${props.id}/view`);
   };
 
+  const handleEdit = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    Router.push(`/objects/${props.id}/edit`);
+  };
+
   return (
     <SpaceObjectContainer onClick={handleRedirect}>
       <Header>
@@ -51,7 +56,9 @@ const SpaceObject: React.FC<SpaceObjectProps> = (props) => {
           </DetailInfo>
         </DetailContainer>
         <ActionContainer>
-          <EditButton>
+          <EditButton
+            onClick={(e: React.MouseEvent<HTMLButtonElement>) => handleEdit(e)}
+          >
             <Image src={EditIcon} width={24} height={24} alt=":( Not Found" />
           </EditButton>
           <DeleteButton>
