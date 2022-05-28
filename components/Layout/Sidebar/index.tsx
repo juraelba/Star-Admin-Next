@@ -42,6 +42,11 @@ const Sidebar: React.FC = () => {
     },
   ];
 
+  const isActive = (path: string) => {
+    if (path === "/") return router.pathname === path;
+    return router.pathname.indexOf(path) > -1;
+  };
+
   return (
     <SidebarContainer>
       <LogoContainer>
@@ -49,11 +54,7 @@ const Sidebar: React.FC = () => {
       </LogoContainer>
       <Menu>
         {routes.map((route: Route) => (
-          <MenuItem
-            key={route.id}
-            active={router.pathname === route.path}
-            {...route}
-          />
+          <MenuItem key={route.id} active={isActive(route.path)} {...route} />
         ))}
       </Menu>
       <SendCryptoContainer>

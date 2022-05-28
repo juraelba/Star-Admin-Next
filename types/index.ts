@@ -23,4 +23,9 @@ export interface SpaceObject {
   name: string;
   constellation: string;
   image: any;
+  appreviation: string;
+  rightAccession: string;
+  declination: string;
+  stellarConstellation: string;
+  bvColor: string;
 }
