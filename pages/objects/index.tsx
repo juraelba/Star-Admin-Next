@@ -266,11 +266,17 @@ const SpaceObjects: React.FC = () => {
   const cols: string[] = ["Image", "Name", "Constellation", "Status"];
 
   const handleChangeTab = (id: string) => setSelectedTab(id);
-  const handleEdit = () => {};
+  const handleEdit = (
+    event: React.MouseEvent<HTMLButtonElement>,
+    rowID: number
+  ) => {
+    event.stopPropagation();
+    Router.push(`/objects/${rowID}/edit`);
+  };
   const handleDelete = () => {};
 
-  const handleRedirect = (id: number) => {
-    Router.push(`/objects/${id}/view`);
+  const handleRedirect = (rowID: number) => {
+    Router.push(`/objects/${rowID}/view`);
   };
 
   const renderRow = (row: SpaceObjectType) => {
@@ -286,7 +292,9 @@ const SpaceObjects: React.FC = () => {
         <Col>
           <Button
             size="small"
-            onClick={handleEdit}
+            onClick={(event: React.MouseEvent<HTMLButtonElement>) =>
+              handleEdit(event, row.id)
+            }
             style={{ marginRight: "10px" }}
           >
             Edit

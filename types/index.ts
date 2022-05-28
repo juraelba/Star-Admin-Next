@@ -40,3 +40,12 @@ export interface NFT {
   rarity: string;
   link: string;
 }
+
+export interface Article {
+  id: number;
+  title: string;
+  author: string;
+  date: string;
+  content: any;
+  publishedAt: string;
+}

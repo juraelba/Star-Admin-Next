@@ -1,53 +1,35 @@
 import React from "react";
 import Image from "next/image";
 import Router from "next/router";
-import { NFT as NFTProps } from "../../types";
+import { Article as ArticleProps } from "../../types";
 import {
   ActionContainer,
-  AvatarContainer,
   Body,
-  Owner,
   DeleteButton,
-  DetailContainer,
-  DetailInfo,
   EditButton,
   FormItem,
   Header,
   Label,
-  NFTContainer,
+  ArticleContainer,
   Title,
   Value,
 } from "./styles";
 import EditIcon from "../../assets/images/icons/edit.svg";
 import TrashIcon from "../../assets/images/icons/trash.svg";
 
-const NFT: React.FC<NFTProps> = (props) => {
+const Article: React.FC<ArticleProps> = (props) => {
   const handleRedirect = () => {
-    Router.push(`/nfts/${props.id}/view`);
+    Router.push(`/articles/${props.id}/view`);
   };
-
   const handleEdit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
-    Router.push(`/nfts/${props.id}/edit`);
+    Router.push(`/articles/${props.id}/edit`);
   };
 
   return (
-    <NFTContainer onClick={handleRedirect}>
+    <ArticleContainer onClick={handleRedirect}>
       <Header>
-        <DetailContainer>
-          <AvatarContainer>
-            <Image
-              src={props.image}
-              width={86}
-              height={86}
-              alt=":( Not Found"
-            />
-          </AvatarContainer>
-          <DetailInfo>
-            <Title>{props.name}</Title>
-            <Owner>{props.owner}</Owner>
-          </DetailInfo>
-        </DetailContainer>
+        <Title>{props.title}</Title>
         <ActionContainer>
           <EditButton
             onClick={(e: React.MouseEvent<HTMLButtonElement>) => handleEdit(e)}
@@ -61,20 +43,24 @@ const NFT: React.FC<NFTProps> = (props) => {
       </Header>
       <Body>
         <FormItem>
-          <Label>Ranking</Label>
-          <Value>{props.ranking}</Value>
+          <Label>Date</Label>
+          <Value>{props.date}</Value>
         </FormItem>
         <FormItem>
-          <Label>Rarity</Label>
-          <Value>{props.rarity}</Value>
+          <Label>Content</Label>
+          <Value>{props.content}</Value>
         </FormItem>
-        <FormItem style={{ width: "100%" }}>
-          <Label>Link to ralated Space Object</Label>
-          <Value>{props.link}</Value>
+        <FormItem>
+          <Label>Author</Label>
+          <Value>{props.author}</Value>
+        </FormItem>
+        <FormItem>
+          <Label>Published At</Label>
+          <Value>{props.publishedAt}</Value>
         </FormItem>
       </Body>
-    </NFTContainer>
+    </ArticleContainer>
   );
 };
 
-export default NFT;
+export default Article;

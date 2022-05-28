@@ -245,7 +245,13 @@ const NFTs: React.FC = () => {
   const cols: string[] = ["Image", "Name", "Owner", "Chain", "Status"];
 
   const handleChangeTab = (id: string) => setSelectedTab(id);
-  const handleEdit = () => {};
+  const handleEdit = (
+    event: React.MouseEvent<HTMLButtonElement>,
+    rowID: number
+  ) => {
+    event.stopPropagation();
+    Router.push(`/nfts/${rowID}/edit`);
+  };
   const handleDelete = () => {};
 
   const handleRedirect = (id: number) => {
@@ -266,7 +272,9 @@ const NFTs: React.FC = () => {
         <Col>
           <Button
             size="small"
-            onClick={handleEdit}
+            onClick={(event: React.MouseEvent<HTMLButtonElement>) =>
+              handleEdit(event, row.id)
+            }
             style={{ marginRight: "10px" }}
           >
             Edit
