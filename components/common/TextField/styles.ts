@@ -52,6 +52,11 @@ export const LockIconContainer = styled.div`
 `;
 
 export const IconContainer = styled.div`
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
   display: flex;
   left: 20px;

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import {
   DropzoneContainer,
@@ -14,6 +14,7 @@ import {
 import UploadIcon from "../../../assets/images/icons/upload.svg";
 
 interface DropzoneProps {
+  value: any;
   label?: string;
   icon?: any;
   title?: string;
@@ -21,9 +22,9 @@ interface DropzoneProps {
 }
 
 const Dropzone: React.FC<DropzoneProps> = (props) => {
-  const { label, icon, title, description } = props;
+  const { label, icon, title, description, value } = props;
   const fileRef = useRef<HTMLInputElement>(null);
-  const [file, setFile] = useState<string>();
+  const [file, setFile] = useState<any>(value);
 
   const handleClick = () => {
     if (fileRef.current !== null) fileRef.current.click();
@@ -44,7 +45,11 @@ const Dropzone: React.FC<DropzoneProps> = (props) => {
       <Form onClick={handleClick}>
         {file ? (
           <Previewer>
-            <img src={file} />
+            {typeof file !== "string" ? (
+              <Image src={file} />
+            ) : (
+              <img src={file} />
+            )}
           </Previewer>
         ) : (
           <ImagePicker>

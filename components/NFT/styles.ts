@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const SpaceObjectContainer = styled.div`
+export const NFTContainer = styled.div`
   width: 100%;
   background: #292d36;
   border: 2px solid #31343f;
@@ -36,35 +36,14 @@ export const Title = styled.p`
   margin-bottom: 8px;
 `;
 
-export const Constellation = styled.p`
+export const Owner = styled.p`
   font-family: "Montserrat";
+  font-style: normal;
   font-weight: 600;
   font-size: 16px;
   line-height: 100%;
   text-transform: capitalize;
   color: #ffffff;
-  margin-bottom: 16px;
-`;
-
-export const Abbreviation = styled.p`
-  display: flex;
-`;
-
-export const AbbreviationLabel = styled.span`
-  font-family: "Montserrat";
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 100%;
-  color: #7f8596;
-  margin-right: 8px;
-`;
-
-export const AbbreviationValue = styled.span`
-  font-family: "Montserrat";
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 100%;
-  color: #fcfcf9;
 `;
 
 export const AvatarContainer = styled.div`

@@ -29,3 +29,14 @@ export interface SpaceObject {
   stellar: string;
   bvColor: string;
 }
+
+export interface NFT {
+  id: number;
+  name: string;
+  owner: string;
+  chain: string;
+  image: any;
+  ranking: string;
+  rarity: string;
+  link: string;
+}
