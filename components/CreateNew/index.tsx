@@ -9,6 +9,7 @@ interface Props {
   id: string;
   name: string;
   icon: any;
+  path: string;
 }
 
 const CreateNew: React.FC = () => {
@@ -17,18 +18,22 @@ const CreateNew: React.FC = () => {
       id: "spaceobj",
       name: "Space Object",
       icon: SpaceObjIcon,
+      path: "/objects/new/create",
     },
     {
       id: "nft",
       name: "NFT Listing",
       icon: NFTIcon,
+      path: "/nfts/new/create",
     },
     {
       id: "article",
       name: "News Article",
       icon: ArticleIcon,
+      path: "/articles/new/create",
     },
   ];
+
   return (
     <CreateNewContainer>
       <Title>Create New</Title>

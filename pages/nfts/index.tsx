@@ -271,7 +271,7 @@ const NFTs: React.FC = () => {
         <Col>{row.chain}</Col>
         <Col>
           <Button
-            size="small"
+            size="xs"
             onClick={(event: React.MouseEvent<HTMLButtonElement>) =>
               handleEdit(event, row.id)
             }
@@ -279,7 +279,7 @@ const NFTs: React.FC = () => {
           >
             Edit
           </Button>
-          <Button size="small" color="warning" onClick={handleDelete}>
+          <Button size="xs" color="light-warning" onClick={handleDelete}>
             Delete
           </Button>
         </Col>

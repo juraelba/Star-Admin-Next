@@ -1,5 +1,11 @@
 import styled from "styled-components";
 
+const color = {
+  default: "#FFF",
+  success: "#30B28C",
+  error: "#FA725F",
+};
+
 export const TextFieldContainer = styled.div<{ mb: number }>`
   margin-bottom: ${(props) => props.mb}px;
 `;
@@ -62,4 +68,14 @@ export const IconContainer = styled.div`
   left: 20px;
   top: 50%;
   transform: translateY(-50%);
+`;
+
+export const HelperText = styled.p<{ status: "default" | "error" | "success" }>`
+  font-family: "Inter";
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: -0.02em;
+  margin-top: 12px;
+  color: ${(props) => color[props.status]};
 `;

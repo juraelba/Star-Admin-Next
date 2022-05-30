@@ -18,17 +18,31 @@ import { SpaceObject } from "../../../types";
 const Object: React.FC = () => {
   const router = useRouter();
   const { id, mode } = router.query;
-  const initialForm: SpaceObject = {
-    id: 1,
-    name: "Polaris",
-    constellation: "Ursa Minor",
-    abbreviation: "UMA",
-    rightAccession: "02h 31m 49.09s",
-    declination: "+89° 15′ 50.8″",
-    stellar: "Spectral Class F7",
-    bvColor: "0.636",
-    image: null,
-  };
+  const readonly = !(mode === "create" || mode === "edit");
+  const initialForm: SpaceObject =
+    mode === "create"
+      ? {
+          id: 1,
+          name: "",
+          constellation: "",
+          abbreviation: "",
+          rightAccession: "",
+          declination: "",
+          stellar: "",
+          bvColor: "",
+          image: null,
+        }
+      : {
+          id: 1,
+          name: "Polaris",
+          constellation: "Ursa Minor",
+          abbreviation: "UMA",
+          rightAccession: "02h 31m 49.09s",
+          declination: "+89° 15′ 50.8″",
+          stellar: "Spectral Class F7",
+          bvColor: "0.636",
+          image: null,
+        };
   const [pastForm, setPastForm] = useState<SpaceObject>(initialForm);
   const [form, setForm] = useState<SpaceObject>(initialForm);
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -62,7 +76,7 @@ const Object: React.FC = () => {
                 name="name"
                 value={form.name}
                 onChange={handleChange}
-                readonly={mode !== "edit"}
+                readonly={readonly}
               />
             </Col>
             <Col size={6}>
@@ -71,7 +85,7 @@ const Object: React.FC = () => {
                 name="constellation"
                 value={form.constellation}
                 onChange={handleChange}
-                readonly={mode !== "edit"}
+                readonly={readonly}
               />
             </Col>
             <Col size={6}>
@@ -80,7 +94,7 @@ const Object: React.FC = () => {
                 name="abbreviation"
                 value={form.abbreviation}
                 onChange={handleChange}
-                readonly={mode !== "edit"}
+                readonly={readonly}
               />
             </Col>
             <Col size={6}>
@@ -89,7 +103,7 @@ const Object: React.FC = () => {
                 name="rightAccession"
                 value={form.rightAccession}
                 onChange={handleChange}
-                readonly={mode !== "edit"}
+                readonly={readonly}
               />
             </Col>
             <Col size={6}>
@@ -98,7 +112,7 @@ const Object: React.FC = () => {
                 name="declination"
                 value={form.declination}
                 onChange={handleChange}
-                readonly={mode !== "edit"}
+                readonly={readonly}
               />
             </Col>
             <Col size={6}>
@@ -107,7 +121,7 @@ const Object: React.FC = () => {
                 name="stellar"
                 value={form.stellar}
                 onChange={handleChange}
-                readonly={mode !== "edit"}
+                readonly={readonly}
               />
             </Col>
             <Col size={6}>
@@ -116,24 +130,30 @@ const Object: React.FC = () => {
                 name="bvColor"
                 value={form.bvColor}
                 onChange={handleChange}
-                readonly={mode !== "edit"}
+                readonly={readonly}
               />
             </Col>
           </Row>
         </DetailContainer>
       </Body>
       <Footer>
-        {mode === "edit" ? (
+        {mode === "edit" && (
           <>
             <Button onClick={handleCancel}>Cancel changes</Button>
             <Button color="success" onClick={handleSave}>
               Save changes
             </Button>
           </>
-        ) : (
+        )}
+        {mode === "create" && (
+          <Button color="success" onClick={handleSave}>
+            Create object
+          </Button>
+        )}
+        {mode === "view" && (
           <>
             <Button onClick={handleEdit}>Edit object</Button>
-            <Button color="warning" onClick={handleDelete}>
+            <Button color="light-warning" onClick={handleDelete}>
               Delete object
             </Button>
           </>

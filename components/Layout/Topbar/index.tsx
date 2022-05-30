@@ -11,7 +11,7 @@ const Topbar = () => {
       <SearchField />
       <RightContainer>
         <Notification />
-        <Image src={Avatar} alt=":( Not Found" />
+        <Image src={Avatar} width={48} height={48} alt=":( Not Found" />
       </RightContainer>
     </TopbarContainer>
   );

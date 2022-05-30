@@ -291,7 +291,7 @@ const SpaceObjects: React.FC = () => {
         <Col>{row.constellation}</Col>
         <Col>
           <Button
-            size="small"
+            size="xs"
             onClick={(event: React.MouseEvent<HTMLButtonElement>) =>
               handleEdit(event, row.id)
             }
@@ -299,7 +299,7 @@ const SpaceObjects: React.FC = () => {
           >
             Edit
           </Button>
-          <Button size="small" color="warning" onClick={handleDelete}>
+          <Button size="xs" color="light-warning" onClick={handleDelete}>
             Delete
           </Button>
         </Col>

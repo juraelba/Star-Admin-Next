@@ -1,12 +1,13 @@
 import React, { useRef, useState } from "react";
 import Image from "next/image";
 import {
-  TextFieldContainer,
+  HelperText,
+  IconContainer,
   Input,
   InputContainer,
   Label,
   LockIconContainer,
-  IconContainer,
+  TextFieldContainer,
 } from "./styles";
 import LockIcon from "../../../assets/images/icons/lock.svg";
 
@@ -20,6 +21,8 @@ interface TextFieldProps {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   mb?: number;
   icon?: any;
+  helperText?: string;
+  status?: "default" | "error" | "success";
 }
 
 const TextField: React.FC<TextFieldProps> = (props) => {
@@ -33,6 +36,8 @@ const TextField: React.FC<TextFieldProps> = (props) => {
     readonly = false,
     onChange,
     mb = 40,
+    helperText,
+    status = "default",
   } = props;
 
   return (
@@ -57,6 +62,7 @@ const TextField: React.FC<TextFieldProps> = (props) => {
           </LockIconContainer>
         )}
       </InputContainer>
+      {helperText && <HelperText status={status}>{helperText}</HelperText>}
     </TextFieldContainer>
   );
 };

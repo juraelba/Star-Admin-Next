@@ -21,17 +21,39 @@ import StarImg from "../../../assets/images/star.png";
 const NFT: React.FC = () => {
   const router = useRouter();
   const { id, mode } = router.query;
-  const initialForm: NFTType = {
+  const readonly = !(mode === "create" || mode === "edit");
+  const initialForm: NFTType =
+    mode === "create"
+      ? {
+          id: 1,
+          name: "12313",
+          owner: "",
+          chain: "",
+          ranking: "",
+          rarity: "",
+          link: "",
+          image: null,
+        }
+      : {
+          id: 1,
+          name: "Antares",
+          owner: "12e45dee8po9ed5...",
+          chain: "Ethereum",
+          ranking: "#10",
+          rarity: "#10",
+          link: "https://member.starledger.org/d245jdk/",
+          image: StarImg,
+        };
+  const [pastForm, setPastForm] = useState<NFTType>({
     id: 1,
-    name: "Antares",
-    owner: "12e45dee8po9ed5...",
-    chain: "Ethereum",
-    ranking: "#10",
-    rarity: "#10",
-    link: "https://member.starledger.org/d245jdk/",
-    image: StarImg,
-  };
-  const [pastForm, setPastForm] = useState<NFTType>(initialForm);
+    name: "12313",
+    owner: "",
+    chain: "",
+    ranking: "",
+    rarity: "",
+    link: "",
+    image: null,
+  });
   const [form, setForm] = useState<NFTType>(initialForm);
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target)
@@ -64,7 +86,7 @@ const NFT: React.FC = () => {
                 name="name"
                 value={form.name}
                 onChange={handleChange}
-                readonly={mode !== "edit"}
+                readonly={readonly}
               />
             </Col>
             <Col>
@@ -74,7 +96,7 @@ const NFT: React.FC = () => {
                 icon={EmailIcon}
                 value={form.owner}
                 onChange={handleChange}
-                readonly={mode !== "edit"}
+                readonly={readonly}
               />
             </Col>
             <Col size={6}>
@@ -83,7 +105,7 @@ const NFT: React.FC = () => {
                 name="ranking"
                 value={form.ranking}
                 onChange={handleChange}
-                readonly={mode !== "edit"}
+                readonly={readonly}
               />
             </Col>
             <Col size={6}>
@@ -92,7 +114,7 @@ const NFT: React.FC = () => {
                 name="rarity"
                 value={form.rarity}
                 onChange={handleChange}
-                readonly={mode !== "edit"}
+                readonly={readonly}
               />
             </Col>
             <Col>
@@ -101,7 +123,7 @@ const NFT: React.FC = () => {
                 name="link"
                 value={form.link}
                 onChange={handleChange}
-                readonly={mode !== "edit"}
+                readonly={readonly}
                 icon={ShareIcon}
               />
             </Col>
@@ -109,17 +131,23 @@ const NFT: React.FC = () => {
         </DetailContainer>
       </Body>
       <Footer>
-        {mode === "edit" ? (
+        {mode === "edit" && (
           <>
             <Button onClick={handleCancel}>Cancel changes</Button>
             <Button color="success" onClick={handleSave}>
               Save changes
             </Button>
           </>
-        ) : (
+        )}
+        {mode === "create" && (
+          <Button color="success" onClick={handleSave}>
+            Create NFT
+          </Button>
+        )}
+        {mode === "view" && (
           <>
             <Button onClick={handleEdit}>Edit NFT</Button>
-            <Button color="warning" onClick={handleDelete}>
+            <Button color="light-warning" onClick={handleDelete}>
               Delete NFT
             </Button>
           </>
