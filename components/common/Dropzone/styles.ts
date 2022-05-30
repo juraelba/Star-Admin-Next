@@ -60,6 +60,7 @@ export const Previewer = styled.div`
   }
 `;
 
-export const Form = styled.div`
+export const Form = styled.div<{ hover: boolean }>`
+  opacity: ${(props) => (props.hover ? 0.5 : 1)};
   cursor: pointer;
 `;

@@ -3,19 +3,21 @@ import Image from "next/image";
 import { ButtonContainer } from "./styles";
 
 interface ButtonProps {
-  color?: "success" | "warning" | "light";
-  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  size?: "large" | "small";
+  color?: "success" | "light-warning" | "warning" | "light";
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  size?: "xs" | "sm" | "md" | "lg";
   children: React.ReactNode;
+  fullWidth?: boolean;
   style?: object;
 }
 
 const Button: React.FC<ButtonProps> = ({
   color = "light",
-  onClick,
-  size = "large",
+  onClick = () => {},
+  size = "lg",
   children,
   style,
+  fullWidth = false,
 }) => {
   return (
     <ButtonContainer
@@ -23,6 +25,7 @@ const Button: React.FC<ButtonProps> = ({
       color={color}
       size={size}
       style={style}
+      fullWidth={fullWidth}
     >
       {children}
     </ButtonContainer>

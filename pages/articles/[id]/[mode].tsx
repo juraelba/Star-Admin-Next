@@ -11,14 +11,25 @@ import { Article as ArticleType } from "../../../types";
 const Article: React.FC = () => {
   const router = useRouter();
   const { id, mode } = router.query;
-  const initialForm: ArticleType = {
-    id: 1,
-    date: "",
-    title: "Article Title",
-    author: "Chris Tate",
-    publishedAt: "MM/DD/YYYY @ 00:00:00 AM UTC +4",
-    content: "Enter article text here...",
-  };
+  const readonly = !(mode === "create" || mode === "edit");
+  const initialForm: ArticleType =
+    mode === "create"
+      ? {
+          id: 1,
+          date: "",
+          title: "",
+          author: "",
+          publishedAt: "",
+          content: "",
+        }
+      : {
+          id: 1,
+          date: "",
+          title: "Article Title",
+          author: "Chris Tate",
+          publishedAt: "MM/DD/YYYY @ 00:00:00 AM UTC +4",
+          content: "Enter article text here...",
+        };
   const [pastForm, setPastForm] = useState<ArticleType>(initialForm);
   const [form, setForm] = useState<ArticleType>(initialForm);
   const handleChange = (
@@ -53,7 +64,7 @@ const Article: React.FC = () => {
                   name="date"
                   value={form.date}
                   onChange={handleChange}
-                  readonly={mode !== "edit"}
+                  readonly={readonly}
                 />
               </Col>
               <Col>
@@ -62,7 +73,7 @@ const Article: React.FC = () => {
                   name="title"
                   value={form.title}
                   onChange={handleChange}
-                  readonly={mode !== "edit"}
+                  readonly={readonly}
                 />
               </Col>
               <Col>
@@ -71,7 +82,7 @@ const Article: React.FC = () => {
                   name="author"
                   value={form.author}
                   onChange={handleChange}
-                  readonly={mode !== "edit"}
+                  readonly={readonly}
                 />
               </Col>
               <Col>
@@ -81,7 +92,7 @@ const Article: React.FC = () => {
                   name="publishedAt"
                   value={form.publishedAt}
                   onChange={handleChange}
-                  readonly={mode !== "edit"}
+                  readonly={readonly}
                 />
               </Col>
             </Row>
@@ -94,7 +105,7 @@ const Article: React.FC = () => {
                   name="content"
                   value={form.content}
                   onChange={handleChange}
-                  readonly={mode !== "edit"}
+                  readonly={readonly}
                 />
               </Col>
             </Row>
@@ -102,17 +113,23 @@ const Article: React.FC = () => {
         </Row>
       </Body>
       <Footer>
-        {mode === "edit" ? (
+        {mode === "edit" && (
           <>
             <Button onClick={handleCancel}>Cancel changes</Button>
             <Button color="success" onClick={handleSave}>
               Save changes
             </Button>
           </>
-        ) : (
+        )}
+        {mode === "create" && (
+          <Button color="success" onClick={handleSave}>
+            Create article
+          </Button>
+        )}
+        {mode === "view" && (
           <>
             <Button onClick={handleEdit}>Edit article</Button>
-            <Button color="warning" onClick={handleDelete}>
+            <Button color="light-warning" onClick={handleDelete}>
               Delete article
             </Button>
           </>

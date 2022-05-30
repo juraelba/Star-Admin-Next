@@ -5,14 +5,21 @@ import { Tab as TabType } from "../../../types";
 interface TabProps {
   tabs: TabType[];
   active: string;
+  size?: "small" | "large";
   onChange: (id: string) => void;
 }
 
-const Tab: React.FC<TabProps> = ({ tabs, active, onChange }) => {
+const Tab: React.FC<TabProps> = ({
+  tabs,
+  size = "large",
+  active,
+  onChange,
+}) => {
   return (
-    <TabContainer>
+    <TabContainer size={size}>
       {tabs.map((tab: TabType) => (
         <TabItem
+          size={size}
           active={active === tab.id}
           key={tab.id}
           onClick={() => onChange(tab.id)}

@@ -222,7 +222,7 @@ const Articles: React.FC = () => {
         <Col>{row.date}</Col>
         <Col>
           <Button
-            size="small"
+            size="xs"
             onClick={(event: React.MouseEvent<HTMLButtonElement>) =>
               handleEdit(event, row.id)
             }
@@ -230,7 +230,7 @@ const Articles: React.FC = () => {
           >
             Edit
           </Button>
-          <Button size="small" color="warning" onClick={handleDelete}>
+          <Button size="xs" color="light-warning" onClick={handleDelete}>
             Delete
           </Button>
         </Col>

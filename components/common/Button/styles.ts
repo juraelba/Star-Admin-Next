@@ -2,36 +2,66 @@ import styled from "styled-components";
 
 const color = {
   light: "#FFF",
-  warning: "#E45F35",
+  "light-warning": "#E45F35",
+  warning: "#FFF",
   success: "#FFF",
 };
 
 const borderColor = {
   light: "#494E5B",
-  warning: "rgba(228, 95, 53, 0.1)",
+  "light-warning": "rgba(228, 95, 53, 0.1)",
+  warning: "#E45F35",
   success: "#4FBF67",
 };
 
 const backgroundColor = {
   light: "none",
-  warning: "rgba(228, 95, 53, 0.1)",
+  "light-warning": "rgba(228, 95, 53, 0.1)",
+  warning: "#E45F35",
   success: "rgba(79, 191, 103, 0.1)",
 };
 
+const height = {
+  xs: 24,
+  sm: 40,
+  md: 48,
+  lg: 56,
+};
+
+const fontSize = {
+  xs: 12,
+  sm: 12,
+  md: 14,
+  lg: 16,
+};
+
+const padding = {
+  xs: 12,
+  sm: 16,
+  md: 24,
+  lg: 32,
+};
+
 export const ButtonContainer = styled.button<{
-  color: "success" | "warning" | "light";
-  size: "large" | "small";
+  color: "success" | "light-warning" | "warning" | "light";
+  size: "xs" | "sm" | "md" | "lg";
+  fullWidth: boolean;
 }>`
-  height: ${(props) => (props.size === "small" ? `24px` : `56px`)};
-  padding: ${(props) => (props.size === "small" ? `0 12px` : `0 32px`)};
-  border-width: ${(props) => (props.size === "small" ? `1px` : `2px`)};
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: ${(props) => (props.fullWidth ? `100%` : `auto`)};
+  height: ${(props) => height[props.size]}px;
+  padding: ${(props) => `0px ${padding[props.size]}`}px;
+  border-width: ${(props) =>
+    props.color === `light-warning` ? 0 : props.size === "xs" ? `1px` : `2px`};
   border-color: ${(props) => borderColor[props.color]};
   border-style: solid;
   border-radius: 40px;
   background: ${(props) => backgroundColor[props.color]};
   font-family: "Montserrat";
-  font-weight: ${(props) => (props.size === "small" ? 600 : 700)};
-  font-size: ${(props) => (props.size === "small" ? `12px` : `16px`)};
+  font-weight: ${(props) => (props.size === "xs" ? 600 : 700)};
+  font-size: ${(props) => fontSize[props.size]}px;
   color: ${(props) => color[props.color]};
   cursor: pointer;
   transition: 0.2s;
