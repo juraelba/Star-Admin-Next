@@ -7,6 +7,7 @@ import SortBy from "../../components/common/SortBy";
 import DataGrid, { Row, Col } from "../../components/common/DataGrid";
 import {
   ActivityContainer,
+  ActivityAuthor,
   ActivityDate,
   ActivityTitle,
   Header,
@@ -15,7 +16,6 @@ import {
   Toolbar,
 } from "./activity.styles";
 import { Tab as TabType, Activity as ActivityType } from "../../types";
-import Router from "next/router";
 
 const Activity: React.FC = () => {
   const [selectedTab, setSelectedTab] = useState("all");
@@ -187,15 +187,7 @@ const Activity: React.FC = () => {
     },
   ];
   const cols: string[] = ["Title", "Author", "Date", "Status"];
-
   const handleChangeTab = (id: string) => setSelectedTab(id);
-  const handleEdit = (
-    event: React.MouseEvent<HTMLButtonElement>,
-    rowID: number
-  ) => {
-    event.stopPropagation();
-    Router.push(`/nfts/${rowID}/edit`);
-  };
 
   const renderRow = (row: ActivityType) => {
     return (
@@ -203,7 +195,9 @@ const Activity: React.FC = () => {
         <Col>
           <ActivityTitle>{row.title}</ActivityTitle>
         </Col>
-        <Col>{row.author}</Col>
+        <Col>
+          <ActivityAuthor>{row.author}</ActivityAuthor>
+        </Col>
         <Col>
           <ActivityDate>{row.date}</ActivityDate>
         </Col>
