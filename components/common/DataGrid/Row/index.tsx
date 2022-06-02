@@ -2,7 +2,7 @@ import React from "react";
 import { RowContainer } from "./styles";
 
 interface RowProps {
-  onClick: () => void;
+  onClick?: () => void;
   children: React.ReactNode;
 }
 

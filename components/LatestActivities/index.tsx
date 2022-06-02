@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Router from "next/router";
 import {
   LatestActivitiesContainer,
   Header,
@@ -32,7 +33,7 @@ const LatestActivities: React.FC<LatestActivitiesProps> = ({ data }) => {
           <Activity {...activity} key={activity.id} />
         ))}
       </Body>
-      <Footer>
+      <Footer onClick={() => Router.push("/activity")}>
         <Image src={ArrowRightIcon} alt=":( Not Found" />
         <Link>View all activity</Link>
       </Footer>

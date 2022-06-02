@@ -2,7 +2,7 @@ export interface Activity {
   id: number;
   title: string;
   date: string;
-  status: "Complete" | "Pending";
+  status: "Completed" | "Pending";
   author: string;
 }
 
