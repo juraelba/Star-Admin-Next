@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
 export const FilterContainer = styled.div`
+  position: relative;
+`;
+
+export const Selector = styled.div`
   display: flex;
   align-items: center;
   position: relative;
@@ -10,6 +14,13 @@ export const FilterContainer = styled.div`
   border: 2px solid #494e5b;
   padding: 12px;
   cursor: pointer;
+`;
+
+export const MenuContainer = styled.div`
+  position: absolute;
+  z-index: 10;
+  bottom: -12px;
+  transform: translateY(100%);
 `;
 
 export const Value = styled.span`
