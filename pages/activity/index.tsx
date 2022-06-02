@@ -15,7 +15,6 @@ import {
   Toolbar,
 } from "./activity.styles";
 import { Tab as TabType, Activity as ActivityType } from "../../types";
-import Router from "next/router";
 
 const Activity: React.FC = () => {
   const [selectedTab, setSelectedTab] = useState("all");
@@ -187,15 +186,7 @@ const Activity: React.FC = () => {
     },
   ];
   const cols: string[] = ["Title", "Author", "Date", "Status"];
-
   const handleChangeTab = (id: string) => setSelectedTab(id);
-  const handleEdit = (
-    event: React.MouseEvent<HTMLButtonElement>,
-    rowID: number
-  ) => {
-    event.stopPropagation();
-    Router.push(`/nfts/${rowID}/edit`);
-  };
 
   const renderRow = (row: ActivityType) => {
     return (
@@ -223,7 +214,6 @@ const Activity: React.FC = () => {
       <Breadcrumb breadcrumbs={breadcrumbs} />
       <Header>
         <Title>Activity</Title>
-        <AddNewButton url="/nfts/new/create" />
       </Header>
       <Toolbar>
         <SortBy />
