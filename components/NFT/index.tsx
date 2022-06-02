@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Router from "next/router";
+import DeleteModal from "../DeleteModal";
 import { NFT as NFTProps } from "../../types";
 import {
   ActionContainer,
@@ -22,6 +23,7 @@ import EditIcon from "../../assets/images/icons/edit.svg";
 import TrashIcon from "../../assets/images/icons/trash.svg";
 
 const NFT: React.FC<NFTProps> = (props) => {
+  const [isOpen, setIsOpen] = useState(false);
   const handleRedirect = () => {
     Router.push(`/nfts/${props.id}/view`);
   };
@@ -29,6 +31,11 @@ const NFT: React.FC<NFTProps> = (props) => {
   const handleEdit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     Router.push(`/nfts/${props.id}/edit`);
+  };
+  const handleDelete = () => setIsOpen(true);
+  const handleOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+    setIsOpen(true);
   };
 
   return (
@@ -54,7 +61,7 @@ const NFT: React.FC<NFTProps> = (props) => {
           >
             <Image src={EditIcon} width={24} height={24} alt=":( Not Found" />
           </EditButton>
-          <DeleteButton>
+          <DeleteButton onClick={handleOpen}>
             <Image src={TrashIcon} width={24} height={24} alt=":( Not Found" />
           </DeleteButton>
         </ActionContainer>
@@ -73,6 +80,11 @@ const NFT: React.FC<NFTProps> = (props) => {
           <Value>{props.link}</Value>
         </FormItem>
       </Body>
+      <DeleteModal
+        isOpen={isOpen}
+        onClose={() => alert(123)}
+        onDelete={handleDelete}
+      />
     </NFTContainer>
   );
 };

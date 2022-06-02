@@ -7,6 +7,7 @@ import Filter from "../../components/common/Filter";
 import DataGrid, { Row, Col } from "../../components/common/DataGrid";
 import CardView from "../../components/common/CardView";
 import Article from "../../components/Article";
+import DeleteModal from "../../components/DeleteModal";
 import {
   ArticlesContainer,
   DetailViewContainer,
@@ -19,6 +20,7 @@ import { Tab as TabType, Article as ArticleType } from "../../types";
 import Router from "next/router";
 
 const Articles: React.FC = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const [selectedTab, setSelectedTab] = useState("list");
   const tabs: TabType[] = [
     {
@@ -210,7 +212,13 @@ const Articles: React.FC = () => {
     event.stopPropagation();
     Router.push(`/articles/${rowID}/edit`);
   };
-  const handleDelete = () => {};
+  const handleOpenModal = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+    setIsOpen(true);
+  };
+  const handleDelete = () => {
+    setIsOpen(false);
+  };
 
   const handleRedirect = (id: number) => {
     Router.push(`/articles/${id}/view`);
@@ -232,7 +240,7 @@ const Articles: React.FC = () => {
           >
             Edit
           </Button>
-          <Button size="xs" color="light-danger" onClick={handleDelete}>
+          <Button size="xs" color="light-danger" onClick={handleOpenModal}>
             Delete
           </Button>
         </Col>
@@ -262,6 +270,11 @@ const Articles: React.FC = () => {
           <DataGrid cols={cols} rows={rows} renderRow={renderRow} />
         </TableContainer>
       )}
+      <DeleteModal
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        onDelete={handleDelete}
+      />
     </ArticlesContainer>
   );
 };

@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Router from "next/router";
+import DeleteModal from "../DeleteModal";
 import { SpaceObject as SpaceObjectProps } from "../../types";
 import {
   ActionContainer,
@@ -25,13 +26,18 @@ import EditIcon from "../../assets/images/icons/edit.svg";
 import TrashIcon from "../../assets/images/icons/trash.svg";
 
 const SpaceObject: React.FC<SpaceObjectProps> = (props) => {
+  const [isOpen, setIsOpen] = useState(false);
   const handleRedirect = () => {
     Router.push(`/objects/${props.id}/view`);
   };
-
   const handleEdit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     Router.push(`/objects/${props.id}/edit`);
+  };
+  const handleDelete = () => setIsOpen(true);
+  const handleOpen = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    setIsOpen(true);
   };
 
   return (
@@ -61,7 +67,7 @@ const SpaceObject: React.FC<SpaceObjectProps> = (props) => {
           >
             <Image src={EditIcon} width={24} height={24} alt=":( Not Found" />
           </EditButton>
-          <DeleteButton>
+          <DeleteButton onClick={(e: React.MouseEvent<HTMLButtonElement>) => handleOpen(e)}>
             <Image src={TrashIcon} width={24} height={24} alt=":( Not Found" />
           </DeleteButton>
         </ActionContainer>
@@ -84,6 +90,11 @@ const SpaceObject: React.FC<SpaceObjectProps> = (props) => {
           <Value>{props.bvColor}</Value>
         </FormItem>
       </Body>
+      <DeleteModal
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        onDelete={handleDelete}
+      />
     </SpaceObjectContainer>
   );
 };

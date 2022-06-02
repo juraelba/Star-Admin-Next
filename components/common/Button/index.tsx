@@ -4,6 +4,8 @@ import { ButtonContainer } from "./styles";
 
 interface ButtonProps {
   color?:
+    | "white"
+    | "link"
     | "success"
     | "light-warning"
     | "warning"
@@ -16,6 +18,7 @@ interface ButtonProps {
   children: React.ReactNode;
   fullWidth?: boolean;
   style?: object;
+  mb?: number;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -25,6 +28,7 @@ const Button: React.FC<ButtonProps> = ({
   children,
   style,
   fullWidth = false,
+  mb = 0,
 }) => {
   return (
     <ButtonContainer
@@ -33,6 +37,7 @@ const Button: React.FC<ButtonProps> = ({
       size={size}
       style={style}
       fullWidth={fullWidth}
+      mb={mb}
     >
       {children}
     </ButtonContainer>

@@ -8,6 +8,7 @@ import Filter from "../../components/common/Filter";
 import DataGrid, { Row, Col } from "../../components/common/DataGrid";
 import CardView from "../../components/common/CardView";
 import NFT from "../../components/NFT";
+import DeleteModal from "../../components/DeleteModal";
 import {
   AvatarContainer,
   DetailViewContainer,
@@ -22,6 +23,7 @@ import AvatarImage from "../../assets/images/material.png";
 import Router from "next/router";
 
 const NFTs: React.FC = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const [selectedTab, setSelectedTab] = useState("list");
   const tabs: TabType[] = [
     {
@@ -255,7 +257,13 @@ const NFTs: React.FC = () => {
     event.stopPropagation();
     Router.push(`/nfts/${rowID}/edit`);
   };
-  const handleDelete = () => {};
+  const handleOpenModal = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+    setIsOpen(true);
+  };
+  const handleDelete = () => {
+    setIsOpen(false);
+  };
 
   const handleRedirect = (id: number) => {
     Router.push(`/nfts/${id}/view`);
@@ -282,7 +290,7 @@ const NFTs: React.FC = () => {
           >
             Edit
           </Button>
-          <Button size="xs" color="light-danger" onClick={handleDelete}>
+          <Button size="xs" color="light-danger" onClick={handleOpenModal}>
             Delete
           </Button>
         </Col>
@@ -312,6 +320,11 @@ const NFTs: React.FC = () => {
           <DataGrid cols={cols} rows={rows} renderRow={renderRow} />
         </TableContainer>
       )}
+      <DeleteModal
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        onDelete={handleDelete}
+      />
     </NFTsContainer>
   );
 };

@@ -6,6 +6,8 @@ import Row from "../../../components/common/Row";
 import TextField from "../../../components/common/TextField";
 import TextArea from "../../../components/common/TextArea";
 import Button from "../../../components/common/Button";
+import UnSavedModal from "../../../components/UnSavedModal";
+import DeleteModal from "../../../components/DeleteModal";
 import { Body, Footer, ArticleContainer, Title } from "./article.styles";
 import { Article as ArticleType } from "../../../types";
 
@@ -31,6 +33,8 @@ const Article: React.FC = () => {
           publishedAt: "MM/DD/YYYY @ 00:00:00 AM UTC +4",
           content: "Enter article text here...",
         };
+  const [isOpenUnSaveModal, setIsOpenUnSaveModal] = useState(false);
+  const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
   const [pastForm, setPastForm] = useState<ArticleType>(initialForm);
   const [form, setForm] = useState<ArticleType>(initialForm);
   const handleChange = (
@@ -44,11 +48,17 @@ const Article: React.FC = () => {
     setPastForm(form);
     router.push(`/articles/${id}/edit`);
   };
-  const handleDelete = () => {};
-  const handleSave = () => router.push(`/articles/${id}/view`);
-  const handleCancel = () => {
+  const handleDelete = () => {
+    setIsOpenDeleteModal(false);
+  };
+  const handleSave = () => {
+    router.push(`/articles/${id}/view`);
+    setIsOpenUnSaveModal(false);
+  };
+  const handleCancelSave = () => {
     setForm(pastForm);
     router.push(`/articles/${id}/view`);
+    setIsOpenUnSaveModal(false);
   };
 
   const breadcrumbs = ["home", "News Articles", "Add New"];
@@ -119,7 +129,9 @@ const Article: React.FC = () => {
       <Footer>
         {mode === "edit" && (
           <>
-            <Button onClick={handleCancel}>Cancel changes</Button>
+            <Button onClick={() => setIsOpenUnSaveModal(true)}>
+              Cancel changes
+            </Button>
             <Button color="success" onClick={handleSave}>
               Save changes
             </Button>
@@ -133,12 +145,26 @@ const Article: React.FC = () => {
         {mode === "view" && (
           <>
             <Button onClick={handleEdit}>Edit article</Button>
-            <Button color="light-danger" onClick={handleDelete}>
+            <Button
+              color="light-danger"
+              onClick={() => setIsOpenDeleteModal(true)}
+            >
               Delete article
             </Button>
           </>
         )}
       </Footer>
+      <UnSavedModal
+        isOpen={isOpenUnSaveModal}
+        onClose={() => setIsOpenUnSaveModal(false)}
+        onSave={handleSave}
+        onCancel={handleCancelSave}
+      />
+      <DeleteModal
+        isOpen={isOpenDeleteModal}
+        onClose={() => setIsOpenDeleteModal(false)}
+        onDelete={handleDelete}
+      />
     </ArticleContainer>
   );
 };
