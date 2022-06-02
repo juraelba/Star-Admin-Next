@@ -63,4 +63,20 @@ export const Previewer = styled.div`
 export const Form = styled.div<{ hover: boolean }>`
   opacity: ${(props) => (props.hover ? 0.5 : 1)};
   cursor: pointer;
+  position: relative;
+`;
+
+export const CloseButton = styled.button`
+  width: 24px;
+  height: 24px;
+  border-radius: 24px;
+  background: #242731;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  outline: none;
+  top: 16px;
+  right: 16px;
 `;

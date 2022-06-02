@@ -5,13 +5,17 @@ const color = {
   "light-warning": "#E45F35",
   warning: "#FFF",
   success: "#FFF",
+  "light-danger": "#FF313A",
+  danger: "#FFF",
 };
 
 const borderColor = {
   light: "#494E5B",
-  "light-warning": "rgba(228, 95, 53, 0.1)",
+  "light-warning": "transparent",
   warning: "#E45F35",
   success: "#4FBF67",
+  "light-danger": "transparent",
+  danger: "#FFF",
 };
 
 const backgroundColor = {
@@ -19,6 +23,8 @@ const backgroundColor = {
   "light-warning": "rgba(228, 95, 53, 0.1)",
   warning: "#E45F35",
   success: "rgba(79, 191, 103, 0.1)",
+  "light-danger": " rgba(255, 49, 58, 0.1)",
+  danger: "#FF313A",
 };
 
 const height = {
@@ -43,7 +49,13 @@ const padding = {
 };
 
 export const ButtonContainer = styled.button<{
-  color: "success" | "light-warning" | "warning" | "light";
+  color:
+    | "success"
+    | "light-warning"
+    | "warning"
+    | "light"
+    | "danger"
+    | "light-danger";
   size: "xs" | "sm" | "md" | "lg";
   fullWidth: boolean;
 }>`

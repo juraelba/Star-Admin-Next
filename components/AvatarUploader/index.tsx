@@ -31,7 +31,7 @@ const AvatarUploader: React.FC = () => {
       />
       <AvatarContainer>
         <Image src={Avatar} width={128} height={128} alt=":( Not Found" />
-        {file && <img src={file} />}
+        {file && <img src={file} alt=":( Not Found" />}
       </AvatarContainer>
       <Description>
         We recommended an image of at least 800x800px. Max 2mb.

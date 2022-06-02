@@ -1,17 +1,19 @@
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import {
-  DropzoneContainer,
-  IconContainer,
-  File,
-  Label,
-  Form,
-  Previewer,
-  ImagePicker,
-  Title,
+  CloseButton,
   Description,
+  DropzoneContainer,
+  Form,
+  File,
+  IconContainer,
+  ImagePicker,
+  Label,
+  Previewer,
+  Title,
 } from "./styles";
 import UploadIcon from "../../../assets/images/icons/upload.svg";
+import CloseIcon from "../../../assets/images/icons/remove.svg";
 
 interface DropzoneProps {
   value?: any;
@@ -19,19 +21,21 @@ interface DropzoneProps {
   icon?: any;
   title?: string;
   description?: string;
+  readonly?: boolean;
 }
 
 const Dropzone: React.FC<DropzoneProps> = (props) => {
-  const { label, icon, title, description, value } = props;
+  const { label, icon, title, description, value, readonly = false } = props;
   const fileRef = useRef<HTMLInputElement>(null);
   const [file, setFile] = useState<any>(value);
   const [hover, setHover] = useState(false);
 
   const handleClick = () => {
-    if (fileRef.current !== null) fileRef.current.click();
+    if (!readonly && fileRef.current !== null) fileRef.current.click();
   };
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files) setFile(URL.createObjectURL(event.target.files[0]));
+    if (event.target.files && event.target.files.length > 0)
+      setFile(URL.createObjectURL(event.target.files[0]));
   };
   const handleDragLeave = (event: React.DragEvent<HTMLDivElement>) => {
     stopEvent(event);
@@ -55,6 +59,11 @@ const Dropzone: React.FC<DropzoneProps> = (props) => {
     event.preventDefault();
   };
 
+  const handleRemove = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+    setFile(null);
+  };
+
   return (
     <DropzoneContainer>
       {label && <Label>{label}</Label>}
@@ -72,13 +81,20 @@ const Dropzone: React.FC<DropzoneProps> = (props) => {
         hover={hover}
       >
         {file ? (
-          <Previewer>
-            {typeof file !== "string" ? (
-              <Image src={file} />
-            ) : (
-              <img src={file} />
+          <>
+            <Previewer>
+              {typeof file !== "string" ? (
+                <Image src={file} />
+              ) : (
+                <img src={file} />
+              )}
+            </Previewer>
+            {!readonly && (
+              <CloseButton onClick={handleRemove}>
+                <Image src={CloseIcon} alt=":( Not Found" />
+              </CloseButton>
             )}
-          </Previewer>
+          </>
         ) : (
           <ImagePicker>
             <IconContainer>

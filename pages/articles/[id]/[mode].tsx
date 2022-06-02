@@ -129,7 +129,7 @@ const Article: React.FC = () => {
         {mode === "view" && (
           <>
             <Button onClick={handleEdit}>Edit article</Button>
-            <Button color="light-warning" onClick={handleDelete}>
+            <Button color="light-danger" onClick={handleDelete}>
               Delete article
             </Button>
           </>

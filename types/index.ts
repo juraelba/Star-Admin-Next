@@ -54,3 +54,10 @@ export interface Tab {
   id: string;
   name: string;
 }
+
+export interface Action {
+  id: string | number;
+  label: string;
+  icon?: any;
+  action: () => void;
+}

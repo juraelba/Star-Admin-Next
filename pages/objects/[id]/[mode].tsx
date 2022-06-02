@@ -66,7 +66,7 @@ const Object: React.FC = () => {
       <Title>Space Objects</Title>
       <Body>
         <DropzoneContainer>
-          <Dropzone label="Star Image" />
+          <Dropzone label="Star Image" readonly={readonly} />
         </DropzoneContainer>
         <DetailContainer>
           <Row>
@@ -153,7 +153,7 @@ const Object: React.FC = () => {
         {mode === "view" && (
           <>
             <Button onClick={handleEdit}>Edit object</Button>
-            <Button color="light-warning" onClick={handleDelete}>
+            <Button color="light-danger" onClick={handleDelete}>
               Delete object
             </Button>
           </>

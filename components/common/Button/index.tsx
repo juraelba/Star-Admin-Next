@@ -3,7 +3,13 @@ import Image from "next/image";
 import { ButtonContainer } from "./styles";
 
 interface ButtonProps {
-  color?: "success" | "light-warning" | "warning" | "light";
+  color?:
+    | "success"
+    | "light-warning"
+    | "warning"
+    | "light"
+    | "danger"
+    | "light-danger";
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   size?: "xs" | "sm" | "md" | "lg";
   children: React.ReactNode;

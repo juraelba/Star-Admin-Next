@@ -39,7 +39,7 @@ const TextArea: React.FC<TextAreaProps> = (props) => {
         <Text
           name={name}
           readOnly={readonly}
-          placeholder={placeholder}
+          placeholder={placeholder || (label && `Enter ${label}`)}
           value={value}
           height={height}
           onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => onChange(e)}
