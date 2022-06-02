@@ -53,8 +53,8 @@ const Filter: React.FC = () => {
   return (
     <FilterContainer>
       <Selector onClick={handleToggle}>
-        <Image src={FilterIcon} width={24} height={24} alt=":( Not Found" />
-        <Value>All</Value>
+        <Image src="/assets/images/icons/sort.svg" width={24} height={24} alt=":( Not Found" />
+        <Value>Sort by</Value>
         <ArrowContainer>
           <Image
             src={ArrowDownIcon}
@@ -67,7 +67,7 @@ const Filter: React.FC = () => {
       {isOpen && (
         <OutsideClickHandler onOutsideClick={handleClose}>
           <MenuContainer>
-            <Menu actions={actions} label="Consellation" />
+            <Menu actions={actions} label="Name" />
           </MenuContainer>
         </OutsideClickHandler>
       )}

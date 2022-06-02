@@ -4,27 +4,34 @@ export const DataGridContainer = styled.div``;
 
 export const DataTable = styled.table`
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
   margin-bottom: 64px;
+  border-spacing: 0 12px;
 `;
 
 export const TableHead = styled.thead``;
 
 export const TableBody = styled.tbody`
   & tr {
+    td {
+      &:first-child {
+        border-top-left-radius: 12px;
+        border-bottom-left-radius: 12px;
+      }
+
+      &:last-child {
+        border-top-right-radius: 12px;
+        border-bottom-right-radius: 12px;
+      }
+    }
     &:nth-child(even) {
       & > td {
+        background: rgba(36, 39, 49, 0.2);
+      }
+    }
+    &:nth-child(odd) {
+      & > td {
         background: rgba(40, 42, 51, 0.32);
-
-        &:first-child {
-          border-top-left-radius: 12px;
-          border-bottom-left-radius: 12px;
-        }
-
-        &:last-child {
-          border-top-right-radius: 12px;
-          border-bottom-right-radius: 12px;
-        }
       }
     }
   }
@@ -33,18 +40,6 @@ export const TableHeadRow = styled.tr`
   background: #353945;
   height: 60px;
   position: relative;
-
-  &::after {
-    content: "";
-    position: absolute;
-    left: 2px;
-    right: 2px;
-    bottom: 2px;
-    top: 2px;
-    border-radius: 10px;
-    background: #1f2128;
-    z-index: 1;
-  }
 `;
 export const TableHeadCol = styled.td`
   position: relative;
@@ -56,6 +51,7 @@ export const TableHeadCol = styled.td`
   line-height: 16px;
   color: #777e90;
   text-transform: uppercase;
+  background: #23252C;
 
   &:first-child {
     border-top-left-radius: 12px;

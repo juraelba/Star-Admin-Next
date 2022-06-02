@@ -51,7 +51,7 @@ const NFT: React.FC = () => {
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
   const [pastForm, setPastForm] = useState<NFTType>({
     id: 1,
-    name: "12313",
+    name: "",
     owner: "",
     chain: "",
     ranking: "",
