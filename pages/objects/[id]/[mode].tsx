@@ -41,7 +41,7 @@ const Object: React.FC = () => {
           declination: "+89° 15′ 50.8″",
           stellar: "Spectral Class F7",
           bvColor: "0.636",
-          image: "/assets/images/star.png",
+          image: null,
         };
   const [pastForm, setPastForm] = useState<SpaceObject>(initialForm);
   const [form, setForm] = useState<SpaceObject>(initialForm);
