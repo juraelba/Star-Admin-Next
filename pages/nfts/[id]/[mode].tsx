@@ -26,7 +26,7 @@ const NFT: React.FC = () => {
     mode === "create"
       ? {
           id: 1,
-          name: "12313",
+          name: "",
           owner: "",
           chain: "",
           ranking: "",
@@ -76,7 +76,7 @@ const NFT: React.FC = () => {
       <Title>NFTs</Title>
       <Body>
         <DropzoneContainer>
-          <Dropzone label="Star Image" value={form.image} />
+          <Dropzone label="Star Image" value={form.image} readonly={readonly} />
         </DropzoneContainer>
         <DetailContainer>
           <Row>
@@ -147,7 +147,7 @@ const NFT: React.FC = () => {
         {mode === "view" && (
           <>
             <Button onClick={handleEdit}>Edit NFT</Button>
-            <Button color="light-warning" onClick={handleDelete}>
+            <Button color="light-danger" onClick={handleDelete}>
               Delete NFT
             </Button>
           </>

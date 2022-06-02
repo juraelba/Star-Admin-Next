@@ -52,7 +52,7 @@ const TextField: React.FC<TextFieldProps> = (props) => {
           name={name}
           readOnly={readonly}
           hasIcon={icon ? true : false}
-          placeholder={placeholder}
+          placeholder={placeholder || (label && `Enter ${label}`)}
           value={value}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e)}
         />

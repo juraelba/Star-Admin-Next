@@ -279,7 +279,7 @@ const NFTs: React.FC = () => {
           >
             Edit
           </Button>
-          <Button size="xs" color="light-warning" onClick={handleDelete}>
+          <Button size="xs" color="light-danger" onClick={handleDelete}>
             Delete
           </Button>
         </Col>

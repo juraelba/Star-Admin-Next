@@ -88,7 +88,7 @@ export const EditButton = styled.button`
 export const DeleteButton = styled.button`
   width: 56px;
   height: 56px;
-  background: rgba(228, 95, 53, 0.1);
+  background: rgba(255, 49, 58, 0.1);
   border-radius: 48px;
   border: none;
 `;

@@ -34,12 +34,12 @@ const Sidebar: React.FC = () => {
       path: "/articles",
       icon: PaperIcon,
     },
-    {
-      id: "settings",
-      label: "Settings",
-      path: "/settings",
-      icon: SettingsIcon,
-    },
+    // {
+    //   id: "settings",
+    //   label: "Settings",
+    //   path: "/settings",
+    //   icon: SettingsIcon,
+    // },
   ];
 
   const isActive = (path: string) => {
