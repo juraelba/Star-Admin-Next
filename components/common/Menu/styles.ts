@@ -9,7 +9,18 @@ export const MenuContainer = styled.div`
   padding: 12px;
 `;
 
+export const Label = styled.span`
+  display: flex;
+  padding: 6px 12px 18px;
+  font-family: "Montserrat";
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 28px;
+  color: #fcfcf9;
+`;
+
 export const MenuItem = styled.div`
+  cursor: pointer;
   height: 48px;
   border-radius: 8px;
   display: flex;
