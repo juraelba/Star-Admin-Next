@@ -41,13 +41,17 @@ const Object: React.FC = () => {
           declination: "+89° 15′ 50.8″",
           stellar: "Spectral Class F7",
           bvColor: "0.636",
-          image: null,
+          image: "/assets/images/star.png",
         };
   const [pastForm, setPastForm] = useState<SpaceObject>(initialForm);
   const [form, setForm] = useState<SpaceObject>(initialForm);
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target)
       setForm({ ...form, [event.target.name]: event.target.value });
+  };
+
+  const handleChangeFile = (file: string | null) => {
+    setForm({ ...form, image: file });
   };
 
   const handleEdit = () => {
@@ -66,7 +70,12 @@ const Object: React.FC = () => {
       <Title>Space Objects</Title>
       <Body>
         <DropzoneContainer>
-          <Dropzone label="Star Image" readonly={readonly} />
+          <Dropzone
+            label="Star Image"
+            value={form.image}
+            readonly={readonly}
+            onChange={(file) => handleChangeFile(file)}
+          />
         </DropzoneContainer>
         <DetailContainer>
           <Row>
