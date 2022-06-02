@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
+import Breadcrumb from "../../../components/common/Breadcrumb";
 import Col from "../../../components/common/Col";
 import Row from "../../../components/common/Row";
 import TextField from "../../../components/common/TextField";
@@ -50,8 +51,11 @@ const Article: React.FC = () => {
     router.push(`/articles/${id}/view`);
   };
 
+  const breadcrumbs = ["home", "News Articles", "Add New"];
+
   return (
     <ArticleContainer>
+      <Breadcrumb redirectURL="/articles" breadcrumbs={breadcrumbs} />
       <Title>News Articles</Title>
       <Body>
         <Row spacing={60}>

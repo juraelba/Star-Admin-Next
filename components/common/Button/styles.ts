@@ -7,6 +7,7 @@ const color = {
   success: "#FFF",
   "light-danger": "#FF313A",
   danger: "#FFF",
+  yellow: "#353945",
 };
 
 const borderColor = {
@@ -16,6 +17,7 @@ const borderColor = {
   success: "#4FBF67",
   "light-danger": "transparent",
   danger: "#FFF",
+  yellow: "transparent",
 };
 
 const backgroundColor = {
@@ -25,6 +27,7 @@ const backgroundColor = {
   success: "rgba(79, 191, 103, 0.1)",
   "light-danger": " rgba(255, 49, 58, 0.1)",
   danger: "#FF313A",
+  yellow: "#EBCD81",
 };
 
 const height = {
@@ -55,7 +58,8 @@ export const ButtonContainer = styled.button<{
     | "warning"
     | "light"
     | "danger"
-    | "light-danger";
+    | "light-danger"
+    | "yellow";
   size: "xs" | "sm" | "md" | "lg";
   fullWidth: boolean;
 }>`

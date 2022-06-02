@@ -7,7 +7,6 @@ export const Title = styled.p`
   font-size: 32px;
   line-height: 100%;
   color: #fcfcfd;
-  margin-bottom: 48px;
 `;
 
 export const Toolbar = styled.div`
@@ -15,6 +14,12 @@ export const Toolbar = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-bottom: 64px;
+`;
+
+export const Header = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 48px;
 `;
 
 export const TableContainer = styled.div``;

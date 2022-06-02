@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
+import Button from "../../../components/common/Button";
+import Breadcrumb from "../../../components/common/Breadcrumb";
 import Col from "../../../components/common/Col";
 import Dropzone from "../../../components/common/Dropzone";
 import Row from "../../../components/common/Row";
 import TextField from "../../../components/common/TextField";
-import Button from "../../../components/common/Button";
 import {
   Body,
   Footer,
@@ -61,8 +62,11 @@ const Object: React.FC = () => {
     router.push(`/objects/${id}/view`);
   };
 
+  const breadcrumbs = ["Home", "Space Objects", "Add New"];
+
   return (
     <SpaceObjectContainer>
+      <Breadcrumb redirectURL="/objects" breadcrumbs={breadcrumbs} />
       <Title>Space Objects</Title>
       <Body>
         <DropzoneContainer>

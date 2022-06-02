@@ -19,6 +19,12 @@ export const Toolbar = styled.div`
 
 export const TableContainer = styled.div``;
 
+export const Header = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 48px;
+`;
+
 export const DetailViewContainer = styled.div`
   display: flex;
 `;

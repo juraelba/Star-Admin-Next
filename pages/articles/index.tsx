@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import Image from "next/image";
+import AddNewButton from "../../components/AddNewButton";
+import Breadcrumb from "../../components/common/Breadcrumb";
 import Button from "../../components/common/Button";
 import Tab from "../../components/common/Tab";
 import Filter from "../../components/common/Filter";
@@ -9,6 +10,7 @@ import Article from "../../components/Article";
 import {
   ArticlesContainer,
   DetailViewContainer,
+  Header,
   TableContainer,
   Title,
   Toolbar,
@@ -238,9 +240,15 @@ const Articles: React.FC = () => {
     );
   };
 
+  const breadcrumbs = ["Home", "News Articles"];
+
   return (
     <ArticlesContainer>
-      <Title>News Articles</Title>
+      <Breadcrumb breadcrumbs={breadcrumbs} />
+      <Header>
+        <Title>News Articles</Title>
+        <AddNewButton url="/articles/new/create" />
+      </Header>
       <Toolbar>
         <Filter />
         <Tab tabs={tabs} active={selectedTab} onChange={handleChangeTab} />

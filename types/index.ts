@@ -35,7 +35,7 @@ export interface Route {
   id: string;
   label: string;
   path: string;
-  icon: any;
+  icon?: any;
 }
 
 export interface SpaceObject {

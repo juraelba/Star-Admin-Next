@@ -7,7 +7,7 @@ interface MenuProps {
   id: string;
   label: string;
   path: string;
-  icon: any;
+  icon?: any;
   active: boolean;
 }
 
