@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import NotificationIcon from "../../../../assets/images/icons/bell.svg";
 import { NotificationContainer, Dot } from "./styles";
 
 interface NotificationProps {
@@ -10,7 +9,7 @@ interface NotificationProps {
 const Notification: React.FC<NotificationProps> = ({ active = true }) => {
   return (
     <NotificationContainer>
-      <Image src={NotificationIcon} alt=":( Not Found" />
+      <Image src="/assets/images/icons/bell.svg" width={24} height={24} alt=":( Not Found" />
       {active && <Dot />}
     </NotificationContainer>
   );

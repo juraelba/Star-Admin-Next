@@ -9,7 +9,6 @@ import {
   LockIconContainer,
   TextFieldContainer,
 } from "./styles";
-import LockIcon from "../../../assets/images/icons/lock.svg";
 
 interface TextFieldProps {
   type?: string;
@@ -45,7 +44,7 @@ const TextField: React.FC<TextFieldProps> = (props) => {
       {label && <Label>{label}</Label>}
       <InputContainer>
         <IconContainer>
-          {icon && <Image src={icon} alt=":( Not Found" />}
+          {icon && <Image src={icon} width={24} height={24} alt=":( Not Found" />}
         </IconContainer>
         <Input
           type={type}
@@ -58,7 +57,7 @@ const TextField: React.FC<TextFieldProps> = (props) => {
         />
         {readonly && (
           <LockIconContainer>
-            <Image src={LockIcon} width={24} height={24} alt=":( Not Found" />
+            <Image src="/assets/images/icons/lock.svg" width={24} height={24} alt=":( Not Found" />
           </LockIconContainer>
         )}
       </InputContainer>

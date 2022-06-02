@@ -7,7 +7,6 @@ import {
   Label,
   LockIconContainer,
 } from "./styles";
-import LockIcon from "../../../assets/images/icons/lock.svg";
 
 interface TextAreaProps {
   label?: string;
@@ -46,7 +45,7 @@ const TextArea: React.FC<TextAreaProps> = (props) => {
         />
         {readonly && (
           <LockIconContainer>
-            <Image src={LockIcon} width={24} height={24} alt=":( Not Found" />
+            <Image src="/assets/images/icons/lock.svg" width={24} height={24} alt=":( Not Found" />
           </LockIconContainer>
         )}
       </TextContainer>

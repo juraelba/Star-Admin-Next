@@ -1,3 +1,10 @@
+export interface Action {
+  id: string | number;
+  label: string;
+  icon?: any;
+  action: () => void;
+}
+
 export interface Activity {
   id: number;
   title: string;
@@ -55,9 +62,12 @@ export interface Tab {
   name: string;
 }
 
-export interface Action {
-  id: string | number;
-  label: string;
-  icon?: any;
-  action: () => void;
+export interface Trivia {
+  id: number;
+  title: string;
+  date: string;
+  status: "Live" | "Pending";
+  author: string;
+  questionCount: number;
+  publishedAt: string;
 }

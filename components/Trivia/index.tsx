@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Router from "next/router";
 import DeleteModal from "../DeleteModal";
-import { Article as ArticleProps } from "../../types";
+import { Trivia as TriviaType } from "../../types";
 import {
   ActionContainer,
   Body,
@@ -11,19 +11,19 @@ import {
   FormItem,
   Header,
   Label,
-  ArticleContainer,
+  TriviaContainer,
   Title,
   Value,
 } from "./styles";
 
-const Article: React.FC<ArticleProps> = (props) => {
+const Trivia: React.FC<TriviaType> = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const handleRedirect = () => {
-    Router.push(`/articles/${props.id}/view`);
+    Router.push(`/trivia/${props.id}/view`);
   };
   const handleEdit = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
-    Router.push(`/articles/${props.id}/edit`);
+    Router.push(`/trivia/${props.id}/edit`);
   };
   const handleDelete = () => setIsOpen(true);
   const handleOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -32,17 +32,29 @@ const Article: React.FC<ArticleProps> = (props) => {
   };
 
   return (
-    <ArticleContainer onClick={handleRedirect}>
+    <TriviaContainer onClick={handleRedirect}>
       <Header>
         <Title>{props.title}</Title>
         <ActionContainer>
           <EditButton
             onClick={(e: React.MouseEvent<HTMLButtonElement>) => handleEdit(e)}
           >
-            <Image src="/assets/images/icons/edit.svg" width={24} height={24} alt=":( Not Found" />
+            <Image
+              src="/assets/images/icons/edit.svg"
+              width={24}
+              height={24}
+              alt=":( Not Found"
+            />
           </EditButton>
-          <DeleteButton onClick={(e: React.MouseEvent<HTMLButtonElement>) => handleOpen(e)}>
-            <Image src="/assets/images/icons/trash.svg" width={24} height={24} alt=":( Not Found" />
+          <DeleteButton
+            onClick={(e: React.MouseEvent<HTMLButtonElement>) => handleOpen(e)}
+          >
+            <Image
+              src="/assets/images/icons/trash.svg"
+              width={24}
+              height={24}
+              alt=":( Not Found"
+            />
           </DeleteButton>
         </ActionContainer>
       </Header>
@@ -52,8 +64,8 @@ const Article: React.FC<ArticleProps> = (props) => {
           <Value>{props.date}</Value>
         </FormItem>
         <FormItem>
-          <Label>Content</Label>
-          <Value>{props.content}</Value>
+          <Label>Questions</Label>
+          <Value>{props.questionCount}</Value>
         </FormItem>
         <FormItem>
           <Label>Author</Label>
@@ -69,8 +81,8 @@ const Article: React.FC<ArticleProps> = (props) => {
         onClose={() => setIsOpen(false)}
         onDelete={handleDelete}
       />
-    </ArticleContainer>
+    </TriviaContainer>
   );
 };
 
-export default Article;
+export default Trivia;

@@ -10,8 +10,6 @@ import {
   PaginationActionContainer,
   PaginationAction,
 } from "./styles";
-import ArrowLeftIcon from "../../../assets/images/icons/arrow-left-light.svg";
-import ArrowRightIcon from "../../../assets/images/icons/arrow-right-light.svg";
 
 interface CardViewProps {
   rows: object[];
@@ -66,10 +64,23 @@ const CardView: React.FC<CardViewProps> = ({
         </Pagination>
         <PaginationActionContainer>
           <PaginationAction active={index !== 0} onClick={handleBack}>
-            <Image src={ArrowLeftIcon} />
+            <Image
+              src="/assets/images/icons/arrow-left-light.svg"
+              width={24}
+              height={24}
+              alt=":( Not Found"
+            />
           </PaginationAction>
-          <PaginationAction active={index !== pageCount - 1}>
-            <Image src={ArrowRightIcon} onClick={handleNext} />
+          <PaginationAction
+            active={index !== pageCount - 1}
+            onClick={handleNext}
+          >
+            <Image
+              src="/assets/images/icons/arrow-right-light.svg"
+              width={24}
+              height={24}
+              alt=":( Not Found"
+            />
           </PaginationAction>
         </PaginationActionContainer>
       </PaginationContainer>

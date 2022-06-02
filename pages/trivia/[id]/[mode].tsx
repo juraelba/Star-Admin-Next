@@ -13,50 +13,47 @@ import {
   Footer,
   DetailContainer,
   DropzoneContainer,
-  NFTContainer,
+  TriviaContainer,
   Title,
-} from "./nft.styles";
-import { NFT as NFTType } from "../../../types";
+} from "./trivia.styles";
+import { Trivia as TriviaType } from "../../../types";
 
-const NFT: React.FC = () => {
+const Trivia: React.FC = () => {
   const router = useRouter();
   const { id, mode } = router.query;
   const readonly = !(mode === "create" || mode === "edit");
-  const initialForm: NFTType =
+  const initialForm: TriviaType =
     mode === "create"
       ? {
           id: 1,
-          name: "",
-          owner: "",
-          chain: "",
-          ranking: "",
-          rarity: "",
-          link: "",
-          image: null,
+          title: "",
+          date: "",
+          questionCount: 4,
+          publishedAt: "",
+          author: "",
+          status: "Pending",
         }
       : {
           id: 1,
-          name: "Antares",
-          owner: "12e45dee8po9ed5...",
-          chain: "Ethereum",
-          ranking: "#10",
-          rarity: "#10",
-          link: "https://member.starledger.org/d245jdk/",
-          image: "/assets/images/star.png",
+          title: "",
+          date: "",
+          questionCount: 4,
+          publishedAt: "",
+          author: "",
+          status: "Pending",
         };
   const [isOpenUnSaveModal, setIsOpenUnSaveModal] = useState(false);
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
-  const [pastForm, setPastForm] = useState<NFTType>({
+  const [pastForm, setPastForm] = useState<TriviaType>({
     id: 1,
-    name: "",
-    owner: "",
-    chain: "",
-    ranking: "",
-    rarity: "",
-    link: "",
-    image: null,
+    title: "",
+    date: "",
+    questionCount: 4,
+    publishedAt: "",
+    author: "",
+    status: "Pending",
   });
-  const [form, setForm] = useState<NFTType>(initialForm);
+  const [form, setForm] = useState<TriviaType>(initialForm);
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target)
       setForm({ ...form, [event.target.name]: event.target.value });
@@ -64,77 +61,46 @@ const NFT: React.FC = () => {
 
   const handleEdit = () => {
     setPastForm(form);
-    router.push(`/nfts/${id}/edit`);
+    router.push(`/trivia/${id}/edit`);
   };
   const handleDelete = () => {
     setIsOpenDeleteModal(false);
   };
   const handleSave = () => {
-    router.push(`/nfts/${id}/view`);
+    router.push(`/trivia/${id}/view`);
     setIsOpenUnSaveModal(false);
   };
   const handleCancelSave = () => {
     setForm(pastForm);
-    router.push(`/nfts/${id}/view`);
+    router.push(`/trivia/${id}/view`);
     setIsOpenUnSaveModal(false);
   };
-  const breadcrumbs = ["Home", "NFT’s", "Add New"];
+  const breadcrumbs = ["Home", "Trivia", "Add New"];
 
   return (
-    <NFTContainer>
-      <Breadcrumb redirectURL="/nfts" breadcrumbs={breadcrumbs} />
-      <Title>NFTs</Title>
+    <TriviaContainer>
+      <Breadcrumb redirectURL="/trivia" breadcrumbs={breadcrumbs} />
+      <Title>Trivia</Title>
       <Body>
-        <DropzoneContainer>
-          <Dropzone label="Star Image" value={form.image} readonly={readonly} />
-        </DropzoneContainer>
         <DetailContainer>
           <Row>
-            <Col>
+            <Col size={6}>
               <TextField
-                label="Name"
-                name="name"
-                value={form.name}
-                onChange={handleChange}
-                readonly={readonly}
-              />
-            </Col>
-            <Col>
-              <TextField
-                label="Owner"
-                name="owner"
-                icon="/assets/images/icons/alternate-email.svg"
-                value={form.owner}
+                type="date"
+                label="Date"
+                name="date"
+                value={form.date}
                 onChange={handleChange}
                 readonly={readonly}
               />
             </Col>
             <Col size={6}>
               <TextField
-                label="Ranking"
-                name="ranking"
-                value={form.ranking}
+                label="Title"
+                name="title"
+                value={form.title}
                 onChange={handleChange}
                 readonly={readonly}
-              />
-            </Col>
-            <Col size={6}>
-              <TextField
-                label="Rarity"
-                name="rarity"
-                value={form.rarity}
-                onChange={handleChange}
-                readonly={readonly}
-              />
-            </Col>
-            <Col>
-              <TextField
-                label="Link to related Space Object"
-                name="link"
-                value={form.link}
-                onChange={handleChange}
-                readonly={readonly}
-                icon="/assets/images/icons/link.svg"
               />
             </Col>
           </Row>
@@ -179,8 +145,8 @@ const NFT: React.FC = () => {
         onClose={() => setIsOpenDeleteModal(false)}
         onDelete={handleDelete}
       />
-    </NFTContainer>
+    </TriviaContainer>
   );
 };
 
-export default NFT;
+export default Trivia;
