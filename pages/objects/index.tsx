@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
+import AddNewButton from "../../components/AddNewButton";
+import Breadcrumb from "../../components/common/Breadcrumb";
 import Button from "../../components/common/Button";
 import Tab from "../../components/common/Tab";
 import Filter from "../../components/common/Filter";
@@ -9,6 +11,7 @@ import SpaceObject from "../../components/SpaceObject";
 import {
   AvatarContainer,
   DetailViewContainer,
+  Header,
   SpaceObjectsContainer,
   TableContainer,
   Title,
@@ -307,9 +310,15 @@ const SpaceObjects: React.FC = () => {
     );
   };
 
+  const breadcrumbs = ["Home", "Space Objects"];
+
   return (
     <SpaceObjectsContainer>
-      <Title>Space Objects</Title>
+      <Breadcrumb breadcrumbs={breadcrumbs} />
+      <Header>
+        <Title>Space Objects</Title>
+        <AddNewButton url="/objects/new/create" />
+      </Header>
       <Toolbar>
         <Filter />
         <Tab tabs={tabs} active={selectedTab} onChange={handleChangeTab} />

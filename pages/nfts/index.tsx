@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
+import AddNewButton from "../../components/AddNewButton";
+import Breadcrumb from "../../components/common/Breadcrumb";
 import Button from "../../components/common/Button";
 import Tab from "../../components/common/Tab";
 import Filter from "../../components/common/Filter";
@@ -9,6 +11,7 @@ import NFT from "../../components/NFT";
 import {
   AvatarContainer,
   DetailViewContainer,
+  Header,
   NFTsContainer,
   TableContainer,
   Title,
@@ -287,9 +290,15 @@ const NFTs: React.FC = () => {
     );
   };
 
+  const breadcrumbs = ["Home", "NFT’s"];
+
   return (
     <NFTsContainer>
-      <Title>NFTs</Title>
+      <Breadcrumb breadcrumbs={breadcrumbs} />
+      <Header>
+        <Title>NFTs</Title>
+        <AddNewButton url="/nfts/new/create" />
+      </Header>
       <Toolbar>
         <Filter />
         <Tab tabs={tabs} active={selectedTab} onChange={handleChangeTab} />

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
+import Breadcrumb from "../../../components/common/Breadcrumb";
 import Col from "../../../components/common/Col";
 import Dropzone from "../../../components/common/Dropzone";
 import Row from "../../../components/common/Row";
@@ -70,9 +71,11 @@ const NFT: React.FC = () => {
     setForm(pastForm);
     router.push(`/nfts/${id}/view`);
   };
+  const breadcrumbs = ["Home", "NFT’s", "Add New"];
 
   return (
     <NFTContainer>
+      <Breadcrumb redirectURL="/nfts" breadcrumbs={breadcrumbs} />
       <Title>NFTs</Title>
       <Body>
         <DropzoneContainer>

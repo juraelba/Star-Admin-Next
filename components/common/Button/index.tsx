@@ -9,7 +9,8 @@ interface ButtonProps {
     | "warning"
     | "light"
     | "danger"
-    | "light-danger";
+    | "light-danger"
+    | "yellow";
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   size?: "xs" | "sm" | "md" | "lg";
   children: React.ReactNode;
