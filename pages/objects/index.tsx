@@ -8,6 +8,7 @@ import Filter from "../../components/common/Filter";
 import DataGrid, { Row, Col } from "../../components/common/DataGrid";
 import CardView from "../../components/common/CardView";
 import SpaceObject from "../../components/SpaceObject";
+import DeleteModal from "../../components/DeleteModal";
 import {
   AvatarContainer,
   DetailViewContainer,
@@ -22,6 +23,7 @@ import AvatarImage from "../../assets/images/material.png";
 import Router from "next/router";
 
 const SpaceObjects: React.FC = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const [selectedTab, setSelectedTab] = useState("list");
   const tabs: TabType[] = [
     {
@@ -276,7 +278,13 @@ const SpaceObjects: React.FC = () => {
     event.stopPropagation();
     Router.push(`/objects/${rowID}/edit`);
   };
-  const handleDelete = () => {};
+  const handleOpenModal = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+    setIsOpen(true);
+  };
+  const handleDelete = () => {
+    setIsOpen(false);
+  };
 
   const handleRedirect = (rowID: number) => {
     Router.push(`/objects/${rowID}/view`);
@@ -302,7 +310,7 @@ const SpaceObjects: React.FC = () => {
           >
             Edit
           </Button>
-          <Button size="xs" color="light-danger" onClick={handleDelete}>
+          <Button size="xs" color="light-danger" onClick={handleOpenModal}>
             Delete
           </Button>
         </Col>
@@ -332,6 +340,11 @@ const SpaceObjects: React.FC = () => {
           <DataGrid cols={cols} rows={rows} renderRow={renderRow} />
         </TableContainer>
       )}
+      <DeleteModal
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        onDelete={handleDelete}
+      />
     </SpaceObjectsContainer>
   );
 };

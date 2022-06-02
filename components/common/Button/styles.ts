@@ -8,26 +8,32 @@ const color = {
   "light-danger": "#FF313A",
   danger: "#FFF",
   yellow: "#353945",
+  white: "#141416",
+  link: "#FCFCF9",
 };
 
 const borderColor = {
+  white: "transparent",
   light: "#494E5B",
   "light-warning": "transparent",
   warning: "#E45F35",
   success: "#4FBF67",
   "light-danger": "transparent",
-  danger: "#FFF",
+  danger: "transparent",
   yellow: "transparent",
+  link: "transparent",
 };
 
 const backgroundColor = {
   light: "none",
+  white: "#FCFCF9",
   "light-warning": "rgba(228, 95, 53, 0.1)",
   warning: "#E45F35",
   success: "rgba(79, 191, 103, 0.1)",
   "light-danger": " rgba(255, 49, 58, 0.1)",
   danger: "#FF313A",
   yellow: "#EBCD81",
+  link: "transparent",
 };
 
 const height = {
@@ -53,6 +59,8 @@ const padding = {
 
 export const ButtonContainer = styled.button<{
   color:
+    | "white"
+    | "link"
     | "success"
     | "light-warning"
     | "warning"
@@ -62,6 +70,7 @@ export const ButtonContainer = styled.button<{
     | "yellow";
   size: "xs" | "sm" | "md" | "lg";
   fullWidth: boolean;
+  mb: number;
 }>`
   display: inline-flex;
   align-items: center;
@@ -81,6 +90,7 @@ export const ButtonContainer = styled.button<{
   color: ${(props) => color[props.color]};
   cursor: pointer;
   transition: 0.2s;
+  margin-bottom: ${(props) => props.mb || 0}px;
 
   &:hover {
     opacity: 0.8;

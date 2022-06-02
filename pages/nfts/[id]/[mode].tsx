@@ -6,6 +6,8 @@ import Dropzone from "../../../components/common/Dropzone";
 import Row from "../../../components/common/Row";
 import TextField from "../../../components/common/TextField";
 import Button from "../../../components/common/Button";
+import UnSavedModal from "../../../components/UnSavedModal";
+import DeleteModal from "../../../components/DeleteModal";
 import {
   Body,
   Footer,
@@ -45,6 +47,8 @@ const NFT: React.FC = () => {
           link: "https://member.starledger.org/d245jdk/",
           image: StarImg,
         };
+  const [isOpenUnSaveModal, setIsOpenUnSaveModal] = useState(false);
+  const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
   const [pastForm, setPastForm] = useState<NFTType>({
     id: 1,
     name: "12313",
@@ -65,11 +69,17 @@ const NFT: React.FC = () => {
     setPastForm(form);
     router.push(`/nfts/${id}/edit`);
   };
-  const handleDelete = () => {};
-  const handleSave = () => router.push(`/nfts/${id}/view`);
-  const handleCancel = () => {
+  const handleDelete = () => {
+    setIsOpenDeleteModal(false);
+  };
+  const handleSave = () => {
+    router.push(`/nfts/${id}/view`);
+    setIsOpenUnSaveModal(false);
+  };
+  const handleCancelSave = () => {
     setForm(pastForm);
     router.push(`/nfts/${id}/view`);
+    setIsOpenUnSaveModal(false);
   };
   const breadcrumbs = ["Home", "NFT’s", "Add New"];
 
@@ -136,7 +146,9 @@ const NFT: React.FC = () => {
       <Footer>
         {mode === "edit" && (
           <>
-            <Button onClick={handleCancel}>Cancel changes</Button>
+            <Button onClick={() => setIsOpenUnSaveModal(true)}>
+              Cancel changes
+            </Button>
             <Button color="success" onClick={handleSave}>
               Save changes
             </Button>
@@ -150,12 +162,26 @@ const NFT: React.FC = () => {
         {mode === "view" && (
           <>
             <Button onClick={handleEdit}>Edit NFT</Button>
-            <Button color="light-danger" onClick={handleDelete}>
+            <Button
+              color="light-danger"
+              onClick={() => setIsOpenDeleteModal(true)}
+            >
               Delete NFT
             </Button>
           </>
         )}
       </Footer>
+      <UnSavedModal
+        isOpen={isOpenUnSaveModal}
+        onClose={() => setIsOpenUnSaveModal(false)}
+        onSave={handleSave}
+        onCancel={handleCancelSave}
+      />
+      <DeleteModal
+        isOpen={isOpenDeleteModal}
+        onClose={() => setIsOpenDeleteModal(false)}
+        onDelete={handleDelete}
+      />
     </NFTContainer>
   );
 };

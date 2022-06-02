@@ -6,6 +6,8 @@ import Col from "../../../components/common/Col";
 import Dropzone from "../../../components/common/Dropzone";
 import Row from "../../../components/common/Row";
 import TextField from "../../../components/common/TextField";
+import UnSavedModal from "../../../components/UnSavedModal";
+import DeleteModal from "../../../components/DeleteModal";
 import {
   Body,
   Footer,
@@ -44,6 +46,8 @@ const Object: React.FC = () => {
           bvColor: "0.636",
           image: null,
         };
+  const [isOpenUnSaveModal, setIsOpenUnSaveModal] = useState(false);
+  const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
   const [pastForm, setPastForm] = useState<SpaceObject>(initialForm);
   const [form, setForm] = useState<SpaceObject>(initialForm);
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -55,11 +59,17 @@ const Object: React.FC = () => {
     setPastForm(form);
     router.push(`/objects/${id}/edit`);
   };
-  const handleDelete = () => {};
-  const handleSave = () => router.push(`/objects/${id}/view`);
-  const handleCancel = () => {
+  const handleDelete = () => {
+    setIsOpenDeleteModal(false);
+  };
+  const handleSave = () => {
+    router.push(`/objects/${id}/view`);
+    setIsOpenUnSaveModal(false);
+  };
+  const handleCancelSave = () => {
     setForm(pastForm);
     router.push(`/objects/${id}/view`);
+    setIsOpenUnSaveModal(false);
   };
 
   const breadcrumbs = ["Home", "Space Objects", "Add New"];
@@ -143,7 +153,9 @@ const Object: React.FC = () => {
       <Footer>
         {mode === "edit" && (
           <>
-            <Button onClick={handleCancel}>Cancel changes</Button>
+            <Button onClick={() => setIsOpenUnSaveModal(true)}>
+              Cancel changes
+            </Button>
             <Button color="success" onClick={handleSave}>
               Save changes
             </Button>
@@ -157,12 +169,26 @@ const Object: React.FC = () => {
         {mode === "view" && (
           <>
             <Button onClick={handleEdit}>Edit object</Button>
-            <Button color="light-danger" onClick={handleDelete}>
+            <Button
+              color="light-danger"
+              onClick={() => setIsOpenDeleteModal(true)}
+            >
               Delete object
             </Button>
           </>
         )}
       </Footer>
+      <UnSavedModal
+        isOpen={isOpenUnSaveModal}
+        onClose={() => setIsOpenUnSaveModal(false)}
+        onSave={handleSave}
+        onCancel={handleCancelSave}
+      />
+      <DeleteModal
+        isOpen={isOpenDeleteModal}
+        onClose={() => setIsOpenDeleteModal(false)}
+        onDelete={handleDelete}
+      />
     </SpaceObjectContainer>
   );
 };
