@@ -15,7 +15,6 @@ export const Title = styled.p`
 
 export const Body = styled.div`
   display: flex;
-  gap: 60px;
 `;
 
 export const Footer = styled.div`
