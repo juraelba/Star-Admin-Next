@@ -39,8 +39,8 @@ const CreateNew: React.FC = () => {
       <Title>Create New</Title>
       <Body>
         {items.map((item: Props) => (
-          <ItemContainer>
-            <Item key={item.id} {...item} />
+          <ItemContainer key={item.id}>
+            <Item {...item} />
           </ItemContainer>
         ))}
       </Body>
