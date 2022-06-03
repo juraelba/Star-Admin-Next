@@ -26,12 +26,12 @@ export const TableBody = styled.tbody`
     }
     &:nth-child(even) {
       & > td {
-        background: rgba(36, 39, 49, 0.2);
+        background: rgba(40, 42, 51, 0.32);
       }
     }
     &:nth-child(odd) {
       & > td {
-        background: rgba(40, 42, 51, 0.32);
+        background: rgba(36, 39, 49, 0.2);
       }
     }
   }
