@@ -13,5 +13,12 @@ export const Title = styled.p`
 
 export const Body = styled.div`
   display: flex;
-  gap: 32px;
+  margin-left: -16px;
+  margin-right: -16px;
 `;
+
+export const ItemContainer = styled.div`
+  width: 100%;
+  margin-left: 16px;
+  margin-right: 16px;
+`
