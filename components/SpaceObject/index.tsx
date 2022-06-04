@@ -22,8 +22,6 @@ import {
   Title,
   Value,
 } from "./styles";
-import EditIcon from "../../assets/images/icons/edit.svg";
-import TrashIcon from "../../assets/images/icons/trash.svg";
 
 const SpaceObject: React.FC<SpaceObjectProps> = (props) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -65,10 +63,10 @@ const SpaceObject: React.FC<SpaceObjectProps> = (props) => {
           <EditButton
             onClick={(e: React.MouseEvent<HTMLButtonElement>) => handleEdit(e)}
           >
-            <Image src={EditIcon} width={24} height={24} alt=":( Not Found" />
+            <Image src="/assets/images/icons/edit.svg" width={24} height={24} alt=":( Not Found" />
           </EditButton>
           <DeleteButton onClick={(e: React.MouseEvent<HTMLButtonElement>) => handleOpen(e)}>
-            <Image src={TrashIcon} width={24} height={24} alt=":( Not Found" />
+            <Image src="/assets/images/icons/trash.svg" width={24} height={24} alt=":( Not Found" />
           </DeleteButton>
         </ActionContainer>
       </Header>

@@ -17,19 +17,19 @@ const CreateNew: React.FC = () => {
     {
       id: "spaceobj",
       name: "Space Object",
-      icon: SpaceObjIcon,
+      icon: "/assets/images/object.png",
       path: "/objects/new/create",
     },
     {
       id: "nft",
       name: "NFT Listing",
-      icon: NFTIcon,
+      icon: "/assets/images/nft.png",
       path: "/nfts/new/create",
     },
     {
       id: "article",
       name: "News Article",
-      icon: ArticleIcon,
+      icon: "/assets/images/article.png",
       path: "/articles/new/create",
     },
   ];

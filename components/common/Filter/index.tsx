@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import Image from "next/image";
 import OutsideClickHandler from "react-outside-click-handler";
 import Menu from "../Menu";
-import FilterIcon from "../../../assets/images/icons/filter.svg";
-import ArrowDownIcon from "../../../assets/images/icons/chevron-down.svg";
 import {
   ArrowContainer,
   FilterContainer,
@@ -53,11 +51,11 @@ const Filter: React.FC = () => {
   return (
     <FilterContainer>
       <Selector onClick={handleToggle}>
-        <Image src={FilterIcon} width={24} height={24} alt=":( Not Found" />
+        <Image src="/assets/images/icons/filter.svg" width={24} height={24} alt=":( Not Found" />
         <Value>All</Value>
         <ArrowContainer>
           <Image
-            src={ArrowDownIcon}
+            src="/assets/images/icons/chevron-down.svg"
             width={24}
             height={24}
             alt=":( Not Found"

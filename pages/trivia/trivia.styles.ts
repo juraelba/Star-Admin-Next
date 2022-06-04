@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ActivityContainer = styled.div``;
+export const TriviaContainer = styled.div``;
 export const Title = styled.p`
   font-family: "Montserrat";
   font-weight: 600;
@@ -24,19 +24,28 @@ export const Header = styled.div`
 
 export const TableContainer = styled.div``;
 
-export const ActivityTitle = styled.span`
-  font-size: 14px;
+export const DetailViewContainer = styled.div`
+  display: flex;
+`;
+
+export const AvatarContainer = styled.div`
+  width: 53px;
+  height: 53px;
+  border-radius: 30px;
+  overflow: hidden;
+`;
+
+export const Actions = styled.div`
+  display: flex;
+  align-items: center;
+
+  & > div {
+    margin-right: 20px;
+  }
+`;
+
+export const TriviaTitle = styled.span`
   font-weight: 700;
-  line-height: 24px;
-`;
-
-export const ActivityAuthor = styled.span`
   font-size: 14px;
   line-height: 24px;
-`;
-
-export const ActivityDate = styled.span`
-  font-size: 14px;
-  line-height: 24px;
-  color: #808191;
 `;

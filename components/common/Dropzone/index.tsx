@@ -12,8 +12,6 @@ import {
   Previewer,
   Title,
 } from "./styles";
-import UploadIcon from "../../../assets/images/icons/upload.svg";
-import CloseIcon from "../../../assets/images/icons/remove.svg";
 
 interface DropzoneProps {
   value?: any;
@@ -106,7 +104,12 @@ const Dropzone: React.FC<DropzoneProps> = (props) => {
             </Previewer>
             {!readonly && (
               <CloseButton onClick={handleRemove}>
-                <Image src={CloseIcon} alt=":( Not Found" />
+                <Image
+                  src="/assets/images/icons/remove.svg"
+                  width={12}
+                  height={12}
+                  alt=":( Not Found"
+                />
               </CloseButton>
             )}
           </>
@@ -118,7 +121,7 @@ const Dropzone: React.FC<DropzoneProps> = (props) => {
               <>
                 <IconContainer>
                   <Image
-                    src={icon || UploadIcon}
+                    src={icon || "/assets/images/icons/upload.svg"}
                     width={40}
                     height={40}
                     alt=":( Not Found"

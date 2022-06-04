@@ -10,7 +10,6 @@ import {
   Author,
   Date,
 } from "./styles";
-import CircleImg from "../../../assets/images/circle.png";
 import { Activity as ActivityProps } from "../../../types";
 
 const Activity: React.FC<ActivityProps> = (props) => {
@@ -20,7 +19,12 @@ const Activity: React.FC<ActivityProps> = (props) => {
     <ActivityContainer>
       <LeftContainer>
         <AvatarContainer>
-          <Image src={CircleImg} alt=":( Not Found" />
+          <Image
+            src="/assets/images/circle.png"
+            width={40}
+            height={40}
+            alt=":( Not Found"
+          />
         </AvatarContainer>
         <DetailContainer>
           <Title>{title}</Title>

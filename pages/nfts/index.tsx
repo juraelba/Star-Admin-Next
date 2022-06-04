@@ -19,7 +19,6 @@ import {
   Toolbar,
 } from "./nfts.styles";
 import { Tab as TabType, NFT as NFTType } from "../../types";
-import AvatarImage from "../../assets/images/material.png";
 import Router from "next/router";
 
 const NFTs: React.FC = () => {
@@ -44,7 +43,7 @@ const NFTs: React.FC = () => {
       ranking: "Placeholder",
       rarity: "Placeholder",
       link: "https://member.starledger.org/d245jdk/",
-      image: AvatarImage,
+      image: "/assets/images/material.png",
     },
     {
       id: 2,
@@ -54,7 +53,7 @@ const NFTs: React.FC = () => {
       ranking: "Placeholder",
       rarity: "Placeholder",
       link: "https://member.starledger.org/d245jdk/",
-      image: AvatarImage,
+      image: "/assets/images/material.png",
     },
     {
       id: 3,
@@ -64,7 +63,7 @@ const NFTs: React.FC = () => {
       ranking: "Placeholder",
       rarity: "Placeholder",
       link: "https://member.starledger.org/d245jdk/",
-      image: AvatarImage,
+      image: "/assets/images/material.png",
     },
     {
       id: 4,
@@ -74,7 +73,7 @@ const NFTs: React.FC = () => {
       ranking: "Placeholder",
       rarity: "Placeholder",
       link: "https://member.starledger.org/d245jdk/",
-      image: AvatarImage,
+      image: "/assets/images/material.png",
     },
     {
       id: 5,
@@ -84,7 +83,7 @@ const NFTs: React.FC = () => {
       ranking: "Placeholder",
       rarity: "Placeholder",
       link: "https://member.starledger.org/d245jdk/",
-      image: AvatarImage,
+      image: "/assets/images/material.png",
     },
     {
       id: 6,
@@ -94,7 +93,7 @@ const NFTs: React.FC = () => {
       ranking: "Placeholder",
       rarity: "Placeholder",
       link: "https://member.starledger.org/d245jdk/",
-      image: AvatarImage,
+      image: "/assets/images/material.png",
     },
     {
       id: 7,
@@ -104,7 +103,7 @@ const NFTs: React.FC = () => {
       ranking: "Placeholder",
       rarity: "Placeholder",
       link: "https://member.starledger.org/d245jdk/",
-      image: AvatarImage,
+      image: "/assets/images/material.png",
     },
     {
       id: 8,
@@ -114,7 +113,7 @@ const NFTs: React.FC = () => {
       ranking: "Placeholder",
       rarity: "Placeholder",
       link: "https://member.starledger.org/d245jdk/",
-      image: AvatarImage,
+      image: "/assets/images/material.png",
     },
     {
       id: 9,
@@ -124,7 +123,7 @@ const NFTs: React.FC = () => {
       ranking: "Placeholder",
       rarity: "Placeholder",
       link: "https://member.starledger.org/d245jdk/",
-      image: AvatarImage,
+      image: "/assets/images/material.png",
     },
     {
       id: 10,
@@ -134,7 +133,7 @@ const NFTs: React.FC = () => {
       ranking: "Placeholder",
       rarity: "Placeholder",
       link: "https://member.starledger.org/d245jdk/",
-      image: AvatarImage,
+      image: "/assets/images/material.png",
     },
     {
       id: 11,
@@ -144,7 +143,7 @@ const NFTs: React.FC = () => {
       ranking: "Placeholder",
       rarity: "Placeholder",
       link: "https://member.starledger.org/d245jdk/",
-      image: AvatarImage,
+      image: "/assets/images/material.png",
     },
     {
       id: 12,
@@ -154,7 +153,7 @@ const NFTs: React.FC = () => {
       ranking: "Placeholder",
       rarity: "Placeholder",
       link: "https://member.starledger.org/d245jdk/",
-      image: AvatarImage,
+      image: "/assets/images/material.png",
     },
     {
       id: 13,
@@ -164,7 +163,7 @@ const NFTs: React.FC = () => {
       ranking: "Placeholder",
       rarity: "Placeholder",
       link: "https://member.starledger.org/d245jdk/",
-      image: AvatarImage,
+      image: "/assets/images/material.png",
     },
     {
       id: 14,
@@ -174,7 +173,7 @@ const NFTs: React.FC = () => {
       ranking: "Placeholder",
       rarity: "Placeholder",
       link: "https://member.starledger.org/d245jdk/",
-      image: AvatarImage,
+      image: "/assets/images/material.png",
     },
     {
       id: 15,
@@ -184,7 +183,7 @@ const NFTs: React.FC = () => {
       ranking: "Placeholder",
       rarity: "Placeholder",
       link: "https://member.starledger.org/d245jdk/",
-      image: AvatarImage,
+      image: "/assets/images/material.png",
     },
     {
       id: 16,
@@ -194,7 +193,7 @@ const NFTs: React.FC = () => {
       ranking: "Placeholder",
       rarity: "Placeholder",
       link: "https://member.starledger.org/d245jdk/",
-      image: AvatarImage,
+      image: "/assets/images/material.png",
     },
     {
       id: 17,
@@ -204,7 +203,7 @@ const NFTs: React.FC = () => {
       ranking: "Placeholder",
       rarity: "Placeholder",
       link: "https://member.starledger.org/d245jdk/",
-      image: AvatarImage,
+      image: "/assets/images/material.png",
     },
     {
       id: 18,
@@ -214,7 +213,7 @@ const NFTs: React.FC = () => {
       ranking: "Placeholder",
       rarity: "Placeholder",
       link: "https://member.starledger.org/d245jdk/",
-      image: AvatarImage,
+      image: "/assets/images/material.png",
     },
     {
       id: 19,
@@ -224,7 +223,7 @@ const NFTs: React.FC = () => {
       ranking: "Placeholder",
       rarity: "Placeholder",
       link: "https://member.starledger.org/d245jdk/",
-      image: AvatarImage,
+      image: "/assets/images/material.png",
     },
     {
       id: 20,
@@ -234,7 +233,7 @@ const NFTs: React.FC = () => {
       ranking: "Placeholder",
       rarity: "Placeholder",
       link: "https://member.starledger.org/d245jdk/",
-      image: AvatarImage,
+      image: "/assets/images/material.png",
     },
     {
       id: 21,
@@ -244,7 +243,7 @@ const NFTs: React.FC = () => {
       ranking: "Placeholder",
       rarity: "Placeholder",
       link: "https://member.starledger.org/d245jdk/",
-      image: AvatarImage,
+      image: "/assets/images/material.png",
     },
   ];
   const cols: string[] = ["Image", "Name", "Owner", "Chain", "Status"];

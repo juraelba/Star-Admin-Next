@@ -15,8 +15,6 @@ import {
   PaginationActionContainer,
   PaginationAction,
 } from "./styles";
-import ArrowLeftIcon from "../../../assets/images/icons/arrow-left-light.svg";
-import ArrowRightIcon from "../../../assets/images/icons/arrow-right-light.svg";
 
 interface DataGridProps {
   rows: object[];
@@ -84,10 +82,19 @@ const DataGrid: React.FC<DataGridProps> = ({
         </Pagination>
         <PaginationActionContainer>
           <PaginationAction active={index !== 0} onClick={handleBack}>
-            <Image src={ArrowLeftIcon} />
+            <Image
+              src="/assets/images/icons/arrow-left-light.svg"
+              width={24}
+              height={24}
+            />
           </PaginationAction>
           <PaginationAction active={index !== pageCount - 1}>
-            <Image src={ArrowRightIcon} onClick={handleNext} />
+            <Image
+              src="/assets/images/icons/arrow-right-light.svg"
+              width={24}
+              height={24}
+              onClick={handleNext}
+            />
           </PaginationAction>
         </PaginationActionContainer>
       </PaginationContainer>

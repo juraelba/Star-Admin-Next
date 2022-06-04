@@ -1,5 +1,4 @@
 import React from "react";
-import Breadcrumb from "../common/Breadcrumb";
 import Sidebar from "./Sidebar";
 import { LayoutContainer, MainContainer, PageContent } from "./styles";
 import Topbar from "./Topbar";
