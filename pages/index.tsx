@@ -15,7 +15,7 @@ const Home: React.FC = () => {
       id: 1,
       title: "New NFT Listed",
       date: "May 23, 2022",
-      status: "Complete",
+      status: "Completed",
       author: "Chris Tate",
     },
     {
@@ -29,7 +29,7 @@ const Home: React.FC = () => {
       id: 3,
       title: "New Space Object Created",
       date: "May 23, 2022",
-      status: "Complete",
+      status: "Completed",
       author: "Chris Tate",
     },
   ];
