@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import Image from "next/image";
 import {
   CloseButton,
@@ -22,36 +22,51 @@ interface DropzoneProps {
   title?: string;
   description?: string;
   readonly?: boolean;
+  onChange: (file: string | null) => void;
 }
 
 const Dropzone: React.FC<DropzoneProps> = (props) => {
-  const { label, icon, title, description, value, readonly = false } = props;
+  const {
+    label,
+    icon,
+    title,
+    description,
+    value,
+    readonly = false,
+    onChange,
+  } = props;
   const fileRef = useRef<HTMLInputElement>(null);
-  const [file, setFile] = useState<any>(value);
   const [hover, setHover] = useState(false);
 
   const handleClick = () => {
     if (!readonly && fileRef.current !== null) fileRef.current.click();
   };
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files && event.target.files.length > 0)
-      setFile(URL.createObjectURL(event.target.files[0]));
+    if (event.target.files && event.target.files.length > 0) {
+      onChange(URL.createObjectURL(event.target.files[0]));
+    }
   };
   const handleDragLeave = (event: React.DragEvent<HTMLDivElement>) => {
-    stopEvent(event);
-    setHover(false);
+    if (!readonly) {
+      stopEvent(event);
+      setHover(false);
+    }
   };
 
   const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
-    stopEvent(event);
-    setHover(true);
+    if (!readonly) {
+      stopEvent(event);
+      setHover(true);
+    }
   };
 
   const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
-    stopEvent(event);
-    if (event.dataTransfer)
-      setFile(URL.createObjectURL(event.dataTransfer.files[0]));
-    setHover(false);
+    if (!readonly) {
+      stopEvent(event);
+      if (event.dataTransfer)
+        onChange(URL.createObjectURL(event.dataTransfer.files[0]));
+      setHover(false);
+    }
   };
 
   const stopEvent = (event: React.DragEvent<HTMLDivElement>) => {
@@ -61,7 +76,7 @@ const Dropzone: React.FC<DropzoneProps> = (props) => {
 
   const handleRemove = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
-    setFile(null);
+    onChange(null);
   };
 
   return (
@@ -80,13 +95,13 @@ const Dropzone: React.FC<DropzoneProps> = (props) => {
         onDrop={handleDrop}
         hover={hover}
       >
-        {file ? (
+        {value ? (
           <>
             <Previewer>
-              {typeof file !== "string" ? (
-                <Image src={file} />
+              {typeof value !== "string" ? (
+                <Image src={value} />
               ) : (
-                <img src={file} />
+                <img src={value} />
               )}
             </Previewer>
             {!readonly && (
@@ -97,18 +112,24 @@ const Dropzone: React.FC<DropzoneProps> = (props) => {
           </>
         ) : (
           <ImagePicker>
-            <IconContainer>
-              <Image
-                src={icon || UploadIcon}
-                width={40}
-                height={40}
-                alt=":( Not Found"
-              />
-            </IconContainer>
-            <Title>{title || "Drag and drop to upload"}</Title>
-            <Description>
-              {description || "Size recommend 800x800. Max 2mb."}
-            </Description>
+            {readonly ? (
+              <Title>No Image</Title>
+            ) : (
+              <>
+                <IconContainer>
+                  <Image
+                    src={icon || UploadIcon}
+                    width={40}
+                    height={40}
+                    alt=":( Not Found"
+                  />
+                </IconContainer>
+                <Title>{title || "Drag and drop to upload"}</Title>
+                <Description>
+                  {description || "Size recommend 800x800. Max 2mb."}
+                </Description>
+              </>
+            )}
           </ImagePicker>
         )}
       </Form>

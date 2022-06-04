@@ -65,6 +65,10 @@ const NFT: React.FC = () => {
       setForm({ ...form, [event.target.name]: event.target.value });
   };
 
+  const handleChangeFile = (file: string | null) => {
+    setForm({ ...form, image: file });
+  };
+
   const handleEdit = () => {
     setPastForm(form);
     router.push(`/nfts/${id}/edit`);
@@ -89,7 +93,12 @@ const NFT: React.FC = () => {
       <Title>NFTs</Title>
       <Body>
         <DropzoneContainer>
-          <Dropzone label="Star Image" value={form.image} readonly={readonly} />
+          <Dropzone
+            label="Star Image"
+            value={form.image}
+            readonly={readonly}
+            onChange={(file) => handleChangeFile(file)}
+          />
         </DropzoneContainer>
         <DetailContainer>
           <Row>

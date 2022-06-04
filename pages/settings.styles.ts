@@ -56,12 +56,12 @@ export const TabContainer = styled.div`
 
 export const Body = styled.div`
   display: flex;
-  gap: 90px;
   padding: 48px 0;
   border-top: 1px solid #31343f;
 `;
 
 export const Form = styled.div`
+  padding-right: 90px;
   width: 100%;
 `;
 

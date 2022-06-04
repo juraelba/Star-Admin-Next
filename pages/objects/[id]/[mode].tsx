@@ -55,6 +55,10 @@ const Object: React.FC = () => {
       setForm({ ...form, [event.target.name]: event.target.value });
   };
 
+  const handleChangeFile = (file: string | null) => {
+    setForm({ ...form, image: file });
+  };
+
   const handleEdit = () => {
     setPastForm(form);
     router.push(`/objects/${id}/edit`);
@@ -80,7 +84,12 @@ const Object: React.FC = () => {
       <Title>Space Objects</Title>
       <Body>
         <DropzoneContainer>
-          <Dropzone label="Star Image" readonly={readonly} />
+          <Dropzone
+            label="Star Image"
+            value={form.image}
+            readonly={readonly}
+            onChange={(file) => handleChangeFile(file)}
+          />
         </DropzoneContainer>
         <DetailContainer>
           <Row>
