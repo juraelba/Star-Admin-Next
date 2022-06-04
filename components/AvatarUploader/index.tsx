@@ -8,7 +8,7 @@ import {
   File,
   Footer,
 } from "./styles";
-import Avatar from "../../assets/images/avatar.png";
+import Avatar from "/assets/images/avatar.png";
 
 const AvatarUploader: React.FC = () => {
   const fileRef = useRef<HTMLInputElement>(null);
