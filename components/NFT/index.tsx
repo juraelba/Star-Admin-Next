@@ -19,8 +19,6 @@ import {
   Title,
   Value,
 } from "./styles";
-import EditIcon from "../../assets/images/icons/edit.svg";
-import TrashIcon from "../../assets/images/icons/trash.svg";
 
 const NFT: React.FC<NFTProps> = (props) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -59,10 +57,10 @@ const NFT: React.FC<NFTProps> = (props) => {
           <EditButton
             onClick={(e: React.MouseEvent<HTMLButtonElement>) => handleEdit(e)}
           >
-            <Image src={EditIcon} width={24} height={24} alt=":( Not Found" />
+            <Image src="/assets/images/icons/edit.svg" width={24} height={24} alt=":( Not Found" />
           </EditButton>
           <DeleteButton onClick={handleOpen}>
-            <Image src={TrashIcon} width={24} height={24} alt=":( Not Found" />
+            <Image src="/assets/images/icons/trash.svg" width={24} height={24} alt=":( Not Found" />
           </DeleteButton>
         </ActionContainer>
       </Header>

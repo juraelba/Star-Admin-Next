@@ -3,7 +3,6 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import MenuItem from "./MenuItem";
 import SendCrypto from "./SendCrypto";
-import Logo from "../../../assets/images/logo.svg";
 import { Route } from "../../../types";
 import {
   SidebarContainer,
@@ -11,28 +10,39 @@ import {
   Menu,
   SendCryptoContainer,
 } from "./styles";
-import HomeIcon from "../../../assets/images/icons/home-warning.svg";
-import StarIcon from "../../../assets/images/icons/star-warning.svg";
-import ImageIcon from "../../../assets/images/icons/image-warning.svg";
-import PaperIcon from "../../../assets/images/icons/paper-warning.svg";
-import SettingsIcon from "../../../assets/images/icons/settings-warning.svg";
 
 const Sidebar: React.FC = () => {
   const router = useRouter();
   const routes: Route[] = [
-    { id: "home", label: "Home", path: "/", icon: HomeIcon },
+    {
+      id: "home",
+      label: "Home",
+      path: "/",
+      icon: "/assets/images/icons/home-warning.svg",
+    },
     {
       id: "spaceobjs",
       label: "Space Objects",
       path: "/objects",
-      icon: StarIcon,
+      icon: "/assets/images/icons/star-warning.svg",
     },
-    { id: "nfts", label: "NFT’s", path: "/nfts", icon: ImageIcon },
+    {
+      id: "nfts",
+      label: "NFT’s",
+      path: "/nfts",
+      icon: "/assets/images/icons/image-warning.svg",
+    },
     {
       id: "articles",
       label: "News Articles",
       path: "/articles",
-      icon: PaperIcon,
+      icon: "/assets/images/icons/paper-warning.svg",
+    },
+    {
+      id: "trivia",
+      label: "Trivia",
+      path: "/trivia",
+      icon: "/assets/images/icons/game-warning.svg",
     },
     // {
     //   id: "settings",
@@ -50,7 +60,7 @@ const Sidebar: React.FC = () => {
   return (
     <SidebarContainer>
       <LogoContainer>
-        <Image src={Logo} width={178} height={32} alt=":( Not Found" />
+        <Image src="/assets/images/logo.svg" width={178} height={32} alt=":( Not Found" />
       </LogoContainer>
       <Menu>
         {routes.map((route: Route) => (

@@ -17,7 +17,7 @@ const Item: React.FC<Props> = (props) => {
   return (
     <ItemContainer onClick={handleRedirect}>
       <IconContainer>
-        <Image src={icon} alt=":( Not Found" />
+        <Image src={icon} width={112} height={112} alt=":( Not Found" />
       </IconContainer>
       <Name>{name}</Name>
     </ItemContainer>

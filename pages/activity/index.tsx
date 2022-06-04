@@ -7,6 +7,7 @@ import SortBy from "../../components/common/SortBy";
 import DataGrid, { Row, Col } from "../../components/common/DataGrid";
 import {
   ActivityContainer,
+  ActivityAuthor,
   ActivityDate,
   ActivityTitle,
   Header,
@@ -194,7 +195,9 @@ const Activity: React.FC = () => {
         <Col>
           <ActivityTitle>{row.title}</ActivityTitle>
         </Col>
-        <Col>{row.author}</Col>
+        <Col>
+          <ActivityAuthor>{row.author}</ActivityAuthor>
+        </Col>
         <Col>
           <ActivityDate>{row.date}</ActivityDate>
         </Col>

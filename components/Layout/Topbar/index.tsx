@@ -10,8 +10,6 @@ import {
   RightContainer,
   TopbarContainer,
 } from "./styles";
-import Avatar from "../../../assets/images/avatar.png";
-import LogoutIcon from "../../../assets/images/icons/logout.svg";
 
 const Topbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,7 +19,7 @@ const Topbar = () => {
     {
       id: 1,
       label: "Log Out",
-      icon: LogoutIcon,
+      icon: "/assets/images/icons/logout.svg",
       action: handleClose,
     },
   ];
@@ -33,7 +31,7 @@ const Topbar = () => {
         <Notification />
         <Profile>
           <Image
-            src={Avatar}
+            src="/assets/images/avatar.png"
             width={48}
             height={48}
             alt=":( Not Found"

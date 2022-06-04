@@ -11,8 +11,6 @@ import {
   MoreButton,
 } from "./styles";
 import { Activity as ActivityType } from "../../types";
-import MoreIcon from "../../assets/images/icons/more.svg";
-import ArrowRightIcon from "../../assets/images/icons/arrow-right.svg";
 import Activity from "../common/Activity";
 
 interface LatestActivitiesProps {
@@ -25,7 +23,7 @@ const LatestActivities: React.FC<LatestActivitiesProps> = ({ data }) => {
       <Header>
         <Title>Latest Activities</Title>
         <MoreButton>
-          <Image src={MoreIcon} />
+          <Image src="/assets/images/icons/more.svg" width={12} height={12} />
         </MoreButton>
       </Header>
       <Body>
@@ -34,7 +32,12 @@ const LatestActivities: React.FC<LatestActivitiesProps> = ({ data }) => {
         ))}
       </Body>
       <Footer onClick={() => Router.push("/activity")}>
-        <Image src={ArrowRightIcon} alt=":( Not Found" />
+        <Image
+          src="/assets/images/icons/arrow-right-1.svg"
+          alt=":( Not Found"
+          width={15}
+          height={10}
+        />
         <Link>View all activity</Link>
       </Footer>
     </LatestActivitiesContainer>

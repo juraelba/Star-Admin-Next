@@ -9,14 +9,17 @@ import {
   Title,
   Description,
 } from "./styles";
-import CloseIcon from "../../assets/images/icons/remove.svg";
-import BGImage from "../../assets/images/news-bg.png";
 
 const News: React.FC = () => {
   return (
     <NewsContainer>
       <CloseButton>
-        <Image src={CloseIcon} alt=":( Not Found" />
+        <Image
+          src="/assets/images/icons/remove.svg"
+          alt=":( Not Found"
+          width={12}
+          height={12}
+        />
       </CloseButton>
       <Role>starledger admin</Role>
       <Title>
@@ -27,7 +30,7 @@ const News: React.FC = () => {
         your score!
       </Description>
       <ImageContainer>
-        <Image src={BGImage} />
+        <Image src="/assets/images/news-bg.png" width={520} height={444} />
       </ImageContainer>
     </NewsContainer>
   );
