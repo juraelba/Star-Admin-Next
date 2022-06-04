@@ -1,20 +1,21 @@
 import React from "react";
 import Image from "next/image";
-import SpaceObjIcon from "../../assets/images/object.png";
-import NFTIcon from "../../assets/images/nft.png";
-import ArticleIcon from "../../assets/images/article.png";
+import Router from "next/router";
 import { ItemContainer, Name, IconContainer } from "./styles";
 
 interface Props {
   id: string;
   name: string;
   icon: any;
+  path: string;
 }
 
 const Item: React.FC<Props> = (props) => {
-  const { name, icon } = props;
+  const { name, icon, path } = props;
+  const handleRedirect = () => Router.push(path);
+
   return (
-    <ItemContainer>
+    <ItemContainer onClick={handleRedirect}>
       <IconContainer>
         <Image src={icon} alt=":( Not Found" />
       </IconContainer>

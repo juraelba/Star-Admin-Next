@@ -24,7 +24,7 @@ const Sidebar: React.FC = () => {
     {
       id: "spaceobjs",
       label: "Space Objects",
-      path: "/spaceobjs",
+      path: "/objects",
       icon: StarIcon,
     },
     { id: "nfts", label: "NFT’s", path: "/nfts", icon: ImageIcon },
@@ -34,13 +34,18 @@ const Sidebar: React.FC = () => {
       path: "/articles",
       icon: PaperIcon,
     },
-    {
-      id: "settings",
-      label: "Settings",
-      path: "/settings",
-      icon: SettingsIcon,
-    },
+    // {
+    //   id: "settings",
+    //   label: "Settings",
+    //   path: "/settings",
+    //   icon: SettingsIcon,
+    // },
   ];
+
+  const isActive = (path: string) => {
+    if (path === "/") return router.pathname === path;
+    return router.pathname.indexOf(path) > -1;
+  };
 
   return (
     <SidebarContainer>
@@ -49,11 +54,7 @@ const Sidebar: React.FC = () => {
       </LogoContainer>
       <Menu>
         {routes.map((route: Route) => (
-          <MenuItem
-            key={route.id}
-            active={router.pathname === route.path}
-            {...route}
-          />
+          <MenuItem key={route.id} active={isActive(route.path)} {...route} />
         ))}
       </Menu>
       <SendCryptoContainer>
