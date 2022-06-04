@@ -15,7 +15,6 @@ export const Title = styled.p`
 
 export const Body = styled.div`
   display: flex;
-  gap: 60px;
 `;
 export const DropzoneContainer = styled.div`
   width: 364px;
@@ -23,6 +22,7 @@ export const DropzoneContainer = styled.div`
 `;
 export const DetailContainer = styled.div`
   width: 100%;
+  padding-left: 60px;
 `;
 
 export const Footer = styled.div`

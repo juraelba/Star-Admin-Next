@@ -26,12 +26,12 @@ export const TableBody = styled.tbody`
     }
     &:nth-child(even) {
       & > td {
-        background: rgba(36, 39, 49, 0.2);
+        background: rgba(40, 42, 51, 0.32);
       }
     }
     &:nth-child(odd) {
       & > td {
-        background: rgba(40, 42, 51, 0.32);
+        background: rgba(36, 39, 49, 0.2);
       }
     }
   }
@@ -72,7 +72,6 @@ export const PaginationContainer = styled.div`
 
 export const Pagination = styled.ul`
   display: flex;
-  gap: 8px;
   padding: 0;
   margin: 0;
 `;
@@ -93,11 +92,11 @@ export const PaginationItem = styled.li<{ active: boolean }>`
   border: ${(props) => (props.active ? `none` : `2px solid #353945 `)};
   color: ${(props) => (props.active ? `#353945` : `#fcfcf9`)};
   cursor: pointer;
+  margin-right: 8px;
 `;
 
 export const PaginationActionContainer = styled.div`
   display: flex;
-  gap: 24px;
 `;
 
 export const PaginationAction = styled.button<{ active: boolean }>`
@@ -112,4 +111,5 @@ export const PaginationAction = styled.button<{ active: boolean }>`
   outline: none;
   border: ${(props) => (props.active ? `2px solid #FCFCF9` : `none`)};
   opacity: ${(props) => (props.active ? 1 : 0.7)};
+  margin-left: 24px;
 `;

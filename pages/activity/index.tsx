@@ -217,7 +217,6 @@ const Activity: React.FC = () => {
       <Breadcrumb breadcrumbs={breadcrumbs} />
       <Header>
         <Title>Activity</Title>
-        <AddNewButton url="/nfts/new/create" />
       </Header>
       <Toolbar>
         <SortBy />
