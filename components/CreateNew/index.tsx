@@ -3,7 +3,7 @@ import Item from "./Item";
 import SpaceObjIcon from "../../assets/images/object.png";
 import NFTIcon from "../../assets/images/nft.png";
 import ArticleIcon from "../../assets/images/article.png";
-import { CreateNewContainer, Title, Body } from "./styles";
+import { CreateNewContainer, ItemContainer, Title, Body } from "./styles";
 
 interface Props {
   id: string;
@@ -39,7 +39,9 @@ const CreateNew: React.FC = () => {
       <Title>Create New</Title>
       <Body>
         {items.map((item: Props) => (
-          <Item key={item.id} {...item} />
+          <ItemContainer key={item.id}>
+            <Item {...item} />
+          </ItemContainer>
         ))}
       </Body>
     </CreateNewContainer>
