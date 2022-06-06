@@ -22,8 +22,10 @@ import {
 } from "./trivia.styles";
 import { Tab as TabType, Trivia as TriviaType } from "../../types";
 import Router from "next/router";
+import useIsMobile from "../../hooks/useIsMobile";
 
 const Trivias: React.FC = () => {
+  const isMobile = useIsMobile();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedTab, setSelectedTab] = useState("list");
   const tabs: TabType[] = [
@@ -294,16 +296,26 @@ const Trivias: React.FC = () => {
           <Filter />
           <SortBy />
         </Actions>
-        <Tab tabs={tabs} active={selectedTab} onChange={handleChangeTab} />
+        {!isMobile && (
+          <Tab tabs={tabs} active={selectedTab} onChange={handleChangeTab} />
+        )}
       </Toolbar>
-      {selectedTab !== "list" ? (
+      {isMobile ? (
         <DetailViewContainer>
           <CardView rows={rows} renderCard={Trivia} />
         </DetailViewContainer>
       ) : (
-        <TableContainer>
-          <DataGrid cols={cols} rows={rows} renderRow={renderRow} />
-        </TableContainer>
+        <>
+          {selectedTab !== "list" ? (
+            <DetailViewContainer>
+              <CardView rows={rows} renderCard={Trivia} />
+            </DetailViewContainer>
+          ) : (
+            <TableContainer>
+              <DataGrid cols={cols} rows={rows} renderRow={renderRow} />
+            </TableContainer>
+          )}
+        </>
       )}
       <DeleteModal
         isOpen={isOpen}

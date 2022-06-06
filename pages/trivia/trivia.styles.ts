@@ -1,6 +1,11 @@
 import styled from "styled-components";
 
-export const TriviaContainer = styled.div``;
+export const TriviaContainer = styled.div`
+  @media (max-width: 768px) {
+    padding-top: 60px;
+  }
+`;
+
 export const Title = styled.p`
   font-family: "Montserrat";
   font-weight: 600;
@@ -56,6 +61,15 @@ export const Actions = styled.div`
 
   & > div {
     margin-right: 20px;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    width: 100%;
+
+    & > div {
+      margin-right: 0;
+    }
   }
 `;
 
