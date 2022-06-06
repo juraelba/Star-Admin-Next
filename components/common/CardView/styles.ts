@@ -20,7 +20,7 @@ export const CardItemContainer = styled.div`
   width: 50%;
   padding: 16px 18px;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     padding: 0;
     width: 100%;
   }
