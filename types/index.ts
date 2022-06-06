@@ -48,6 +48,7 @@ export interface Route {
   label: string;
   path: string;
   icon?: any;
+  children?: { id: string; label: string; path: string }[];
 }
 
 export interface SpaceObject {
