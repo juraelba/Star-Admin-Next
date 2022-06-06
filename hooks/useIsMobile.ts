@@ -1,9 +1,12 @@
-import { useLayoutEffect, useState } from "react";
+import { useLayoutEffect, useEffect, useState } from "react";
+
+const canUseDOM = typeof window !== "undefined";
+const useIsomorphicLayoutEffect = canUseDOM ? useLayoutEffect : useEffect;
 
 const useIsMobile = (): boolean => {
   const [isMobile, setIsMobile] = useState(false);
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const updateSize = (): void => {
       setIsMobile(window.innerWidth < 768);
     };

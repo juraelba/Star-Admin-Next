@@ -2,14 +2,20 @@ import React, { Children } from "react";
 import { ColContainer } from "./styles";
 
 interface ColProps {
-  size?: number;
+  sm?: number;
+  lg?: number;
   spacing?: number;
   children: React.ReactNode;
 }
 
-const Col: React.FC<ColProps> = ({ size = 12, spacing = 20, children }) => {
+const Col: React.FC<ColProps> = ({
+  sm = 12,
+  lg = 12,
+  spacing = 20,
+  children,
+}) => {
   return (
-    <ColContainer size={size} spacing={spacing}>
+    <ColContainer sm={sm} lg={lg} spacing={spacing}>
       {children}
     </ColContainer>
   );

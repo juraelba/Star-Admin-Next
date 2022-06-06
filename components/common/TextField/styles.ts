@@ -8,6 +8,10 @@ const color = {
 
 export const TextFieldContainer = styled.div<{ mb: number }>`
   margin-bottom: ${(props) => props.mb}px;
+
+  @media (max-width: 768px) {
+    margin-bottom: 32px;
+  }
 `;
 
 export const Label = styled.label`
