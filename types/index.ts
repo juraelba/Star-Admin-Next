@@ -38,6 +38,11 @@ export interface Option {
   label: string;
 }
 
+export interface Question {
+  question: string;
+  answers: string[];
+}
+
 export interface Route {
   id: string;
   label: string;
