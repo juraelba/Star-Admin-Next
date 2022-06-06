@@ -14,6 +14,11 @@ export const ItemContainer = styled.div`
     background: #242731;
     border: 1px solid #242731;
   }
+
+  @media (max-width: 768px) {
+    background: #242731;
+    border: 1px solid #242731;
+  }
 `;
 export const Name = styled.span`
   font-family: "Montserrat";
@@ -21,6 +26,7 @@ export const Name = styled.span`
   font-size: 20px;
   line-height: 100%;
   color: #ffffff;
+  text-align: center;
 `;
 
 export const IconContainer = styled.div`

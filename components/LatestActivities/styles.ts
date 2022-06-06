@@ -1,6 +1,14 @@
 import styled from "styled-components";
 
-export const LatestActivitiesContainer = styled.div``;
+export const LatestActivitiesContainer = styled.div`
+  @media (max-width: 1024px) {
+    margin-bottom: 60px;
+  }
+
+  @media (max-width: 768px) {
+    margin-bottom: 0;
+  }
+`;
 
 export const Header = styled.div`
   display: flex;
@@ -14,6 +22,13 @@ export const Title = styled.p`
   font-size: 18px;
   line-height: 24px;
   color: #ffffff;
+
+  @media (max-width: 768px) {
+    font-family: "Montserrat";
+    font-weight: 800;
+    font-size: 24px;
+    line-height: 100%;
+  }
 `;
 
 export const MoreButton = styled.button`
