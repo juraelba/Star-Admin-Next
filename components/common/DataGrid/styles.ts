@@ -7,6 +7,10 @@ export const DataTable = styled.table`
   border-collapse: separate;
   margin-bottom: 64px;
   border-spacing: 0 12px;
+
+  @media (max-width: 768px) {
+    margin-bottom: 36px;
+  }
 `;
 
 export const TableHead = styled.thead``;
@@ -51,7 +55,7 @@ export const TableHeadCol = styled.td`
   line-height: 16px;
   color: #777e90;
   text-transform: uppercase;
-  background: #23252C;
+  background: #23252c;
 
   &:first-child {
     border-top-left-radius: 12px;
@@ -68,6 +72,11 @@ export const PaginationContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
+
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
 `;
 
 export const Pagination = styled.ul`
@@ -97,6 +106,15 @@ export const PaginationItem = styled.li<{ active: boolean }>`
 
 export const PaginationActionContainer = styled.div`
   display: flex;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    justify-content: space-between;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+  }
 `;
 
 export const PaginationAction = styled.button<{ active: boolean }>`
@@ -112,4 +130,7 @@ export const PaginationAction = styled.button<{ active: boolean }>`
   border: ${(props) => (props.active ? `2px solid #FCFCF9` : `none`)};
   opacity: ${(props) => (props.active ? 1 : 0.7)};
   margin-left: 24px;
+  @media (max-width: 768px) {
+    margin-left: 0;
+  }
 `;
