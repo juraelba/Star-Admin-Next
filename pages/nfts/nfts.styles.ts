@@ -1,6 +1,11 @@
 import styled from "styled-components";
 
-export const NFTsContainer = styled.div``;
+export const NFTsContainer = styled.div`
+  @media (max-width: 768px) {
+    padding-top: 60px;
+  }
+`;
+
 export const Title = styled.p`
   font-family: "Montserrat";
   font-weight: 600;
