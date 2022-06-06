@@ -17,7 +17,7 @@ interface TextFieldProps {
   placeholder?: string;
   readonly?: boolean;
   value?: string | number;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   mb?: number;
   icon?: any;
   helperText?: string;
@@ -33,7 +33,7 @@ const TextField: React.FC<TextFieldProps> = (props) => {
     placeholder,
     value,
     readonly = false,
-    onChange,
+    onChange = () => {},
     mb = 40,
     helperText,
     status = "default",
@@ -44,7 +44,9 @@ const TextField: React.FC<TextFieldProps> = (props) => {
       {label && <Label>{label}</Label>}
       <InputContainer>
         <IconContainer>
-          {icon && <Image src={icon} width={24} height={24} alt=":( Not Found" />}
+          {icon && (
+            <Image src={icon} width={24} height={24} alt=":( Not Found" />
+          )}
         </IconContainer>
         <Input
           type={type}
@@ -57,7 +59,12 @@ const TextField: React.FC<TextFieldProps> = (props) => {
         />
         {readonly && (
           <LockIconContainer>
-            <Image src="/assets/images/icons/lock.svg" width={24} height={24} alt=":( Not Found" />
+            <Image
+              src="/assets/images/icons/lock.svg"
+              width={24}
+              height={24}
+              alt=":( Not Found"
+            />
           </LockIconContainer>
         )}
       </InputContainer>
