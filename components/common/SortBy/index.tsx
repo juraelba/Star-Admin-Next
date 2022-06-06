@@ -2,18 +2,17 @@ import React, { useState } from "react";
 import Image from "next/image";
 import OutsideClickHandler from "react-outside-click-handler";
 import Menu from "../Menu";
-import FilterIcon from "../../../assets/images/icons/filter.svg";
 import ArrowDownIcon from "../../../assets/images/icons/chevron-down.svg";
 import {
   ArrowContainer,
-  FilterContainer,
+  SortByContainer,
   MenuContainer,
   Value,
   Selector,
 } from "./styles";
 import { Action } from "../../../types";
 
-const Filter: React.FC = () => {
+const SortBy: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const handleToggle = () => setIsOpen(!isOpen);
   const handleClose = () => setIsOpen(false);
@@ -51,9 +50,14 @@ const Filter: React.FC = () => {
   ];
 
   return (
-    <FilterContainer>
+    <SortByContainer>
       <Selector onClick={handleToggle}>
-        <Image src="/assets/images/icons/sort.svg" width={24} height={24} alt=":( Not Found" />
+        <Image
+          src="/assets/images/icons/sort.svg"
+          width={24}
+          height={24}
+          alt=":( Not Found"
+        />
         <Value>Sort by</Value>
         <ArrowContainer>
           <Image
@@ -71,8 +75,8 @@ const Filter: React.FC = () => {
           </MenuContainer>
         </OutsideClickHandler>
       )}
-    </FilterContainer>
+    </SortByContainer>
   );
 };
 
-export default Filter;
+export default SortBy;

@@ -5,6 +5,9 @@ export const BreadcrumbContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-bottom: 48px;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const BackText = styled.span`
