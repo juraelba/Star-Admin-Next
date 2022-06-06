@@ -17,10 +17,7 @@ export const Body = styled.div`
   display: flex;
   gap: 60px;
 `;
-export const DropzoneContainer = styled.div`
-  width: 364px;
-  flex-shrink: 0;
-`;
+
 export const DetailContainer = styled.div`
   width: 100%;
 `;
