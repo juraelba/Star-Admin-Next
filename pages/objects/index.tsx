@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Router from "next/router";
 import Image from "next/image";
 import AddNewButton from "../../components/AddNewButton";
 import Breadcrumb from "../../components/common/Breadcrumb";
@@ -19,9 +20,10 @@ import {
   Toolbar,
 } from "./objects.styles";
 import { Tab as TabType, SpaceObject as SpaceObjectType } from "../../types";
-import Router from "next/router";
+import useIsMobile from "../../hooks/useIsMobile";
 
 const SpaceObjects: React.FC = () => {
+  const isMobile = useIsMobile();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedTab, setSelectedTab] = useState("list");
   const tabs: TabType[] = [
@@ -318,7 +320,6 @@ const SpaceObjects: React.FC = () => {
   };
 
   const breadcrumbs = ["Home", "Space Objects"];
-
   return (
     <SpaceObjectsContainer>
       <Breadcrumb breadcrumbs={breadcrumbs} />
@@ -328,16 +329,26 @@ const SpaceObjects: React.FC = () => {
       </Header>
       <Toolbar>
         <Filter />
-        <Tab tabs={tabs} active={selectedTab} onChange={handleChangeTab} />
+        {!isMobile && (
+          <Tab tabs={tabs} active={selectedTab} onChange={handleChangeTab} />
+        )}
       </Toolbar>
-      {selectedTab !== "list" ? (
+      {isMobile ? (
         <DetailViewContainer>
           <CardView rows={rows} renderCard={SpaceObject} />
         </DetailViewContainer>
       ) : (
-        <TableContainer>
-          <DataGrid cols={cols} rows={rows} renderRow={renderRow} />
-        </TableContainer>
+        <>
+          {selectedTab !== "list" ? (
+            <DetailViewContainer>
+              <CardView rows={rows} renderCard={SpaceObject} />
+            </DetailViewContainer>
+          ) : (
+            <TableContainer>
+              <DataGrid cols={cols} rows={rows} renderRow={renderRow} />
+            </TableContainer>
+          )}
+        </>
       )}
       <DeleteModal
         isOpen={isOpen}

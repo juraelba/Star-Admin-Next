@@ -116,7 +116,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
           </LogoContainer>
           <Menu>
             {routes.map((route: Route) => (
-              <MenuItem key={route.id} {...route} />
+              <MenuItem key={route.id} {...route} onClose={onClose} />
             ))}
           </Menu>
         </MenuContainer>
@@ -126,6 +126,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
             label="Log Out"
             icon="/assets/images/icons/logout.svg"
             path="/"
+            onClose={onClose}
           />
         ) : (
           <SendCrypto />

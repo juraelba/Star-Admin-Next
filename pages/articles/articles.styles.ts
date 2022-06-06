@@ -8,6 +8,12 @@ export const Title = styled.p`
   line-height: 100%;
   color: #fcfcfd;
   margin-bottom: 48px;
+
+  @media (max-width: 768px) {
+    margin-bottom: 32px;
+    font-size: 36px;
+    text-align: center;
+  }
 `;
 
 export const Toolbar = styled.div`
@@ -15,6 +21,10 @@ export const Toolbar = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-bottom: 64px;
+
+  @media (max-width: 768px) {
+    margin-bottom: 20px;
+  }
 `;
 
 export const TableContainer = styled.div``;
@@ -23,6 +33,11 @@ export const Header = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 48px;
+
+  @media (max-width: 768px) {
+    margin-bottom: 12px;
+    flex-direction: column;
+  }
 `;
 
 export const DetailViewContainer = styled.div`

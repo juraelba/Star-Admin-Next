@@ -18,13 +18,23 @@ interface MenuProps {
   active?: boolean;
   children?: Route[];
   isChild?: boolean;
+  onClose: () => void;
 }
 
-const MenuItem: React.FC<MenuProps> = ({ isChild = false, ...props }) => {
+const MenuItem: React.FC<MenuProps> = ({
+  onClose,
+  isChild = false,
+  ...props
+}) => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const handleRedirect = (path: string) => {
-    !props.children ? router.push(path) : setIsOpen(!isOpen);
+    if (!props.children) {
+      router.push(path);
+      onClose();
+      return;
+    }
+    setIsOpen(!isOpen);
   };
 
   const isActive = (path: string) => {
@@ -62,7 +72,12 @@ const MenuItem: React.FC<MenuProps> = ({ isChild = false, ...props }) => {
       {props.children && (
         <ChildMenuContainer length={props.children.length} isOpen={isOpen}>
           {props.children.map((child: Route) => (
-            <MenuItem isChild={true} key={child.id} {...child} />
+            <MenuItem
+              onClose={onClose}
+              isChild={true}
+              key={child.id}
+              {...child}
+            />
           ))}
         </ChildMenuContainer>
       )}

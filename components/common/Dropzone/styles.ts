@@ -25,6 +25,11 @@ export const ImagePicker = styled.div`
   background: #22252d;
   border: 2px dashed #31343f;
   border-radius: 12px;
+
+  @media (max-width: 768px) {
+    min-height: 244px;
+    background: none;
+  }
 `;
 
 export const IconContainer = styled.div`
@@ -57,6 +62,10 @@ export const Previewer = styled.div`
     width: 100%;
     min-height: 364px;
     object-fit: cover;
+
+    @media (max-width: 768px) {
+      min-height: 244px;
+    }
   }
 `;
 
