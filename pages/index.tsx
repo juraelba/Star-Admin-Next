@@ -7,9 +7,11 @@ import {
   TopContainer,
   LatestActivitiesContainer,
 } from "./index.styles";
+import useIsMobile from "../hooks/useIsMobile";
 import { Activity } from "../types";
 
 const Home: React.FC = () => {
+  const isMobile = useIsMobile();
   const latestActivities: Activity[] = [
     {
       id: 1,
@@ -38,11 +40,12 @@ const Home: React.FC = () => {
     <Container>
       <TopContainer>
         <News />
+        {isMobile && <CreateNew />}
         <LatestActivitiesContainer>
           <LatestActivities data={latestActivities} />
         </LatestActivitiesContainer>
       </TopContainer>
-      <CreateNew />
+      {!isMobile && <CreateNew />}
     </Container>
   );
 };

@@ -7,6 +7,7 @@ export const LayoutContainer = styled.div`
 export const MainContainer = styled.div`
   width: 100%;
   padding: 0 64px;
+  padding-left: 320px;
 
   @media (max-width: 768px) {
     padding: 0 25px;

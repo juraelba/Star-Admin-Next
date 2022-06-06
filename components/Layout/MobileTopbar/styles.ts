@@ -10,6 +10,8 @@ export const MobileTopbarContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 0 20px;
+  background: #1f2128;
+  z-index: 10;
 `;
 
 export const MenuButton = styled.button`

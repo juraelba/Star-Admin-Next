@@ -11,7 +11,7 @@ export const AvatarContainer = styled.div`
   width: 40px;
   height: 40px;
   border-radius: 40px;
-  margin-right: 15px;
+  margin-right: 16px;
 `;
 export const DetailContainer = styled.div`
   max-width: 141px;

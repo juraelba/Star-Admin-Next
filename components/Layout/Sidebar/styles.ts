@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const SidebarContainer = styled.div<{ isOpen: boolean }>`
-  position: relative;
   width: 256px;
   height: 100vh;
   display: flex;
@@ -14,12 +13,12 @@ export const SidebarContainer = styled.div<{ isOpen: boolean }>`
   z-index: 1000;
   background: #1f2128;
   overflow-y: overlay;
+  position: fixed;
+  top: 0;
+  left: 0;
 
   @media (max-width: 768px) {
     width: 312px;
-    position: fixed;
-    top: 0;
-    left: 0;
     padding-top: 32px;
     transform: translateX(${(props) => (props.isOpen ? 0 : -100)}%);
     transition: 0.3s;

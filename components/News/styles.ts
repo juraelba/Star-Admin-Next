@@ -12,6 +12,11 @@ export const NewsContainer = styled.div`
   padding: 32px;
   position: relative;
   overflow: hidden;
+
+  @media (max-width: 1024px) {
+    padding: 20px;
+    margin-bottom: 60px;
+  }
 `;
 
 export const CloseButton = styled.button`
@@ -38,6 +43,10 @@ export const Role = styled.p`
   text-transform: uppercase;
   color: #ffffff;
   margin-bottom: 8px;
+
+  @media (max-width: 1024px) {
+    margin-bottom: 20px;
+  }
 `;
 
 export const Title = styled.p`
@@ -48,6 +57,10 @@ export const Title = styled.p`
   line-height: 40px;
   color: #ffffff;
   margin-bottom: 16px;
+
+  @media (max-width: 1024px) {
+    margin-bottom: 12px;
+  }
 `;
 
 export const Description = styled.p`
@@ -56,6 +69,9 @@ export const Description = styled.p`
   font-size: 14px;
   line-height: 24px;
   color: #ffffff;
+  @media (max-width: 1024px) {
+    max-width: 100%;
+  }
 `;
 
 export const Bold = styled.b`
@@ -63,7 +79,13 @@ export const Bold = styled.b`
 `;
 
 export const ImageContainer = styled.div`
+  display: flex;
   position: absolute;
-  top: 0;
+  bottom: 0;
   right: 0;
+`;
+
+export const Content = styled.div`
+  position: relative;
+  z-index: 1;
 `;
