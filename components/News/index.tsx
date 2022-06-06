@@ -16,9 +16,9 @@ const News: React.FC = () => {
       <CloseButton>
         <Image
           src="/assets/images/icons/remove.svg"
-          alt=":( Not Found"
           width={12}
           height={12}
+          alt=":( Not Found"
         />
       </CloseButton>
       <Role>starledger admin</Role>
@@ -30,7 +30,12 @@ const News: React.FC = () => {
         your score!
       </Description>
       <ImageContainer>
-        <Image src="/assets/images/news-bg.png" width={520} height={444} />
+        <Image
+          src="/assets/images/news-bg.png"
+          width={520}
+          height={444}
+          alt=":( Not Found"
+        />
       </ImageContainer>
     </NewsContainer>
   );
