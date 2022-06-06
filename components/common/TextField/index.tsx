@@ -9,6 +9,7 @@ import {
   LockIconContainer,
   TextFieldContainer,
 } from "./styles";
+import useIsMobile from "../../../hooks/useIsMobile";
 
 interface TextFieldProps {
   type?: string;
@@ -25,6 +26,7 @@ interface TextFieldProps {
 }
 
 const TextField: React.FC<TextFieldProps> = (props) => {
+  const isMobile = useIsMobile();
   const {
     type = "text",
     label,
@@ -34,7 +36,7 @@ const TextField: React.FC<TextFieldProps> = (props) => {
     value,
     readonly = false,
     onChange = () => {},
-    mb = 40,
+    mb = isMobile ? 32 : 40,
     helperText,
     status = "default",
   } = props;
