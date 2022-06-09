@@ -14,6 +14,18 @@ export const MobileTopbarContainer = styled.div`
   z-index: 10;
 `;
 
+export const CloseButton = styled.button`
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  outline: none;
+  padding: 0;
+`;
+
 export const MenuButton = styled.button`
   width: 32px;
   height: 32px;

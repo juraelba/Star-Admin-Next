@@ -1,6 +1,8 @@
 import React from "react";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import {
+  CloseButton,
   Count,
   MenuButton,
   MobileTopbarContainer,
@@ -12,16 +14,31 @@ interface MobileTopbarProps {
 }
 
 const MobileTopbar: React.FC<MobileTopbarProps> = ({ onOpen }) => {
+  const router = useRouter();
+  const mode = router.query.mode;
+  const handleRedirect = () => router.back();
+
   return (
     <MobileTopbarContainer>
-      <MenuButton onClick={onOpen}>
-        <Image
-          src="/assets/images/icons/bugger.svg"
-          width={32}
-          height={32}
-          alt=":( Not Found"
-        />
-      </MenuButton>
+      {!mode ? (
+        <MenuButton onClick={onOpen}>
+          <Image
+            src="/assets/images/icons/bugger.svg"
+            width={32}
+            height={32}
+            alt=":( Not Found"
+          />
+        </MenuButton>
+      ) : (
+        <CloseButton onClick={handleRedirect}>
+          <Image
+            src="/assets/images/icons/mobile-close.svg"
+            width={32}
+            height={32}
+            alt=":( Not Found"
+          />
+        </CloseButton>
+      )}
       <Image
         src="/assets/images/logo.svg"
         width={164}
