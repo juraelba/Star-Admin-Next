@@ -27,27 +27,27 @@ const Object: React.FC = () => {
   const initialForm: SpaceObject =
     mode === 'create'
       ? {
-          id: 1,
-          name: '',
-          constellation: '',
-          abbreviation: '',
-          rightAccession: '',
-          declination: '',
-          stellar: '',
-          bvColor: '',
-          image: null,
-        }
+        id: 1,
+        name: '',
+        constellation: '',
+        abbreviation: '',
+        rightAccession: '',
+        declination: '',
+        stellar: '',
+        bvColor: '',
+        image: null,
+      }
       : {
-          id: 1,
-          name: 'Polaris',
-          constellation: 'Ursa Minor',
-          abbreviation: 'UMA',
-          rightAccession: '02h 31m 49.09s',
-          declination: '+89° 15′ 50.8″',
-          stellar: 'Spectral Class F7',
-          bvColor: '0.636',
-          image: null,
-        };
+        id: 1,
+        name: 'Polaris',
+        constellation: 'Ursa Minor',
+        abbreviation: 'UMA',
+        rightAccession: '02h 31m 49.09s',
+        declination: '+89° 15′ 50.8″',
+        stellar: 'Spectral Class F7',
+        bvColor: '0.636',
+        image: null,
+      };
   const [isOpenUnSaveModal, setIsOpenUnSaveModal] = useState(false);
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
   const [pastForm, setPastForm] = useState<SpaceObject>(initialForm);

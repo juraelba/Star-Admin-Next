@@ -31,13 +31,13 @@ const News: React.FC = () => {
       <Content>
         <Role>starledger admin</Role>
         <Title>
-          {hours < 12 ? 'GM' : hours < 17 ? 'GA' : hours < 22 ? 'GE' : 'GN'},{' '}
+          {hours < 12 ? 'GM' : hours < 17 ? 'GA' : hours < 22 ? 'GE' : 'GN'}, {' '}
           <Bold>{UserStore.email}!</Bold>
-        </Title>
+        </Title >
         <Description>
           Watch your step! Things are a bit messy around here so be careful not to float out into the void.
         </Description>
-      </Content>
+      </Content >
       <ImageContainer>
         <Image
           src="/assets/images/news-bg.png"
@@ -46,7 +46,7 @@ const News: React.FC = () => {
           alt=":( Not Found"
         />
       </ImageContainer>
-    </NewsContainer>
+    </NewsContainer >
   );
 };
 
