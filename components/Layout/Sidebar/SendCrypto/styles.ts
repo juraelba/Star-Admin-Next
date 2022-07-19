@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const SendCryptoContainer = styled.div`
   width: 100%;
@@ -10,7 +10,7 @@ export const SendCryptoContainer = styled.div`
 
 export const Typography = styled.p`
   max-width: 128px;
-  font-family: "Poppins";
+  font-family: 'Poppins';
   font-weight: 500;
   font-size: 24px;
   line-height: 32px;
@@ -22,7 +22,7 @@ export const Button = styled.button`
   height: 40px;
   background: #ffffff;
   border-radius: 12px;
-  font-family: "Inter";
+  font-family: 'Inter';
   font-weight: 600;
   font-size: 14px;
   line-height: 24px;

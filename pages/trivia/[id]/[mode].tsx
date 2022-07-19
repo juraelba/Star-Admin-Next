@@ -1,21 +1,22 @@
-import React, { useState } from "react";
-import { useRouter } from "next/router";
-import Breadcrumb from "../../../components/common/Breadcrumb";
-import Col from "../../../components/common/Col";
-import Row from "../../../components/common/Row";
-import TextField from "../../../components/common/TextField";
-import Button from "../../../components/common/Button";
-import UnSavedModal from "../../../components/UnSavedModal";
-import Question from "../../../components/Question";
-import DeleteModal from "../../../components/DeleteModal";
+import React, { useState } from 'react';
+import { useRouter } from 'next/router';
+import Breadcrumb from '../../../components/common/Breadcrumb';
+import Col from '../../../components/common/Col';
+import Row from '../../../components/common/Row';
+import TextField from '../../../components/common/TextField';
+import Button from '../../../components/common/Button';
+import UnSavedModal from '../../../components/UnSavedModal';
+import Question from '../../../components/Question';
+import DeleteModal from '../../../components/DeleteModal';
 import {
   Body,
   Footer,
   DetailContainer,
   TriviaContainer,
   Title,
-} from "./trivia.styles";
-import { Question as QuestionType } from "../../../types";
+} from './trivia.styles';
+import { Question as QuestionType } from '../../../types';
+import useIsMobile from '../../../hooks/useIsMobile';
 
 interface TriviaProps {
   id: number;
@@ -25,38 +26,39 @@ interface TriviaProps {
 }
 
 const Trivia: React.FC = () => {
+  const isMobile = useIsMobile();
   const router = useRouter();
   const { id, mode } = router.query;
-  const readonly = !(mode === "create" || mode === "edit");
+  const readonly = !(mode === 'create' || mode === 'edit');
   const initialForm: TriviaProps =
-    mode === "create"
+    mode === 'create'
       ? {
           id: 1,
-          title: "",
-          date: "",
+          title: '',
+          date: '',
           questions: [
             {
-              question: "How many planets have rings around them?",
-              answers: ["", "", "", ""],
+              question: 'How many planets have rings around them?',
+              answers: ['', '', '', ''],
             },
             {
-              question: "How many planets have rings around them?",
-              answers: ["", "", "", ""],
+              question: 'How many planets have rings around them?',
+              answers: ['', '', '', ''],
             },
           ],
         }
       : {
           id: 1,
-          title: "",
-          date: "",
+          title: '',
+          date: '',
           questions: [
             {
-              question: "How many planets have rings around them?",
-              answers: ["", "", "", ""],
+              question: 'How many planets have rings around them?',
+              answers: ['', '', '', ''],
             },
             {
-              question: "How many planets have rings around them?",
-              answers: ["", "", "", ""],
+              question: 'How many planets have rings around them?',
+              answers: ['', '', '', ''],
             },
           ],
         };
@@ -64,16 +66,16 @@ const Trivia: React.FC = () => {
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
   const [pastForm, setPastForm] = useState<TriviaProps>({
     id: 1,
-    title: "",
-    date: "",
+    title: '',
+    date: '',
     questions: [
       {
-        question: "How many planets have rings around them?",
-        answers: ["", "", "", ""],
+        question: 'How many planets have rings around them?',
+        answers: ['', '', '', ''],
       },
       {
-        question: "How many planets have rings around them?",
-        answers: ["", "", "", ""],
+        question: 'How many planets have rings around them?',
+        answers: ['', '', '', ''],
       },
     ],
   });
@@ -84,7 +86,7 @@ const Trivia: React.FC = () => {
   };
   const handleAddAnswer = (index: any) => {
     let clonedQuestions = form.questions;
-    clonedQuestions[index].answers.push("");
+    clonedQuestions[index].answers.push('');
     setForm({ ...form, questions: clonedQuestions });
   };
 
@@ -110,10 +112,10 @@ const Trivia: React.FC = () => {
     router.push(`/trivia/${id}/view`);
     setIsOpenUnSaveModal(false);
   };
-  const breadcrumbs = ["Home", "Trivia", "Add New"];
+  const breadcrumbs = ['Home', 'Trivia', 'Add New'];
   const handleChangeQuestion = (
     event: React.ChangeEvent<HTMLInputElement>,
-    index: number
+    index: number,
   ) => {
     let clonedQuestions = form.questions;
     clonedQuestions[index].question = event.target.value;
@@ -123,7 +125,7 @@ const Trivia: React.FC = () => {
   const handleChangeAnswer = (
     event: React.ChangeEvent<HTMLInputElement>,
     aIndex: number,
-    qIndex: number
+    qIndex: number,
   ) => {
     let clonedQuestions = form.questions;
     clonedQuestions[qIndex].answers[aIndex] = event.target.value;
@@ -133,8 +135,8 @@ const Trivia: React.FC = () => {
   const handleAddQuestion = () => {
     const clonedQuestions = form.questions;
     clonedQuestions.push({
-      question: "How many planets have rings around them?",
-      answers: ["", "", "", ""],
+      question: 'How many planets have rings around them?',
+      answers: ['', '', '', ''],
     });
     setForm({ ...form, questions: clonedQuestions });
   };
@@ -142,11 +144,11 @@ const Trivia: React.FC = () => {
   return (
     <TriviaContainer>
       <Breadcrumb redirectURL="/trivia" breadcrumbs={breadcrumbs} />
-      <Title>Trivia</Title>
+      <Title>{isMobile && 'Edit'} Trivia</Title>
       <Body>
         <DetailContainer>
           <Row>
-            <Col size={6}>
+            <Col lg={6} sm={12}>
               <TextField
                 type="date"
                 label="Date"
@@ -156,7 +158,7 @@ const Trivia: React.FC = () => {
                 readonly={readonly}
               />
             </Col>
-            <Col size={6}>
+            <Col lg={6} sm={12}>
               <TextField
                 label="Title"
                 name="title"
@@ -165,17 +167,17 @@ const Trivia: React.FC = () => {
                 readonly={readonly}
               />
             </Col>
-            <Col size={12}>
+            <Col lg={12}>
               {form.questions?.map((question, index: number) => (
                 <Question
                   key={index}
                   {...question}
                   onChangeQuestion={(
-                    event: React.ChangeEvent<HTMLInputElement>
+                    event: React.ChangeEvent<HTMLInputElement>,
                   ) => handleChangeQuestion(event, index)}
                   onChangeAnswer={(
                     event: React.ChangeEvent<HTMLInputElement>,
-                    aIndex: number
+                    aIndex: number,
                   ) => handleChangeAnswer(event, aIndex, index)}
                   onAddAnswer={() => handleAddAnswer(index)}
                   onDeleteAnswer={(aIndex: any) =>
@@ -184,7 +186,7 @@ const Trivia: React.FC = () => {
                 />
               ))}
             </Col>
-            <Col size={12}>
+            <Col lg={12}>
               <Button fullWidth mb={60} onClick={handleAddQuestion}>
                 Save changes +
               </Button>
@@ -193,7 +195,7 @@ const Trivia: React.FC = () => {
         </DetailContainer>
       </Body>
       <Footer>
-        {mode === "edit" && (
+        {mode === 'edit' && (
           <>
             <Button onClick={() => setIsOpenUnSaveModal(true)}>
               Cancel and exit
@@ -203,12 +205,12 @@ const Trivia: React.FC = () => {
             </Button>
           </>
         )}
-        {mode === "create" && (
+        {mode === 'create' && (
           <Button color="success" onClick={handleSave}>
             Create Trivia
           </Button>
         )}
-        {mode === "view" && (
+        {mode === 'view' && (
           <>
             <Button onClick={handleEdit}>Edit Trivia</Button>
             <Button

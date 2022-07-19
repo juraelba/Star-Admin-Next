@@ -1,17 +1,17 @@
-import React from "react";
-import { TabContainer, TabItem } from "./styles";
-import { Tab as TabType } from "../../../types";
+import React from 'react';
+import { TabContainer, TabItem } from './styles';
+import { Tab as TabType } from '../../../types';
 
 interface TabProps {
   tabs: TabType[];
   active: string;
-  size?: "small" | "large";
+  size?: 'small' | 'large';
   onChange: (id: string) => void;
 }
 
 const Tab: React.FC<TabProps> = ({
   tabs,
-  size = "large",
+  size = 'large',
   active,
   onChange,
 }) => {

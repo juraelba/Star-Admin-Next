@@ -1,10 +1,10 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const ColContainer = styled.td`
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
   color: #ffffff;
-  padding: 0 24px;
+  padding: 22px 24px;
 `;

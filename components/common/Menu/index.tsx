@@ -1,7 +1,7 @@
-import React from "react";
-import Image from "next/image";
-import { Action } from "../../../types";
-import { IconContainer, Label, MenuContainer, MenuItem } from "./styles";
+import React from 'react';
+import Image from 'next/image';
+import { Action } from '../../../types';
+import { IconContainer, Label, MenuContainer, MenuItem } from './styles';
 
 interface MenuProps {
   label?: string;

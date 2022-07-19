@@ -1,6 +1,6 @@
-import React, { useRef, useState } from "react";
-import { HelperText, Label, SelectContainer, SelectInput } from "./styles";
-import { Option } from "../../../types";
+import React, { useRef, useState } from 'react';
+import { HelperText, Label, SelectContainer, SelectInput } from './styles';
+import { Option } from '../../../types';
 
 interface SelectProps {
   label?: string;
@@ -9,7 +9,7 @@ interface SelectProps {
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   mb?: number;
   helperText?: string;
-  status?: "default" | "error" | "success";
+  status?: 'default' | 'error' | 'success';
   options?: Option[];
 }
 
@@ -21,7 +21,7 @@ const Select: React.FC<SelectProps> = (props) => {
     onChange,
     mb = 40,
     helperText,
-    status = "default",
+    status = 'default',
     options = [],
   } = props;
 

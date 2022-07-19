@@ -1,13 +1,14 @@
-import React, { useState } from "react";
-import { useRouter } from "next/router";
-import Button from "../../../components/common/Button";
-import Breadcrumb from "../../../components/common/Breadcrumb";
-import Col from "../../../components/common/Col";
-import Dropzone from "../../../components/common/Dropzone";
-import Row from "../../../components/common/Row";
-import TextField from "../../../components/common/TextField";
-import UnSavedModal from "../../../components/UnSavedModal";
-import DeleteModal from "../../../components/DeleteModal";
+import React, { useState } from 'react';
+import { useRouter } from 'next/router';
+import Button from '../../../components/common/Button';
+import Breadcrumb from '../../../components/common/Breadcrumb';
+import Col from '../../../components/common/Col';
+import Dropzone from '../../../components/common/Dropzone';
+import Row from '../../../components/common/Row';
+import TextField from '../../../components/common/TextField';
+import UnSavedModal from '../../../components/UnSavedModal';
+import DeleteModal from '../../../components/DeleteModal';
+import useIsMobile from '../../../hooks/useIsMobile';
 import {
   Body,
   Footer,
@@ -15,35 +16,36 @@ import {
   DropzoneContainer,
   SpaceObjectContainer,
   Title,
-} from "./object.styles";
-import { SpaceObject } from "../../../types";
+} from './object.styles';
+import { SpaceObject } from '../../../types';
 
 const Object: React.FC = () => {
+  const isMobile = useIsMobile();
   const router = useRouter();
   const { id, mode } = router.query;
-  const readonly = !(mode === "create" || mode === "edit");
+  const readonly = !(mode === 'create' || mode === 'edit');
   const initialForm: SpaceObject =
-    mode === "create"
+    mode === 'create'
       ? {
           id: 1,
-          name: "",
-          constellation: "",
-          abbreviation: "",
-          rightAccession: "",
-          declination: "",
-          stellar: "",
-          bvColor: "",
+          name: '',
+          constellation: '',
+          abbreviation: '',
+          rightAccession: '',
+          declination: '',
+          stellar: '',
+          bvColor: '',
           image: null,
         }
       : {
           id: 1,
-          name: "Polaris",
-          constellation: "Ursa Minor",
-          abbreviation: "UMA",
-          rightAccession: "02h 31m 49.09s",
-          declination: "+89° 15′ 50.8″",
-          stellar: "Spectral Class F7",
-          bvColor: "0.636",
+          name: 'Polaris',
+          constellation: 'Ursa Minor',
+          abbreviation: 'UMA',
+          rightAccession: '02h 31m 49.09s',
+          declination: '+89° 15′ 50.8″',
+          stellar: 'Spectral Class F7',
+          bvColor: '0.636',
           image: null,
         };
   const [isOpenUnSaveModal, setIsOpenUnSaveModal] = useState(false);
@@ -76,12 +78,14 @@ const Object: React.FC = () => {
     setIsOpenUnSaveModal(false);
   };
 
-  const breadcrumbs = ["Home", "Space Objects", "Add New"];
+  const breadcrumbs = ['Home', 'Space Objects', 'Add New'];
 
   return (
     <SpaceObjectContainer>
-      <Breadcrumb redirectURL="/objects" breadcrumbs={breadcrumbs} />
-      <Title>Space Objects</Title>
+      {!isMobile && (
+        <Breadcrumb redirectURL="/objects" breadcrumbs={breadcrumbs} />
+      )}
+      <Title>{isMobile && 'Edit'} Space Objects</Title>
       <Body>
         <DropzoneContainer>
           <Dropzone
@@ -102,7 +106,7 @@ const Object: React.FC = () => {
                 readonly={readonly}
               />
             </Col>
-            <Col size={6}>
+            <Col sm={12} lg={6}>
               <TextField
                 label="Constellation"
                 name="constellation"
@@ -111,7 +115,7 @@ const Object: React.FC = () => {
                 readonly={readonly}
               />
             </Col>
-            <Col size={6}>
+            <Col sm={12} lg={6}>
               <TextField
                 label="Abbreviation"
                 name="abbreviation"
@@ -120,7 +124,7 @@ const Object: React.FC = () => {
                 readonly={readonly}
               />
             </Col>
-            <Col size={6}>
+            <Col sm={12} lg={6}>
               <TextField
                 label="Right Accession"
                 name="rightAccession"
@@ -129,7 +133,7 @@ const Object: React.FC = () => {
                 readonly={readonly}
               />
             </Col>
-            <Col size={6}>
+            <Col sm={12} lg={6}>
               <TextField
                 label="Declination"
                 name="declination"
@@ -138,7 +142,7 @@ const Object: React.FC = () => {
                 readonly={readonly}
               />
             </Col>
-            <Col size={6}>
+            <Col sm={12} lg={6}>
               <TextField
                 label="Stellar Classification"
                 name="stellar"
@@ -147,7 +151,7 @@ const Object: React.FC = () => {
                 readonly={readonly}
               />
             </Col>
-            <Col size={6}>
+            <Col sm={12} lg={6}>
               <TextField
                 label="BV Color"
                 name="bvColor"
@@ -160,7 +164,7 @@ const Object: React.FC = () => {
         </DetailContainer>
       </Body>
       <Footer>
-        {mode === "edit" && (
+        {mode === 'edit' && (
           <>
             <Button onClick={() => setIsOpenUnSaveModal(true)}>
               Cancel changes
@@ -170,12 +174,12 @@ const Object: React.FC = () => {
             </Button>
           </>
         )}
-        {mode === "create" && (
+        {mode === 'create' && (
           <Button color="success" onClick={handleSave}>
             Create object
           </Button>
         )}
-        {mode === "view" && (
+        {mode === 'view' && (
           <>
             <Button onClick={handleEdit}>Edit object</Button>
             <Button

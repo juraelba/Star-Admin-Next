@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import Image from "next/image";
+import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
 import {
   CardViewContainer,
   CardItems,
@@ -9,7 +9,7 @@ import {
   PaginationItem,
   PaginationActionContainer,
   PaginationAction,
-} from "./styles";
+} from './styles';
 
 interface CardViewProps {
   rows: object[];
@@ -26,7 +26,7 @@ const CardView: React.FC<CardViewProps> = ({
   const [index, setIndex] = useState(0);
   const [startIndex, setStartIndex] = useState(0);
   const [endIndex, setEndIndex] = useState(
-    pageRowCount > dataLength ? dataLength : pageRowCount
+    pageRowCount > dataLength ? dataLength : pageRowCount,
   );
   const pageCount: number = Math.ceil(dataLength / pageRowCount);
   const handleBack = () => {

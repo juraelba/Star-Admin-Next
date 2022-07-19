@@ -1,5 +1,5 @@
-import React, { useRef, useState } from "react";
-import Image from "next/image";
+import React, { useRef, useState } from 'react';
+import Image from 'next/image';
 import {
   CloseButton,
   Description,
@@ -11,7 +11,8 @@ import {
   Label,
   Previewer,
   Title,
-} from "./styles";
+} from './styles';
+import useIsMobile from '../../../hooks/useIsMobile';
 
 interface DropzoneProps {
   value?: any;
@@ -24,6 +25,7 @@ interface DropzoneProps {
 }
 
 const Dropzone: React.FC<DropzoneProps> = (props) => {
+  const isMobile = useIsMobile();
   const {
     label,
     icon,
@@ -96,7 +98,7 @@ const Dropzone: React.FC<DropzoneProps> = (props) => {
         {value ? (
           <>
             <Previewer>
-              {typeof value !== "string" ? (
+              {typeof value !== 'string' ? (
                 <Image src={value} />
               ) : (
                 <img src={value} />
@@ -121,15 +123,18 @@ const Dropzone: React.FC<DropzoneProps> = (props) => {
               <>
                 <IconContainer>
                   <Image
-                    src={icon || "/assets/images/icons/upload.svg"}
+                    src={icon || '/assets/images/icons/upload.svg'}
                     width={40}
                     height={40}
                     alt=":( Not Found"
                   />
                 </IconContainer>
-                <Title>{title || "Drag and drop to upload"}</Title>
+                <Title>
+                  {title ||
+                    (isMobile ? 'Press to upload' : 'Drag and drop to upload')}
+                </Title>
                 <Description>
-                  {description || "Size recommend 800x800. Max 2mb."}
+                  {description || 'Size recommend 800x800. Max 2mb.'}
                 </Description>
               </>
             )}

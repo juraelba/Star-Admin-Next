@@ -1,8 +1,8 @@
-import React from "react";
-import Image from "next/image";
-import Button from "../common/Button";
-import Modal from "../common/Modal";
-import { Description, ModalContainer, Title } from "./styles";
+import React from 'react';
+import Image from 'next/image';
+import Button from '../common/Button';
+import Modal from '../common/Modal';
+import { Description, ModalContainer, Title } from './styles';
 
 interface ModalProps {
   isOpen: boolean;

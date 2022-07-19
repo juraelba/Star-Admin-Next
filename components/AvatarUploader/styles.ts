@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const AvatarUploaderContainer = styled.div`
   display: flex;
@@ -26,7 +26,7 @@ export const File = styled.input`
 `;
 
 export const Description = styled.p`
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-weight: 500;
   font-size: 13px;
   line-height: 20px;

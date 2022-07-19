@@ -1,5 +1,5 @@
-import React from "react";
-import Image from "next/image";
+import React from 'react';
+import Image from 'next/image';
 import {
   ActivityContainer,
   AvatarContainer,
@@ -9,8 +9,8 @@ import {
   Status,
   Author,
   Date,
-} from "./styles";
-import { Activity as ActivityProps } from "../../../types";
+} from './styles';
+import { Activity as ActivityProps } from '../../../types';
 
 const Activity: React.FC<ActivityProps> = (props) => {
   const { title, status, author, date } = props;

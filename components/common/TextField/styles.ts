@@ -1,9 +1,9 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const color = {
-  default: "#FFF",
-  success: "#30B28C",
-  error: "#FA725F",
+  default: '#FFF',
+  success: '#30B28C',
+  error: '#FA725F',
 };
 
 export const TextFieldContainer = styled.div<{ mb: number }>`
@@ -12,7 +12,7 @@ export const TextFieldContainer = styled.div<{ mb: number }>`
 
 export const Label = styled.label`
   display: flex;
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-weight: 700;
   font-size: 16px;
   line-height: 24px;
@@ -27,7 +27,7 @@ export const Input = styled.input<{ hasIcon: boolean; readOnly: boolean }>`
   border: 2px solid rgba(73, 78, 91, 0.15);
   border-radius: 12px;
   outline: none;
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
@@ -70,8 +70,8 @@ export const IconContainer = styled.div`
   transform: translateY(-50%);
 `;
 
-export const HelperText = styled.p<{ status: "default" | "error" | "success" }>`
-  font-family: "Inter";
+export const HelperText = styled.p<{ status: 'default' | 'error' | 'success' }>`
+  font-family: 'Inter';
   font-weight: 600;
   font-size: 12px;
   line-height: 16px;

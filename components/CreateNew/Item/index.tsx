@@ -1,7 +1,7 @@
-import React from "react";
-import Image from "next/image";
-import Router from "next/router";
-import { ItemContainer, Name, IconContainer } from "./styles";
+import React from 'react';
+import Image from 'next/image';
+import Router from 'next/router';
+import { ItemContainer, Name, IconContainer } from './styles';
 
 interface Props {
   id: string;

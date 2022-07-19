@@ -1,9 +1,9 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const color = {
-  default: "#FFF",
-  success: "#30B28C",
-  error: "#FA725F",
+  default: '#FFF',
+  success: '#30B28C',
+  error: '#FA725F',
 };
 
 export const SelectContainer = styled.div<{ mb: number }>`
@@ -12,7 +12,7 @@ export const SelectContainer = styled.div<{ mb: number }>`
 
 export const Label = styled.label`
   display: flex;
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-weight: 700;
   font-size: 16px;
   line-height: 24px;
@@ -26,19 +26,20 @@ export const SelectInput = styled.select`
   border: 2px solid rgba(73, 78, 91, 0.15);
   border-radius: 12px;
   outline: none;
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
   color: #fcfcf9;
   padding: 0 20px;
   appearance: none;
-  background: url("/assets/images/icons/chevron-down.svg") no-repeat rgba(49, 52, 63, 0.5);
+  background: url('/assets/images/icons/chevron-down.svg') no-repeat
+    rgba(49, 52, 63, 0.5);
   background-position: top 20px right 12px;
 `;
 
-export const HelperText = styled.p<{ status: "default" | "error" | "success" }>`
-  font-family: "Inter";
+export const HelperText = styled.p<{ status: 'default' | 'error' | 'success' }>`
+  font-family: 'Inter';
   font-weight: 600;
   font-size: 12px;
   line-height: 16px;

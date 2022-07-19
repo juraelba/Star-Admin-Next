@@ -1,48 +1,98 @@
-import React from "react";
-import Image from "next/image";
-import { useRouter } from "next/router";
-import MenuItem from "./MenuItem";
-import SendCrypto from "./SendCrypto";
-import { Route } from "../../../types";
+import React from 'react';
+import Image from 'next/image';
+import MenuItem from './MenuItem';
+import SendCrypto from './SendCrypto';
+import useIsMobile from '../../../hooks/useIsMobile';
+import { Route } from '../../../types';
 import {
-  SidebarContainer,
+  Backdrop,
+  CloseButton,
   LogoContainer,
   Menu,
-  SendCryptoContainer,
-} from "./styles";
+  MenuContainer,
+  SidebarContainer,
+} from './styles';
 
-const Sidebar: React.FC = () => {
-  const router = useRouter();
+interface SidebarProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
+  const isMobile = useIsMobile();
   const routes: Route[] = [
     {
-      id: "home",
-      label: "Home",
-      path: "/",
-      icon: "/assets/images/icons/home-warning.svg",
+      id: 'home',
+      label: 'Home',
+      path: '/',
+      icon: '/assets/images/icons/sidebar/home.svg',
     },
     {
-      id: "spaceobjs",
-      label: "Space Objects",
-      path: "/objects",
-      icon: "/assets/images/icons/star-warning.svg",
+      id: 'spaceobjs',
+      label: 'Space Objects',
+      path: '/objects',
+      icon: '/assets/images/icons/sidebar/star.svg',
+      children: [
+        {
+          id: 'objs',
+          label: 'Objects',
+          path: '/objects',
+        },
+        {
+          id: 'tyes',
+          label: 'Types',
+          path: '/objects/types',
+        },
+        {
+          id: 'attributes',
+          label: 'Attributes',
+          path: '/objects/attributes',
+        },
+      ],
     },
     {
-      id: "nfts",
-      label: "NFT’s",
-      path: "/nfts",
-      icon: "/assets/images/icons/image-warning.svg",
+      id: 'nfts',
+      label: 'NFT’s',
+      path: '/nfts',
+      icon: '/assets/images/icons/sidebar/image.svg',
+      children: [
+        {
+          id: 'stars',
+          label: 'Stars',
+          path: '/nfts',
+        },
+      ],
     },
     {
-      id: "articles",
-      label: "News Articles",
-      path: "/articles",
-      icon: "/assets/images/icons/paper-warning.svg",
+      id: 'news_articles',
+      label: 'News Articles',
+      path: '/articles',
+      icon: '/assets/images/icons/sidebar/paper.svg',
+      children: [
+        {
+          id: 'articles',
+          label: 'Articles',
+          path: '/articles',
+        },
+        {
+          id: 'categories',
+          label: 'Categories',
+          path: '/articles/categories',
+        },
+      ],
     },
     {
-      id: "trivia",
-      label: "Trivia",
-      path: "/trivia",
-      icon: "/assets/images/icons/game-warning.svg",
+      id: 'trivia',
+      label: 'Trivia',
+      path: '/trivia',
+      icon: '/assets/images/icons/sidebar/game.svg',
+      children: [
+        {
+          id: 'games',
+          label: 'Games',
+          path: '/trivia',
+        },
+      ],
     },
     // {
     //   id: "settings",
@@ -52,25 +102,50 @@ const Sidebar: React.FC = () => {
     // },
   ];
 
-  const isActive = (path: string) => {
-    if (path === "/") return router.pathname === path;
-    return router.pathname.indexOf(path) > -1;
-  };
-
   return (
-    <SidebarContainer>
-      <LogoContainer>
-        <Image src="/assets/images/logo.svg" width={178} height={32} alt=":( Not Found" />
-      </LogoContainer>
-      <Menu>
-        {routes.map((route: Route) => (
-          <MenuItem key={route.id} active={isActive(route.path)} {...route} />
-        ))}
-      </Menu>
-      <SendCryptoContainer>
-        <SendCrypto />
-      </SendCryptoContainer>
-    </SidebarContainer>
+    <>
+      <SidebarContainer isOpen={isOpen}>
+        <MenuContainer>
+          <LogoContainer>
+            <Image
+              src="/assets/images/logo.svg"
+              width={isMobile ? 164 : 178}
+              height={isMobile ? 30 : 32}
+              alt=":( Not Found"
+            />
+          </LogoContainer>
+          <Menu>
+            {routes.map((route: Route) => (
+              <MenuItem key={route.id} {...route} onClose={onClose} />
+            ))}
+          </Menu>
+        </MenuContainer>
+        {isMobile ? (
+          <MenuItem
+            id="logout"
+            label="Log Out"
+            icon="/assets/images/icons/logout.svg"
+            path="/"
+            onClose={onClose}
+          />
+        ) : (
+          <SendCrypto />
+        )}
+      </SidebarContainer>
+      {isOpen && isMobile && (
+        <>
+          <CloseButton onClick={onClose}>
+            <Image
+              src="/assets/images/icons/dismiss.svg"
+              width={24}
+              height={24}
+              alt=":( Not Found"
+            />
+          </CloseButton>
+          <Backdrop />
+        </>
+      )}
+    </>
   );
 };
 

@@ -1,12 +1,12 @@
-import React from "react";
-import { BadgeContainer } from "./styles";
+import React from 'react';
+import { BadgeContainer } from './styles';
 
 interface BadgeProps {
-  color: "success" | "warning";
+  color: 'success' | 'warning';
   children: React.ReactNode;
 }
 
-const Badge: React.FC<BadgeProps> = ({ color = "success", children }) => {
+const Badge: React.FC<BadgeProps> = ({ color = 'success', children }) => {
   return <BadgeContainer color={color}>{children}</BadgeContainer>;
 };
 

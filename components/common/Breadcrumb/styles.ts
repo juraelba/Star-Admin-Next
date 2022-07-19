@@ -1,10 +1,13 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const BreadcrumbContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 48px;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const BackText = styled.span`
@@ -20,7 +23,7 @@ export const Navbar = styled.div`
 
 export const NavItem = styled.span<{ active: boolean }>`
   cursor: default;
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-weight: 700;
   font-size: 14px;
   line-height: 16px;

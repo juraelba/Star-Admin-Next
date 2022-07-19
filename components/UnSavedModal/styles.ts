@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const ModalContainer = styled.div`
   display: flex;
@@ -8,7 +8,7 @@ export const ModalContainer = styled.div`
 `;
 
 export const Title = styled.p`
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-weight: 700;
   font-size: 32px;
   line-height: 40px;
@@ -18,7 +18,7 @@ export const Title = styled.p`
 `;
 
 export const SubTitle = styled.p`
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-weight: 700;
   font-size: 20px;
   line-height: 100%;
@@ -28,7 +28,7 @@ export const SubTitle = styled.p`
 `;
 
 export const Description = styled.p`
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-style: normal;
   font-weight: 500;
   font-size: 18px;

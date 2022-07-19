@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
-import Image from "next/image";
-import { Backdrop, CloseButton, ModalContainer, ModalContent } from "./styles";
+import React, { useEffect } from 'react';
+import Image from 'next/image';
+import { Backdrop, CloseButton, ModalContainer, ModalContent } from './styles';
 
 interface ModalProps {
   isOpen: boolean;

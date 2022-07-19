@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const TextAreaContainer = styled.div<{ mb: number }>`
   margin-bottom: ${(props) => props.mb}px;
@@ -6,7 +6,7 @@ export const TextAreaContainer = styled.div<{ mb: number }>`
 
 export const Label = styled.label`
   display: flex;
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-weight: 700;
   font-size: 16px;
   line-height: 24px;
@@ -21,7 +21,7 @@ export const Text = styled.textarea<{ readOnly: boolean; height: number }>`
   border: 2px solid rgba(73, 78, 91, 0.15);
   border-radius: 12px;
   outline: none;
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;

@@ -1,5 +1,5 @@
-import React from "react";
-import { RowContainer } from "./styles";
+import React from 'react';
+import { RowContainer } from './styles';
 
 interface RowProps {
   onClick?: () => void;

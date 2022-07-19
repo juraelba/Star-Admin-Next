@@ -1,14 +1,14 @@
-import React, { useRef, useState } from "react";
-import Image from "next/image";
-import Button from "../common/Button";
+import React, { useRef, useState } from 'react';
+import Image from 'next/image';
+import Button from '../common/Button';
 import {
   AvatarContainer,
   AvatarUploaderContainer,
   Description,
   File,
   Footer,
-} from "./styles";
-import Avatar from "/assets/images/avatar.png";
+} from './styles';
+import Avatar from '/assets/images/avatar.png';
 
 const AvatarUploader: React.FC = () => {
   const fileRef = useRef<HTMLInputElement>(null);

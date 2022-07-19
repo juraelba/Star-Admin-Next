@@ -1,9 +1,9 @@
-import React from "react";
-import Image from "next/image";
-import Router from "next/router";
-import Button from "../Button";
-import { BackText, BreadcrumbContainer, Icon, Navbar, NavItem } from "./styles";
-import { Route } from "../../../types";
+import React from 'react';
+import Image from 'next/image';
+import Router from 'next/router';
+import Button from '../Button';
+import { BackText, BreadcrumbContainer, Icon, Navbar, NavItem } from './styles';
+import { Route } from '../../../types';
 
 interface BreadcrumbProps {
   redirectURL?: string;
@@ -11,7 +11,7 @@ interface BreadcrumbProps {
 }
 
 const Breadcrumb: React.FC<BreadcrumbProps> = ({
-  redirectURL = "/",
+  redirectURL = '/',
   breadcrumbs = [],
 }) => {
   return (

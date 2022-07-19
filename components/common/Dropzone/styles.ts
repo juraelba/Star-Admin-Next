@@ -1,10 +1,10 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const DropzoneContainer = styled.div``;
 
 export const Label = styled.label`
   display: flex;
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-weight: 700;
   font-size: 16px;
   line-height: 24px;
@@ -25,6 +25,11 @@ export const ImagePicker = styled.div`
   background: #22252d;
   border: 2px dashed #31343f;
   border-radius: 12px;
+
+  @media (max-width: 768px) {
+    min-height: 244px;
+    background: none;
+  }
 `;
 
 export const IconContainer = styled.div`
@@ -32,7 +37,7 @@ export const IconContainer = styled.div`
 `;
 
 export const Title = styled.p`
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-weight: 700;
   font-size: 20px;
   line-height: 28px;
@@ -41,7 +46,7 @@ export const Title = styled.p`
 `;
 
 export const Description = styled.p`
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-weight: 500;
   font-size: 13px;
   line-height: 20px;
@@ -57,6 +62,10 @@ export const Previewer = styled.div`
     width: 100%;
     min-height: 364px;
     object-fit: cover;
+
+    @media (max-width: 768px) {
+      min-height: 244px;
+    }
   }
 `;
 

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const SettingsContainer = styled.div``;
 
@@ -18,7 +18,7 @@ export const BackButton = styled.button`
   align-items: center;
   border: 2px solid #353945;
   border-radius: 90px;
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-weight: 600;
   font-size: 14px;
   line-height: 16px;
@@ -32,7 +32,7 @@ export const BackButton = styled.button`
 `;
 
 export const Title = styled.p`
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-weight: 700;
   font-size: 48px;
   line-height: 100%;
@@ -41,7 +41,7 @@ export const Title = styled.p`
 `;
 
 export const Description = styled.p`
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-weight: 500;
   font-size: 18px;
   line-height: 28px;
@@ -72,7 +72,7 @@ export const Avatar = styled.div`
 
 export const SocialLinkLabel = styled.label`
   display: flex;
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-weight: 700;
   font-size: 16px;
   line-height: 24px;

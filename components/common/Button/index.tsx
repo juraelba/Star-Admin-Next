@@ -1,20 +1,20 @@
-import React from "react";
-import Image from "next/image";
-import { ButtonContainer } from "./styles";
+import React from 'react';
+import Image from 'next/image';
+import { ButtonContainer } from './styles';
 
 interface ButtonProps {
   color?:
-    | "white"
-    | "link"
-    | "success"
-    | "light-warning"
-    | "warning"
-    | "light"
-    | "danger"
-    | "light-danger"
-    | "yellow";
+    | 'white'
+    | 'link'
+    | 'success'
+    | 'light-warning'
+    | 'warning'
+    | 'light'
+    | 'danger'
+    | 'light-danger'
+    | 'yellow';
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  size?: "xs" | "sm" | "md" | "lg";
+  size?: 'xs' | 'sm' | 'md' | 'lg';
   children: React.ReactNode;
   fullWidth?: boolean;
   style?: object;
@@ -22,9 +22,9 @@ interface ButtonProps {
 }
 
 const Button: React.FC<ButtonProps> = ({
-  color = "light",
+  color = 'light',
   onClick = () => {},
-  size = "lg",
+  size = 'lg',
   children,
   style,
   fullWidth = false,

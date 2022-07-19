@@ -1,7 +1,7 @@
-import React from "react";
-import Image from "next/image";
-import Button from "../common/Button";
-import TextField from "../common/TextField";
+import React from 'react';
+import Image from 'next/image';
+import Button from '../common/Button';
+import TextField from '../common/TextField';
 import {
   Answer,
   AnswerContainer,
@@ -9,7 +9,7 @@ import {
   DeleteButton,
   QuestionContainer,
   Toolbar,
-} from "./styles";
+} from './styles';
 
 interface QuestionProps {
   question: string;
@@ -18,7 +18,7 @@ interface QuestionProps {
   onDeleteAnswer: (index: number) => void;
   onChangeAnswer: (
     event: React.ChangeEvent<HTMLInputElement>,
-    index: number
+    index: number,
   ) => void;
   onChangeQuestion: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }

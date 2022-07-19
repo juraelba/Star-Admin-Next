@@ -9,13 +9,14 @@ export interface Activity {
   id: number;
   title: string;
   date: string;
-  status: "Completed" | "Pending";
+  status: 'Completed' | 'Pending';
   author: string;
 }
 
 export interface Article {
-  id: number;
+  id: string;
   title: string;
+  slug: string;
   author: string;
   date: string;
   content: any;
@@ -48,6 +49,7 @@ export interface Route {
   label: string;
   path: string;
   icon?: any;
+  children?: { id: string; label: string; path: string }[];
 }
 
 export interface SpaceObject {
@@ -71,7 +73,7 @@ export interface Trivia {
   id: number;
   title: string;
   date: string;
-  status: "Live" | "Pending";
+  status: 'Live' | 'Pending';
   author: string;
   questionCount: number;
   publishedAt: string;

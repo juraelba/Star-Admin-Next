@@ -1,5 +1,5 @@
-import React from "react";
-import { ColContainer } from "./styles";
+import React from 'react';
+import { ColContainer } from './styles';
 
 interface ColProps {
   children: any;

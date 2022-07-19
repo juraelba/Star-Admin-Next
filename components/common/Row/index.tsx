@@ -1,5 +1,5 @@
-import React, { Children } from "react";
-import { RowContainer } from "./styles";
+import React, { Children } from 'react';
+import { RowContainer } from './styles';
 
 interface RowProps {
   spacing?: number;

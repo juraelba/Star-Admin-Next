@@ -1,12 +1,12 @@
-import React, { useRef, useState } from "react";
-import Image from "next/image";
+import React, { useRef, useState } from 'react';
+import Image from 'next/image';
 import {
   TextAreaContainer,
   Text,
   TextContainer,
   Label,
   LockIconContainer,
-} from "./styles";
+} from './styles';
 
 interface TextAreaProps {
   label?: string;
@@ -45,7 +45,12 @@ const TextArea: React.FC<TextAreaProps> = (props) => {
         />
         {readonly && (
           <LockIconContainer>
-            <Image src="/assets/images/icons/lock.svg" width={24} height={24} alt=":( Not Found" />
+            <Image
+              src="/assets/images/icons/lock.svg"
+              width={24}
+              height={24}
+              alt=":( Not Found"
+            />
           </LockIconContainer>
         )}
       </TextContainer>

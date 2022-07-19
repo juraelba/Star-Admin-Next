@@ -1,5 +1,5 @@
-import React, { useRef, useState } from "react";
-import Image from "next/image";
+import React, { useRef, useState } from 'react';
+import Image from 'next/image';
 import {
   HelperText,
   IconContainer,
@@ -8,7 +8,8 @@ import {
   Label,
   LockIconContainer,
   TextFieldContainer,
-} from "./styles";
+} from './styles';
+import useIsMobile from '../../../hooks/useIsMobile';
 
 interface TextFieldProps {
   type?: string;
@@ -21,12 +22,13 @@ interface TextFieldProps {
   mb?: number;
   icon?: any;
   helperText?: string;
-  status?: "default" | "error" | "success";
+  status?: 'default' | 'error' | 'success';
 }
 
 const TextField: React.FC<TextFieldProps> = (props) => {
+  const isMobile = useIsMobile();
   const {
-    type = "text",
+    type = 'text',
     label,
     name,
     icon,
@@ -34,9 +36,9 @@ const TextField: React.FC<TextFieldProps> = (props) => {
     value,
     readonly = false,
     onChange = () => {},
-    mb = 40,
+    mb = isMobile ? 32 : 40,
     helperText,
-    status = "default",
+    status = 'default',
   } = props;
 
   return (

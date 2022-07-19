@@ -1,7 +1,12 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-export const FilterContainer = styled.div`
+export const SortByContainer = styled.div`
   position: relative;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    margin-bottom: 12px;
+  }
 `;
 
 export const Selector = styled.div`
@@ -25,7 +30,7 @@ export const MenuContainer = styled.div`
 
 export const Value = styled.span`
   padding: 0 8px;
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-weight: 600;
   font-size: 14px;
   line-height: 24px;

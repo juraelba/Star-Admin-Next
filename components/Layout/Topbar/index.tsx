@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import Image from "next/image";
-import OutsideClickHandler from "react-outside-click-handler";
-import SearchField from "../../common/SearchField";
-import Notification from "./Notification";
-import Menu from "../../common/Menu";
+import React, { useState } from 'react';
+import Image from 'next/image';
+import OutsideClickHandler from 'react-outside-click-handler';
+import SearchField from '../../common/SearchField';
+import Notification from './Notification';
+import Menu from '../../common/Menu';
 import {
   MenuContainer,
   Profile,
   RightContainer,
   TopbarContainer,
-} from "./styles";
+} from './styles';
 
 const Topbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,9 +18,11 @@ const Topbar = () => {
   const actions = [
     {
       id: 1,
-      label: "Log Out",
-      icon: "/assets/images/icons/logout.svg",
-      action: handleClose,
+      label: 'Log Out',
+      icon: '/assets/images/icons/logout.svg',
+      action: () => {
+        window.location.href = `${process.env.STARLEDGER_APP_AUTH_URL}/logout`;
+      },
     },
   ];
 
@@ -29,22 +31,22 @@ const Topbar = () => {
       <SearchField />
       <RightContainer>
         <Notification />
-        <Profile>
-          <Image
-            src="/assets/images/avatar.png"
-            width={48}
-            height={48}
-            alt=":( Not Found"
-            onClick={handleToggle}
-          />
-          {isOpen && (
-            <OutsideClickHandler onOutsideClick={handleClose}>
+        <OutsideClickHandler onOutsideClick={handleClose}>
+          <Profile>
+            <Image
+              src="/assets/images/avatar.png"
+              width={48}
+              height={48}
+              alt=":( Not Found"
+              onClick={handleToggle}
+            />
+            {isOpen && (
               <MenuContainer>
                 <Menu actions={actions} />
               </MenuContainer>
-            </OutsideClickHandler>
-          )}
-        </Profile>
+            )}
+          </Profile>
+        </OutsideClickHandler>
       </RightContainer>
     </TopbarContainer>
   );

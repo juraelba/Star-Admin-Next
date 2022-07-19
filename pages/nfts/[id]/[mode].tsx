@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import { useRouter } from "next/router";
-import Breadcrumb from "../../../components/common/Breadcrumb";
-import Col from "../../../components/common/Col";
-import Dropzone from "../../../components/common/Dropzone";
-import Row from "../../../components/common/Row";
-import TextField from "../../../components/common/TextField";
-import Button from "../../../components/common/Button";
-import UnSavedModal from "../../../components/UnSavedModal";
-import DeleteModal from "../../../components/DeleteModal";
+import React, { useState } from 'react';
+import { useRouter } from 'next/router';
+import Breadcrumb from '../../../components/common/Breadcrumb';
+import Col from '../../../components/common/Col';
+import Dropzone from '../../../components/common/Dropzone';
+import Row from '../../../components/common/Row';
+import TextField from '../../../components/common/TextField';
+import Button from '../../../components/common/Button';
+import UnSavedModal from '../../../components/UnSavedModal';
+import DeleteModal from '../../../components/DeleteModal';
 import {
   Body,
   Footer,
@@ -15,45 +15,47 @@ import {
   DropzoneContainer,
   NFTContainer,
   Title,
-} from "./nft.styles";
-import { NFT as NFTType } from "../../../types";
+} from './nft.styles';
+import { NFT as NFTType } from '../../../types';
+import useIsMobile from '../../../hooks/useIsMobile';
 
 const NFT: React.FC = () => {
+  const isMobile = useIsMobile();
   const router = useRouter();
   const { id, mode } = router.query;
-  const readonly = !(mode === "create" || mode === "edit");
+  const readonly = !(mode === 'create' || mode === 'edit');
   const initialForm: NFTType =
-    mode === "create"
+    mode === 'create'
       ? {
           id: 1,
-          name: "",
-          owner: "",
-          chain: "",
-          ranking: "",
-          rarity: "",
-          link: "",
+          name: '',
+          owner: '',
+          chain: '',
+          ranking: '',
+          rarity: '',
+          link: '',
           image: null,
         }
       : {
           id: 1,
-          name: "Antares",
-          owner: "12e45dee8po9ed5...",
-          chain: "Ethereum",
-          ranking: "#10",
-          rarity: "#10",
-          link: "https://member.starledger.org/d245jdk/",
-          image: "/assets/images/star.png",
+          name: 'Antares',
+          owner: '12e45dee8po9ed5...',
+          chain: 'Ethereum',
+          ranking: '#10',
+          rarity: '#10',
+          link: 'https://member.starledger.org/d245jdk/',
+          image: '/assets/images/star.png',
         };
   const [isOpenUnSaveModal, setIsOpenUnSaveModal] = useState(false);
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
   const [pastForm, setPastForm] = useState<NFTType>({
     id: 1,
-    name: "",
-    owner: "",
-    chain: "",
-    ranking: "",
-    rarity: "",
-    link: "",
+    name: '',
+    owner: '',
+    chain: '',
+    ranking: '',
+    rarity: '',
+    link: '',
     image: null,
   });
   const [form, setForm] = useState<NFTType>(initialForm);
@@ -82,12 +84,12 @@ const NFT: React.FC = () => {
     router.push(`/nfts/${id}/view`);
     setIsOpenUnSaveModal(false);
   };
-  const breadcrumbs = ["Home", "NFT’s", "Add New"];
+  const breadcrumbs = ['Home', 'NFT’s', 'Add New'];
 
   return (
     <NFTContainer>
       <Breadcrumb redirectURL="/nfts" breadcrumbs={breadcrumbs} />
-      <Title>NFTs</Title>
+      <Title>{isMobile && 'Edit'} NFTs</Title>
       <Body>
         <DropzoneContainer>
           <Dropzone
@@ -118,7 +120,7 @@ const NFT: React.FC = () => {
                 readonly={readonly}
               />
             </Col>
-            <Col size={6}>
+            <Col lg={6} sm={12}>
               <TextField
                 label="Ranking"
                 name="ranking"
@@ -127,7 +129,7 @@ const NFT: React.FC = () => {
                 readonly={readonly}
               />
             </Col>
-            <Col size={6}>
+            <Col lg={6} sm={12}>
               <TextField
                 label="Rarity"
                 name="rarity"
@@ -150,7 +152,7 @@ const NFT: React.FC = () => {
         </DetailContainer>
       </Body>
       <Footer>
-        {mode === "edit" && (
+        {mode === 'edit' && (
           <>
             <Button onClick={() => setIsOpenUnSaveModal(true)}>
               Cancel changes
@@ -160,12 +162,12 @@ const NFT: React.FC = () => {
             </Button>
           </>
         )}
-        {mode === "create" && (
+        {mode === 'create' && (
           <Button color="success" onClick={handleSave}>
             Create NFT
           </Button>
         )}
-        {mode === "view" && (
+        {mode === 'view' && (
           <>
             <Button onClick={handleEdit}>Edit NFT</Button>
             <Button

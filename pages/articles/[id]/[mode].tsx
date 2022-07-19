@@ -1,44 +1,50 @@
-import React, { useState } from "react";
-import { useRouter } from "next/router";
-import Breadcrumb from "../../../components/common/Breadcrumb";
-import Col from "../../../components/common/Col";
-import Row from "../../../components/common/Row";
-import TextField from "../../../components/common/TextField";
-import TextArea from "../../../components/common/TextArea";
-import Button from "../../../components/common/Button";
-import UnSavedModal from "../../../components/UnSavedModal";
-import DeleteModal from "../../../components/DeleteModal";
-import { Body, Footer, ArticleContainer, Title } from "./article.styles";
-import { Article as ArticleType } from "../../../types";
+import React, { useState } from 'react';
+import { useRouter } from 'next/router';
+import Breadcrumb from '../../../components/common/Breadcrumb';
+import Col from '../../../components/common/Col';
+import Row from '../../../components/common/Row';
+import TextField from '../../../components/common/TextField';
+import TextArea from '../../../components/common/TextArea';
+import Button from '../../../components/common/Button';
+import UnSavedModal from '../../../components/UnSavedModal';
+import DeleteModal from '../../../components/DeleteModal';
+import { Body, Footer, ArticleContainer, Title } from './article.styles';
+import { Article as ArticleType } from '../../../types';
+import useIsMobile from '../../../hooks/useIsMobile';
+import { observer } from 'mobx-react-lite';
+import { client } from '../../../utils/client';
 
-const Article: React.FC = () => {
+const Article: React.FC = observer(() => {
+  const isMobile = useIsMobile();
   const router = useRouter();
   const { id, mode } = router.query;
-  const readonly = !(mode === "create" || mode === "edit");
+  const readonly = !(mode === 'create' || mode === 'edit');
   const initialForm: ArticleType =
-    mode === "create"
+    mode === 'create'
       ? {
-          id: 1,
-          date: "",
-          title: "",
-          author: "",
-          publishedAt: "",
-          content: "",
+          id: 'a',
+          date: '',
+          title: '',
+          slug: '',
+          author: '',
+          publishedAt: '',
+          content: '',
         }
       : {
-          id: 1,
-          date: "",
-          title: "Article Title",
-          author: "Chris Tate",
-          publishedAt: "MM/DD/YYYY @ 00:00:00 AM UTC +4",
-          content: "Enter article text here...",
+          id: 'a',
+          date: '',
+          title: 'Article Title',
+          slug: 'article-title',
+          author: 'Chris Tate',
+          publishedAt: 'MM/DD/YYYY @ 00:00:00 AM UTC +4',
+          content: 'Enter article text here...',
         };
   const [isOpenUnSaveModal, setIsOpenUnSaveModal] = useState(false);
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
   const [pastForm, setPastForm] = useState<ArticleType>(initialForm);
   const [form, setForm] = useState<ArticleType>(initialForm);
   const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     if (event.target)
       setForm({ ...form, [event.target.name]: event.target.value });
@@ -51,8 +57,12 @@ const Article: React.FC = () => {
   const handleDelete = () => {
     setIsOpenDeleteModal(false);
   };
-  const handleSave = () => {
-    router.push(`/articles/${id}/view`);
+  const handleSave = async () => {
+    await client.createNewsArticle({
+      title: form.title,
+      slug: form.slug,
+    });
+
     setIsOpenUnSaveModal(false);
   };
   const handleCancelSave = () => {
@@ -61,15 +71,15 @@ const Article: React.FC = () => {
     setIsOpenUnSaveModal(false);
   };
 
-  const breadcrumbs = ["home", "News Articles", "Add New"];
+  const breadcrumbs = ['home', 'News Articles', 'Add New'];
 
   return (
     <ArticleContainer>
       <Breadcrumb redirectURL="/articles" breadcrumbs={breadcrumbs} />
-      <Title>News Articles</Title>
+      <Title>{isMobile && 'Edit'} News Articles</Title>
       <Body>
         <Row spacing={60}>
-          <Col size={6}>
+          <Col sm={12} lg={6}>
             <Row>
               <Col>
                 <TextField
@@ -86,6 +96,15 @@ const Article: React.FC = () => {
                   label="Title"
                   name="title"
                   value={form.title}
+                  onChange={handleChange}
+                  readonly={readonly}
+                />
+              </Col>
+              <Col>
+                <TextField
+                  label="Slug"
+                  name="slug"
+                  value={form.slug}
                   onChange={handleChange}
                   readonly={readonly}
                 />
@@ -111,7 +130,7 @@ const Article: React.FC = () => {
               </Col>
             </Row>
           </Col>
-          <Col size={6}>
+          <Col sm={12} lg={6}>
             <Row>
               <Col>
                 <TextArea
@@ -127,22 +146,22 @@ const Article: React.FC = () => {
         </Row>
       </Body>
       <Footer>
-        {mode === "edit" && (
+        {mode === 'edit' && (
           <>
             <Button onClick={() => setIsOpenUnSaveModal(true)}>
               Cancel changes
             </Button>
-            <Button color="success" onClick={handleSave}>
+            <Button color="success" onClick={() => handleSave()}>
               Save changes
             </Button>
           </>
         )}
-        {mode === "create" && (
-          <Button color="success" onClick={handleSave}>
+        {mode === 'create' && (
+          <Button color="success" onClick={() => handleSave()}>
             Create article
           </Button>
         )}
-        {mode === "view" && (
+        {mode === 'view' && (
           <>
             <Button onClick={handleEdit}>Edit article</Button>
             <Button
@@ -167,6 +186,6 @@ const Article: React.FC = () => {
       />
     </ArticleContainer>
   );
-};
+});
 
 export default Article;

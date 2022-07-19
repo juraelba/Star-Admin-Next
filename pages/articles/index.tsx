@@ -1,13 +1,14 @@
-import React, { useState } from "react";
-import AddNewButton from "../../components/AddNewButton";
-import Breadcrumb from "../../components/common/Breadcrumb";
-import Button from "../../components/common/Button";
-import Tab from "../../components/common/Tab";
-import Filter from "../../components/common/Filter";
-import DataGrid, { Row, Col } from "../../components/common/DataGrid";
-import CardView from "../../components/common/CardView";
-import Article from "../../components/Article";
-import DeleteModal from "../../components/DeleteModal";
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import AddNewButton from '../../components/AddNewButton';
+import Breadcrumb from '../../components/common/Breadcrumb';
+import Button from '../../components/common/Button';
+import Tab from '../../components/common/Tab';
+import Filter from '../../components/common/Filter';
+import DataGrid, { Row, Col } from '../../components/common/DataGrid';
+import CardView from '../../components/common/CardView';
+import Article from '../../components/Article';
+import DeleteModal from '../../components/DeleteModal';
 import {
   ArticlesContainer,
   DetailViewContainer,
@@ -15,199 +16,33 @@ import {
   TableContainer,
   Title,
   Toolbar,
-} from "./articles.styles";
-import { Tab as TabType, Article as ArticleType } from "../../types";
-import Router from "next/router";
+} from './articles.styles';
+import { Tab as TabType, Article as ArticleType } from '../../types';
+import Router from 'next/router';
+import useIsMobile from '../../hooks/useIsMobile';
+import { client } from '../../utils/client';
 
 const Articles: React.FC = () => {
+  const isMobile = useIsMobile();
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedTab, setSelectedTab] = useState("list");
+  const [selectedTab, setSelectedTab] = useState('list');
   const tabs: TabType[] = [
     {
-      id: "list",
-      name: "List View",
+      id: 'list',
+      name: 'List View',
     },
     {
-      id: "detail",
-      name: "Detail View",
+      id: 'detail',
+      name: 'Detail View',
     },
   ];
-  const rows: ArticleType[] = [
-    {
-      id: 1,
-      title: "How Crypto Enables Economic Freedom",
-      author: "Chris Tate",
-      date: "May 23, 2022",
-      content: "Crypto",
-      publishedAt: "Blog",
-    },
-    {
-      id: 2,
-      title: "How Crypto Enables Economic Freedom",
-      author: "Chris Tate",
-      date: "May 23, 2022",
-      content: "Crypto",
-      publishedAt: "Blog",
-    },
-    {
-      id: 3,
-      title: "How Crypto Enables Economic Freedom",
-      author: "Chris Tate",
-      date: "May 23, 2022",
-      content: "Crypto",
-      publishedAt: "Blog",
-    },
-    {
-      id: 4,
-      title: "How Crypto Enables Economic Freedom",
-      author: "Chris Tate",
-      date: "May 23, 2022",
-      content: "Crypto",
-      publishedAt: "Blog",
-    },
-    {
-      id: 5,
-      title: "How Crypto Enables Economic Freedom",
-      author: "Chris Tate",
-      date: "May 23, 2022",
-      content: "Crypto",
-      publishedAt: "Blog",
-    },
-    {
-      id: 6,
-      title: "How Crypto Enables Economic Freedom",
-      author: "Chris Tate",
-      date: "May 23, 2022",
-      content: "Crypto",
-      publishedAt: "Blog",
-    },
-    {
-      id: 7,
-      title: "How Crypto Enables Economic Freedom",
-      author: "Chris Tate",
-      date: "May 23, 2022",
-      content: "Crypto",
-      publishedAt: "Blog",
-    },
-    {
-      id: 8,
-      title: "How Crypto Enables Economic Freedom",
-      author: "Chris Tate",
-      date: "May 23, 2022",
-      content: "Crypto",
-      publishedAt: "Blog",
-    },
-    {
-      id: 9,
-      title: "How Crypto Enables Economic Freedom",
-      author: "Chris Tate",
-      date: "May 23, 2022",
-      content: "Crypto",
-      publishedAt: "Blog",
-    },
-    {
-      id: 10,
-      title: "How Crypto Enables Economic Freedom",
-      author: "Chris Tate",
-      date: "May 23, 2022",
-      content: "Crypto",
-      publishedAt: "Blog",
-    },
-    {
-      id: 11,
-      title: "How Crypto Enables Economic Freedom",
-      author: "Chris Tate",
-      date: "May 23, 2022",
-      content: "Crypto",
-      publishedAt: "Blog",
-    },
-    {
-      id: 12,
-      title: "How Crypto Enables Economic Freedom",
-      author: "Chris Tate",
-      date: "May 23, 2022",
-      content: "Crypto",
-      publishedAt: "Blog",
-    },
-    {
-      id: 13,
-      title: "How Crypto Enables Economic Freedom",
-      author: "Chris Tate",
-      date: "May 23, 2022",
-      content: "Crypto",
-      publishedAt: "Blog",
-    },
-    {
-      id: 14,
-      title: "How Crypto Enables Economic Freedom",
-      author: "Chris Tate",
-      date: "May 23, 2022",
-      content: "Crypto",
-      publishedAt: "Blog",
-    },
-    {
-      id: 15,
-      title: "How Crypto Enables Economic Freedom",
-      author: "Chris Tate",
-      date: "May 23, 2022",
-      content: "Crypto",
-      publishedAt: "Blog",
-    },
-    {
-      id: 16,
-      title: "How Crypto Enables Economic Freedom",
-      author: "Chris Tate",
-      date: "May 23, 2022",
-      content: "Crypto",
-      publishedAt: "Blog",
-    },
-    {
-      id: 17,
-      title: "How Crypto Enables Economic Freedom",
-      author: "Chris Tate",
-      date: "May 23, 2022",
-      content: "Crypto",
-      publishedAt: "Blog",
-    },
-    {
-      id: 18,
-      title: "How Crypto Enables Economic Freedom",
-      author: "Chris Tate",
-      date: "May 23, 2022",
-      content: "Crypto",
-      publishedAt: "Blog",
-    },
-    {
-      id: 19,
-      title: "How Crypto Enables Economic Freedom",
-      author: "Chris Tate",
-      date: "May 23, 2022",
-      content: "Crypto",
-      publishedAt: "Blog",
-    },
-    {
-      id: 20,
-      title: "How Crypto Enables Economic Freedom",
-      author: "Chris Tate",
-      date: "May 23, 2022",
-      content: "Crypto",
-      publishedAt: "Blog",
-    },
-    {
-      id: 21,
-      title: "How Crypto Enables Economic Freedom",
-      author: "Chris Tate",
-      date: "May 23, 2022",
-      content: "Crypto",
-      publishedAt: "Blog",
-    },
-  ];
-  const cols: string[] = ["Title", "Author", "Date", "Status"];
+  const [rows, setRows] = useState<ArticleType[]>([]);
+  const cols: string[] = ['Title', 'Author', 'Date', 'Status'];
 
   const handleChangeTab = (id: string) => setSelectedTab(id);
   const handleEdit = (
     event: React.MouseEvent<HTMLButtonElement>,
-    rowID: number
+    rowID: string,
   ) => {
     event.stopPropagation();
     Router.push(`/articles/${rowID}/edit`);
@@ -220,8 +55,27 @@ const Articles: React.FC = () => {
     setIsOpen(false);
   };
 
-  const handleRedirect = (id: number) => {
+  const handleRedirect = (id: string) => {
     Router.push(`/articles/${id}/view`);
+  };
+
+  const init = async () => {
+    const { results: newsArticles } = await client.listNewsArticles();
+
+    console.log(newsArticles);
+
+    setRows(
+      newsArticles.map((newsArticle) => ({
+        id: newsArticle.id,
+        date: '',
+        title: newsArticle.title,
+        author: 'Unknown',
+        content: '',
+        slug: newsArticle.slug,
+        image: newsArticle.image,
+        publishedAt: newsArticle.publishedAt,
+      })),
+    );
   };
 
   const renderRow = (row: ArticleType) => {
@@ -236,7 +90,7 @@ const Articles: React.FC = () => {
             onClick={(event: React.MouseEvent<HTMLButtonElement>) =>
               handleEdit(event, row.id)
             }
-            style={{ marginRight: "10px" }}
+            style={{ marginRight: '10px' }}
           >
             Edit
           </Button>
@@ -248,7 +102,11 @@ const Articles: React.FC = () => {
     );
   };
 
-  const breadcrumbs = ["Home", "News Articles"];
+  const breadcrumbs = ['Home', 'News Articles'];
+
+  useEffect(() => {
+    init();
+  }, []);
 
   return (
     <ArticlesContainer>
@@ -259,16 +117,26 @@ const Articles: React.FC = () => {
       </Header>
       <Toolbar>
         <Filter />
-        <Tab tabs={tabs} active={selectedTab} onChange={handleChangeTab} />
+        {!isMobile && (
+          <Tab tabs={tabs} active={selectedTab} onChange={handleChangeTab} />
+        )}
       </Toolbar>
-      {selectedTab !== "list" ? (
+      {isMobile ? (
         <DetailViewContainer>
           <CardView rows={rows} renderCard={Article} />
         </DetailViewContainer>
       ) : (
-        <TableContainer>
-          <DataGrid cols={cols} rows={rows} renderRow={renderRow} />
-        </TableContainer>
+        <>
+          {selectedTab !== 'list' ? (
+            <DetailViewContainer>
+              <CardView rows={rows} renderCard={Article} />
+            </DetailViewContainer>
+          ) : (
+            <TableContainer>
+              <DataGrid cols={cols} rows={rows} renderRow={renderRow} />
+            </TableContainer>
+          )}
+        </>
       )}
       <DeleteModal
         isOpen={isOpen}

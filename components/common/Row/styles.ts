@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const RowContainer = styled.div<{ spacing: number }>`
   width: ${(props) => `calc(100% + ${props.spacing}px)`};

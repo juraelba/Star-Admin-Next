@@ -1,6 +1,6 @@
-import React from "react";
-import Image from "next/image";
-import { SendCryptoContainer, CloseButton, Typography, Button } from "./styles";
+import React from 'react';
+import Image from 'next/image';
+import { SendCryptoContainer, CloseButton, Typography, Button } from './styles';
 
 const SendCrypto: React.FC = () => {
   return (

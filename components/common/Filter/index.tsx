@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import Image from "next/image";
-import OutsideClickHandler from "react-outside-click-handler";
-import Menu from "../Menu";
+import React, { useState } from 'react';
+import Image from 'next/image';
+import OutsideClickHandler from 'react-outside-click-handler';
+import Menu from '../Menu';
 import {
   ArrowContainer,
   FilterContainer,
   MenuContainer,
   Value,
   Selector,
-} from "./styles";
-import { Action } from "../../../types";
+} from './styles';
+import { Action } from '../../../types';
 
 const Filter: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,58 +18,63 @@ const Filter: React.FC = () => {
   const actions: Action[] = [
     {
       id: 1,
-      label: "Placeholder",
+      label: 'Placeholder',
       action: handleClose,
-      icon: "/assets/images/icons/star.svg",
+      icon: '/assets/images/icons/star.svg',
     },
     {
       id: 2,
-      label: "Placeholder",
+      label: 'Placeholder',
       action: handleClose,
-      icon: "/assets/images/icons/star.svg",
+      icon: '/assets/images/icons/star.svg',
     },
     {
       id: 3,
-      label: "Placeholder",
+      label: 'Placeholder',
       action: handleClose,
-      icon: "/assets/images/icons/star.svg",
+      icon: '/assets/images/icons/star.svg',
     },
     {
       id: 4,
-      label: "Placeholder",
+      label: 'Placeholder',
       action: handleClose,
-      icon: "/assets/images/icons/star.svg",
+      icon: '/assets/images/icons/star.svg',
     },
     {
       id: 5,
-      label: "Placeholder",
+      label: 'Placeholder',
       action: handleClose,
-      icon: "/assets/images/icons/star.svg",
+      icon: '/assets/images/icons/star.svg',
     },
   ];
 
   return (
-    <FilterContainer>
-      <Selector onClick={handleToggle}>
-        <Image src="/assets/images/icons/filter.svg" width={24} height={24} alt=":( Not Found" />
-        <Value>All</Value>
-        <ArrowContainer>
+    <OutsideClickHandler onOutsideClick={handleClose}>
+      <FilterContainer>
+        <Selector onClick={handleToggle}>
           <Image
-            src="/assets/images/icons/chevron-down.svg"
+            src="/assets/images/icons/filter.svg"
             width={24}
             height={24}
             alt=":( Not Found"
           />
-        </ArrowContainer>
-      </Selector>
-      {isOpen && (
-        <OutsideClickHandler onOutsideClick={handleClose}>
+          <Value>All</Value>
+          <ArrowContainer>
+            <Image
+              src="/assets/images/icons/chevron-down.svg"
+              width={24}
+              height={24}
+              alt=":( Not Found"
+            />
+          </ArrowContainer>
+        </Selector>
+        {isOpen && (
           <MenuContainer>
             <Menu actions={actions} label="Consellation" />
           </MenuContainer>
-        </OutsideClickHandler>
-      )}
-    </FilterContainer>
+        )}
+      </FilterContainer>
+    </OutsideClickHandler>
   );
 };
 

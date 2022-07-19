@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const MenuContainer = styled.div`
   width: 278px;
@@ -12,7 +12,7 @@ export const MenuContainer = styled.div`
 export const Label = styled.span`
   display: flex;
   padding: 6px 12px 18px;
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-weight: 700;
   font-size: 20px;
   line-height: 28px;
@@ -27,7 +27,7 @@ export const MenuItem = styled.div`
   align-items: center;
   padding-left: 12px;
   padding-right: 12px;
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-style: normal;
   font-weight: 700;
   font-size: 14px;

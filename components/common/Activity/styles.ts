@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const ActivityContainer = styled.div`
   display: flex;
@@ -11,7 +11,7 @@ export const AvatarContainer = styled.div`
   width: 40px;
   height: 40px;
   border-radius: 40px;
-  margin-right: 15px;
+  margin-right: 16px;
 `;
 export const DetailContainer = styled.div`
   max-width: 141px;
@@ -24,7 +24,7 @@ export const LeftContainer = styled.div`
 `;
 
 export const Title = styled.span`
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-weight: 600;
   font-size: 16px;
   line-height: 125%;
@@ -33,7 +33,7 @@ export const Title = styled.span`
 `;
 
 export const Status = styled.span`
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
@@ -42,7 +42,7 @@ export const Status = styled.span`
 `;
 
 export const Author = styled.span`
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-weight: 600;
   font-size: 14px;
   line-height: 24px;
@@ -50,7 +50,7 @@ export const Author = styled.span`
 `;
 
 export const Date = styled.span`
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;

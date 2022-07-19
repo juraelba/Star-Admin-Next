@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const SearchFieldContainer = styled.div`
   position: relative;
@@ -16,7 +16,7 @@ export const Input = styled.input`
   background: #31343f;
   border-radius: 250px;
   padding: 0 8px 0 44px;
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-weight: 600;
   font-size: 14px;
   line-height: 24px;

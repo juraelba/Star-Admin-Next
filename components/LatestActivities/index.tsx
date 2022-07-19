@@ -1,6 +1,6 @@
-import React from "react";
-import Image from "next/image";
-import Router from "next/router";
+import React from 'react';
+import Image from 'next/image';
+import Router from 'next/router';
 import {
   LatestActivitiesContainer,
   Header,
@@ -9,9 +9,9 @@ import {
   Footer,
   Link,
   MoreButton,
-} from "./styles";
-import { Activity as ActivityType } from "../../types";
-import Activity from "../common/Activity";
+} from './styles';
+import { Activity as ActivityType } from '../../types';
+import Activity from '../common/Activity';
 
 interface LatestActivitiesProps {
   data: ActivityType[];
@@ -31,7 +31,7 @@ const LatestActivities: React.FC<LatestActivitiesProps> = ({ data }) => {
           <Activity {...activity} key={activity.id} />
         ))}
       </Body>
-      <Footer onClick={() => Router.push("/activity")}>
+      <Footer onClick={() => Router.push('/activity')}>
         <Image
           src="/assets/images/icons/arrow-right-1.svg"
           alt=":( Not Found"

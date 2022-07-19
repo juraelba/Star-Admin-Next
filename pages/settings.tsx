@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import Image from "next/image";
-import Router from "next/router";
-import Button from "../components/common/Button";
-import Col from "../components/common/Col";
-import Row from "../components/common/Row";
-import Select from "../components/common/Select";
-import Tab from "../components/common/Tab";
-import TextField from "../components/common/TextField";
-import { Tab as TabType } from "../types";
+import React, { useState } from 'react';
+import Image from 'next/image';
+import Router from 'next/router';
+import Button from '../components/common/Button';
+import Col from '../components/common/Col';
+import Row from '../components/common/Row';
+import Select from '../components/common/Select';
+import Tab from '../components/common/Tab';
+import TextField from '../components/common/TextField';
+import { Tab as TabType } from '../types';
 import {
   Avatar,
   BackButton,
@@ -21,52 +21,52 @@ import {
   SocialItems,
   TabContainer,
   Title,
-} from "./settings.styles";
-import BackIcon from "../assets/images/icons/back.svg";
-import AlertIcon from "../assets/images/icons/alert-circle.svg";
-import EmailIcon from "../assets/images/icons/alternate-email-success.svg";
-import DotIcon from "../assets/images/icons/dot.svg";
-import TwitterIcon from "../assets/images/icons/twitter.svg";
-import InstagramIcon from "../assets/images/icons/instagram.svg";
-import AvatarUploader from "../components/AvatarUploader";
+} from './settings.styles';
+import BackIcon from '../assets/images/icons/back.svg';
+import AlertIcon from '../assets/images/icons/alert-circle.svg';
+import EmailIcon from '../assets/images/icons/alternate-email-success.svg';
+import DotIcon from '../assets/images/icons/dot.svg';
+import TwitterIcon from '../assets/images/icons/twitter.svg';
+import InstagramIcon from '../assets/images/icons/instagram.svg';
+import AvatarUploader from '../components/AvatarUploader';
 
 const Settings: React.FC = () => {
-  const [selectedTab, setSelectedTab] = useState("profile");
+  const [selectedTab, setSelectedTab] = useState('profile');
   const tabs: TabType[] = [
     {
-      id: "profile",
-      name: "My Profile",
+      id: 'profile',
+      name: 'My Profile',
     },
     {
-      id: "payment",
-      name: "Payment Methods",
+      id: 'payment',
+      name: 'Payment Methods',
     },
     {
-      id: "subscriptions",
-      name: "Subscriptions",
+      id: 'subscriptions',
+      name: 'Subscriptions',
     },
     {
-      id: "billingHistory",
-      name: "Billing History",
+      id: 'billingHistory',
+      name: 'Billing History',
     },
   ];
   const handleChangeTab = (id: string) => setSelectedTab(id);
   const [form, setForm] = useState({
-    displayName: "Jace Bednar",
-    username: "jacebednar",
-    location: "Los Angeles, CA, USA",
-    walletAddress: "hk980io...73bz880",
-    address: "90 Vine St. Los Angeles",
-    address2: "",
-    city: "Los Angeles",
-    country: "CA",
-    zipcode: "92337",
+    displayName: 'Jace Bednar',
+    username: 'jacebednar',
+    location: 'Los Angeles, CA, USA',
+    walletAddress: 'hk980io...73bz880',
+    address: '90 Vine St. Los Angeles',
+    address2: '',
+    city: 'Los Angeles',
+    country: 'CA',
+    zipcode: '92337',
   });
 
   const options = [
     {
       value: 1,
-      label: "CV",
+      label: 'CV',
     },
   ];
 
@@ -75,7 +75,7 @@ const Settings: React.FC = () => {
       setForm({ ...form, [event.target.name]: event.target.value });
   };
 
-  const handleBackHome = () => Router.push("/");
+  const handleBackHome = () => Router.push('/');
 
   return (
     <SettingsContainer>
