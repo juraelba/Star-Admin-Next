@@ -1,36 +1,46 @@
 import React from "react";
 import Image from "next/image";
 import {
-  NewsContainer,
-  CloseButton,
-  ImageContainer,
   Bold,
+  CloseButton,
+  Content,
+  Description,
+  ImageContainer,
+  NewsContainer,
   Role,
   Title,
-  Description,
 } from "./styles";
+import useIsMobile from "../../hooks/useIsMobile";
 
 const News: React.FC = () => {
+  const isMobile = useIsMobile();
   return (
     <NewsContainer>
       <CloseButton>
         <Image
           src="/assets/images/icons/remove.svg"
-          alt=":( Not Found"
           width={12}
           height={12}
+          alt=":( Not Found"
         />
       </CloseButton>
-      <Role>starledger admin</Role>
-      <Title>
-        Welcome back, <Bold>Chris Tate!</Bold>
-      </Title>
-      <Description>
-        You’ve completed 80% of your tasks for this week! Keep it up and improve
-        your score!
-      </Description>
+      <Content>
+        <Role>starledger admin</Role>
+        <Title>
+          Welcome back, <Bold>Chris Tate!</Bold>
+        </Title>
+        <Description>
+          You’ve completed 80% of your tasks for this week! Keep it up and
+          improve your score!
+        </Description>
+      </Content>
       <ImageContainer>
-        <Image src="/assets/images/news-bg.png" width={520} height={444} />
+        <Image
+          src="/assets/images/news-bg.png"
+          width={isMobile ? 300 : 520}
+          height={isMobile ? 256 : 444}
+          alt=":( Not Found"
+        />
       </ImageContainer>
     </NewsContainer>
   );

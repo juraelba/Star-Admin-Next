@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import AddNewButton from "../../components/AddNewButton";
 import Breadcrumb from "../../components/common/Breadcrumb";
+import CardView from "../../components/common/CardView";
 import Badge from "../../components/common/Badge";
-import Tab from "../../components/common/Tab";
-import SortBy from "../../components/common/SortBy";
 import DataGrid, { Row, Col } from "../../components/common/DataGrid";
+import Filter from "../../components/common/Filter";
+import SortBy from "../../components/common/SortBy";
+import Tab from "../../components/common/Tab";
 import {
   ActivityContainer,
   ActivityAuthor,
@@ -15,9 +16,11 @@ import {
   Title,
   Toolbar,
 } from "./activity.styles";
+import useIsMobile from "../../hooks/useIsMobile";
 import { Tab as TabType, Activity as ActivityType } from "../../types";
 
 const Activity: React.FC = () => {
+  const isMobile = useIsMobile();
   const [selectedTab, setSelectedTab] = useState("all");
   const tabs: TabType[] = [
     {
@@ -186,21 +189,36 @@ const Activity: React.FC = () => {
       status: "Completed",
     },
   ];
-  const cols: string[] = ["Title", "Author", "Date", "Status"];
+  const cols: string[] = isMobile
+    ? ["Title", "Status"]
+    : ["Title", "Author", "Date", "Status"];
   const handleChangeTab = (id: string) => setSelectedTab(id);
 
   const renderRow = (row: ActivityType) => {
     return (
       <Row>
-        <Col>
-          <ActivityTitle>{row.title}</ActivityTitle>
-        </Col>
-        <Col>
-          <ActivityAuthor>{row.author}</ActivityAuthor>
-        </Col>
-        <Col>
-          <ActivityDate>{row.date}</ActivityDate>
-        </Col>
+        {isMobile ? (
+          <Col>
+            <ActivityTitle>{row.title}</ActivityTitle>
+            <ActivityAuthor>
+              {isMobile && `by `}
+              {row.author}
+            </ActivityAuthor>
+            <ActivityDate>{row.date}</ActivityDate>
+          </Col>
+        ) : (
+          <>
+            <Col>
+              <ActivityTitle>{row.title}</ActivityTitle>
+            </Col>
+            <Col>
+              <ActivityAuthor>{row.author}</ActivityAuthor>
+            </Col>
+            <Col>
+              <ActivityDate>{row.date}</ActivityDate>
+            </Col>
+          </>
+        )}
         <Col>
           <Badge color={row.status === "Completed" ? "success" : "warning"}>
             {row.status}
@@ -219,13 +237,16 @@ const Activity: React.FC = () => {
         <Title>Activity</Title>
       </Header>
       <Toolbar>
+        {isMobile && <Filter />}
         <SortBy />
-        <Tab
-          size="small"
-          tabs={tabs}
-          active={selectedTab}
-          onChange={handleChangeTab}
-        />
+        {!isMobile && (
+          <Tab
+            size="small"
+            tabs={tabs}
+            active={selectedTab}
+            onChange={handleChangeTab}
+          />
+        )}
       </Toolbar>
       <TableContainer>
         <DataGrid cols={cols} rows={rows} renderRow={renderRow} />

@@ -7,12 +7,23 @@ export const TriviaContainer = styled.div`
   border-radius: 12px;
   padding: 30px 30px 10px;
   cursor: pointer;
+  position: relative;
+
+  @media (max-width: 768px) {
+    margin-bottom: 12px;
+    padding: 30px 30px 122px;
+  }
 `;
 
 export const Header = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 32px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    margin-bottom: 0;
+  }
 `;
 
 export const Title = styled.p`
@@ -24,9 +35,26 @@ export const Title = styled.p`
   line-height: 125%;
   text-transform: capitalize;
   color: #ffffff;
+
+  @media (max-width: 768px) {
+    font-weight: 700;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
 `;
 
-export const ActionContainer = styled.div``;
+export const ActionContainer = styled.div`
+  display: flex;
+  position: relative;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    position: absolute;
+    left: 30px;
+    right: 30px;
+    bottom: 18px;
+  }
+`;
 
 export const EditButton = styled.button`
   width: 56px;
@@ -48,12 +76,20 @@ export const DeleteButton = styled.button`
 export const Body = styled.div`
   display: flex;
   flex-wrap: wrap;
+
+  @media (max-width: 768px) {
+    margin-bottom: 12px;
+  }
 `;
 
 export const FormItem = styled.div`
   width: 50%;
   display: flex;
   margin-bottom: 20px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export const Label = styled.span`
@@ -63,6 +99,10 @@ export const Label = styled.span`
   line-height: 100%;
   color: #7f8596;
   margin-right: 4px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export const Value = styled.span`
@@ -71,4 +111,13 @@ export const Value = styled.span`
   font-size: 12px;
   line-height: 100%;
   color: #fcfcf9;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+`;
+
+export const ButtonContainer = styled.div`
+  width: 100%;
+  margin-bottom: 12px;
 `;

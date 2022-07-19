@@ -146,7 +146,7 @@ const Trivia: React.FC = () => {
       <Body>
         <DetailContainer>
           <Row>
-            <Col size={6}>
+            <Col lg={6} sm={12}>
               <TextField
                 type="date"
                 label="Date"
@@ -156,7 +156,7 @@ const Trivia: React.FC = () => {
                 readonly={readonly}
               />
             </Col>
-            <Col size={6}>
+            <Col lg={6} sm={12}>
               <TextField
                 label="Title"
                 name="title"
@@ -165,7 +165,7 @@ const Trivia: React.FC = () => {
                 readonly={readonly}
               />
             </Col>
-            <Col size={12}>
+            <Col lg={12}>
               {form.questions?.map((question, index: number) => (
                 <Question
                   key={index}
@@ -184,7 +184,7 @@ const Trivia: React.FC = () => {
                 />
               ))}
             </Col>
-            <Col size={12}>
+            <Col lg={12}>
               <Button fullWidth mb={60} onClick={handleAddQuestion}>
                 Save changes +
               </Button>

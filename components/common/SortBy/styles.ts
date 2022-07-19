@@ -1,7 +1,12 @@
 import styled from "styled-components";
 
-export const FilterContainer = styled.div`
+export const SortByContainer = styled.div`
   position: relative;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    margin-bottom: 12px;
+  }
 `;
 
 export const Selector = styled.div`

@@ -8,6 +8,7 @@ import Row from "../../../components/common/Row";
 import TextField from "../../../components/common/TextField";
 import UnSavedModal from "../../../components/UnSavedModal";
 import DeleteModal from "../../../components/DeleteModal";
+import useIsMobile from "../../../hooks/useIsMobile";
 import {
   Body,
   Footer,
@@ -19,6 +20,7 @@ import {
 import { SpaceObject } from "../../../types";
 
 const Object: React.FC = () => {
+  const isMobile = useIsMobile();
   const router = useRouter();
   const { id, mode } = router.query;
   const readonly = !(mode === "create" || mode === "edit");
@@ -80,7 +82,9 @@ const Object: React.FC = () => {
 
   return (
     <SpaceObjectContainer>
-      <Breadcrumb redirectURL="/objects" breadcrumbs={breadcrumbs} />
+      {!isMobile && (
+        <Breadcrumb redirectURL="/objects" breadcrumbs={breadcrumbs} />
+      )}
       <Title>Space Objects</Title>
       <Body>
         <DropzoneContainer>
@@ -102,7 +106,7 @@ const Object: React.FC = () => {
                 readonly={readonly}
               />
             </Col>
-            <Col size={6}>
+            <Col sm={12} lg={6}>
               <TextField
                 label="Constellation"
                 name="constellation"
@@ -111,7 +115,7 @@ const Object: React.FC = () => {
                 readonly={readonly}
               />
             </Col>
-            <Col size={6}>
+            <Col sm={12} lg={6}>
               <TextField
                 label="Abbreviation"
                 name="abbreviation"
@@ -120,7 +124,7 @@ const Object: React.FC = () => {
                 readonly={readonly}
               />
             </Col>
-            <Col size={6}>
+            <Col sm={12} lg={6}>
               <TextField
                 label="Right Accession"
                 name="rightAccession"
@@ -129,7 +133,7 @@ const Object: React.FC = () => {
                 readonly={readonly}
               />
             </Col>
-            <Col size={6}>
+            <Col sm={12} lg={6}>
               <TextField
                 label="Declination"
                 name="declination"
@@ -138,7 +142,7 @@ const Object: React.FC = () => {
                 readonly={readonly}
               />
             </Col>
-            <Col size={6}>
+            <Col sm={12} lg={6}>
               <TextField
                 label="Stellar Classification"
                 name="stellar"
@@ -147,7 +151,7 @@ const Object: React.FC = () => {
                 readonly={readonly}
               />
             </Col>
-            <Col size={6}>
+            <Col sm={12} lg={6}>
               <TextField
                 label="BV Color"
                 name="bvColor"

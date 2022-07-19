@@ -118,7 +118,7 @@ const NFT: React.FC = () => {
                 readonly={readonly}
               />
             </Col>
-            <Col size={6}>
+            <Col lg={6} sm={12}>
               <TextField
                 label="Ranking"
                 name="ranking"
@@ -127,7 +127,7 @@ const NFT: React.FC = () => {
                 readonly={readonly}
               />
             </Col>
-            <Col size={6}>
+            <Col lg={6} sm={12}>
               <TextField
                 label="Rarity"
                 name="rarity"

@@ -9,17 +9,32 @@ export const CardItems = styled.div`
   flex-wrap: wrap;
   margin: -16px -18px;
   margin-bottom: 32px;
+
+  @media (max-width: 768px) {
+    margin: 0;
+    margin-bottom: 12px;
+  }
 `;
 
 export const CardItemContainer = styled.div`
   width: 50%;
   padding: 16px 18px;
+
+  @media (max-width: 1024px) {
+    padding: 0;
+    width: 100%;
+  }
 `;
 
 export const PaginationContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
+
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
 `;
 
 export const Pagination = styled.ul`
@@ -49,6 +64,15 @@ export const PaginationItem = styled.li<{ active: boolean }>`
 
 export const PaginationActionContainer = styled.div`
   display: flex;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    justify-content: space-between;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+  }
 `;
 
 export const PaginationAction = styled.button<{ active: boolean }>`
@@ -64,4 +88,7 @@ export const PaginationAction = styled.button<{ active: boolean }>`
   border: ${(props) => (props.active ? `2px solid #FCFCF9` : `none`)};
   opacity: ${(props) => (props.active ? 1 : 0.7)};
   margin-left: 24px;
+  @media (max-width: 768px) {
+    margin-left: 0;
+  }
 `;

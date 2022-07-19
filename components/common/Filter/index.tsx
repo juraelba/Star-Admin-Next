@@ -51,7 +51,12 @@ const Filter: React.FC = () => {
   return (
     <FilterContainer>
       <Selector onClick={handleToggle}>
-        <Image src="/assets/images/icons/filter.svg" width={24} height={24} alt=":( Not Found" />
+        <Image
+          src="/assets/images/icons/filter.svg"
+          width={24}
+          height={24}
+          alt=":( Not Found"
+        />
         <Value>All</Value>
         <ArrowContainer>
           <Image

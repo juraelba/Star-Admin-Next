@@ -6,5 +6,5 @@ export const ColContainer = styled.td`
   font-size: 12px;
   line-height: 16px;
   color: #ffffff;
-  padding: 0 24px;
+  padding: 22px 24px;
 `;

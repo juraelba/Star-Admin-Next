@@ -2,6 +2,11 @@ import styled from "styled-components";
 
 export const FilterContainer = styled.div`
   position: relative;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    margin-bottom: 12px;
+  }
 `;
 
 export const Selector = styled.div`
@@ -14,6 +19,10 @@ export const Selector = styled.div`
   border: 2px solid #494e5b;
   padding: 12px;
   cursor: pointer;
+
+  @media (max-width: 768px) {
+    min-width: auto;
+  }
 `;
 
 export const MenuContainer = styled.div`
