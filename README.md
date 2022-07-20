@@ -4,26 +4,58 @@
 
 ### Available Calls:
 
+- createErrorLog
 - createNewsArticle
 - createNewsCategory
-- createErrorLog
+- createNotification
+- createSpaceObject
+- createTriviaGame
+- deleteActivity
 - deleteNewsArticle
-- getArticle
-- getDso
+- deleteNotification
+- deleteSpaceObject
+- deleteTriviaGame
+- getNewsArticle
 - getNft
+- getNotification
 - getProfile
 - getSetting
+- getSpaceObject
+- getTriviaGame
+- listActivities
 - listNewsArticles
 - listNewsCategories
 - listNfts
+- listNotifications
 - listOwnedTokens
+- listSpaceObjects
+- listTriviaGames
 - loginWithEmail
 - loginWithWallet
 - registerWithEmail
 - search
-- updateArticle
-- updateDso
+- updateNewsArticle
+- updateNewsCategory
+- updateNotification
 - updateProfile
+- updateSpaceObject
+- updateTriviaGame
+
+### createErrorLog
+
+**Request**
+
+<table>
+	<tr><td>code</td><td>Required</td><td>string</td></tr>
+	<tr><td>message</td><td>Required</td><td>string</td></tr>
+	<tr><td>notes</td><td>Required</td><td>string</td></tr>
+</table>
+
+**Response**
+
+<table>
+
+</table>
 
 ### createNewsArticle
 
@@ -73,14 +105,74 @@
 	<tr><td>authorUserId</td><td>Required</td><td>string</td></tr>
 </table>
 
-### createErrorLog
+### createNotification
 
 **Request**
 
 <table>
-	<tr><td>code</td><td>Required</td><td>string</td></tr>
+	<tr><td>title</td><td>Required</td><td>string</td></tr>
+	<tr><td>message</td><td>Optional</td><td>string</td></tr>
+</table>
+
+**Response**
+
+<table>
+	<tr><td>id</td><td>Required</td><td>string</td></tr>
+	<tr><td>title</td><td>Required</td><td>string</td></tr>
 	<tr><td>message</td><td>Required</td><td>string</td></tr>
-	<tr><td>notes</td><td>Required</td><td>string</td></tr>
+	<tr><td>authorUserId</td><td>Required</td><td>string</td></tr>
+</table>
+
+### createSpaceObject
+
+**Request**
+
+<table>
+	<tr><td>title</td><td>Required</td><td>string</td></tr>
+	<tr><td>message</td><td>Optional</td><td>string</td></tr>
+</table>
+
+**Response**
+
+<table>
+	<tr><td>identifier</td><td>Required</td><td>string</td></tr>
+	<tr><td>hip</td><td>Optional</td><td>number</td></tr>
+	<tr><td>name</td><td>Required</td><td>string</td></tr>
+	<tr><td>constellation</td><td>Required</td><td>string</td></tr>
+	<tr><td>overview</td><td>Optional</td><td>string</td></tr>
+	<tr><td>description</td><td>Optional</td><td>string</td></tr>
+	<tr><td>rightAscension</td><td>Required</td><td>string</td></tr>
+	<tr><td>declination</td><td>Required</td><td>string</td></tr>
+	<tr><td>type</td><td>Required</td><td>string</td></tr>
+</table>
+
+### createTriviaGame
+
+**Request**
+
+<table>
+	<tr><td>date</td><td>Required</td><td>string</td></tr>
+	<tr><td>title</td><td>Required</td><td>string</td></tr>
+	<tr><td>questions</td><td>Required</td><td>	<tr><td>question</td><td>Required</td><td>string</td></tr>
+	<tr><td>answers</td><td>Required</td><td>string[]</td></tr>[]</td></tr>
+</table>
+
+**Response**
+
+<table>
+	<tr><td>id</td><td>Required</td><td>string</td></tr>
+	<tr><td>date</td><td>Required</td><td>string</td></tr>
+	<tr><td>title</td><td>Required</td><td>string</td></tr>
+	<tr><td>status</td><td>Required</td><td>string</td></tr>
+	<tr><td>authorUserId</td><td>Required</td><td>string</td></tr>
+</table>
+
+### deleteActivity
+
+**Request**
+
+<table>
+	<tr><td>id</td><td>Required</td><td>string</td></tr>
 </table>
 
 **Response**
@@ -103,7 +195,49 @@
 
 </table>
 
-### getArticle
+### deleteNotification
+
+**Request**
+
+<table>
+	<tr><td>id</td><td>Required</td><td>string</td></tr>
+</table>
+
+**Response**
+
+<table>
+
+</table>
+
+### deleteSpaceObject
+
+**Request**
+
+<table>
+	<tr><td>id</td><td>Required</td><td>string</td></tr>
+</table>
+
+**Response**
+
+<table>
+
+</table>
+
+### deleteTriviaGame
+
+**Request**
+
+<table>
+	<tr><td>id</td><td>Required</td><td>string</td></tr>
+</table>
+
+**Response**
+
+<table>
+
+</table>
+
+### getNewsArticle
 
 **Request**
 
@@ -121,29 +255,7 @@
 	<tr><td>overview</td><td>Required</td><td>string</td></tr>
 	<tr><td>content</td><td>Required</td><td>string</td></tr>
 	<tr><td>publishedAt</td><td>Required</td><td>string</td></tr>
-</table>
-
-### getDso
-
-**Request**
-
-<table>
-	<tr><td>identifier</td><td>Required</td><td>string</td></tr>
-</table>
-
-**Response**
-
-<table>
-	<tr><td>id</td><td>Required</td><td>string</td></tr>
-	<tr><td>identifier</td><td>Required</td><td>string</td></tr>
-	<tr><td>hip</td><td>Required</td><td>number</td></tr>
-	<tr><td>name</td><td>Required</td><td>string</td></tr>
-	<tr><td>constellation</td><td>Required</td><td>string</td></tr>
-	<tr><td>overview</td><td>Required</td><td>string</td></tr>
-	<tr><td>rightAscension</td><td>Required</td><td>string</td></tr>
-	<tr><td>declination</td><td>Required</td><td>string</td></tr>
-	<tr><td>type</td><td>Required</td><td>string</td></tr>
-	<tr><td>facts</td><td>Required</td><td>string[]</td></tr>
+	<tr><td>status</td><td>Required</td><td>string</td></tr>
 </table>
 
 ### getNft
@@ -158,6 +270,23 @@
 
 <table>
 	<tr><td>tokenId</td><td>Required</td><td>number</td></tr>
+</table>
+
+### getNotification
+
+**Request**
+
+<table>
+	<tr><td>id</td><td>Required</td><td>string</td></tr>
+</table>
+
+**Response**
+
+<table>
+	<tr><td>id</td><td>Required</td><td>string</td></tr>
+	<tr><td>title</td><td>Required</td><td>string</td></tr>
+	<tr><td>message</td><td>Required</td><td>string</td></tr>
+	<tr><td>isUnread</td><td>Required</td><td>boolean</td></tr>
 </table>
 
 ### getProfile
@@ -189,6 +318,68 @@
 <table>
 	<tr><td>key</td><td>Required</td><td>string</td></tr>
 	<tr><td>value</td><td>Required</td><td>string</td></tr>
+</table>
+
+### getSpaceObject
+
+**Request**
+
+<table>
+	<tr><td>id</td><td>Required</td><td>string</td></tr>
+</table>
+
+**Response**
+
+<table>
+	<tr><td>id</td><td>Required</td><td>string</td></tr>
+	<tr><td>identifier</td><td>Required</td><td>string</td></tr>
+	<tr><td>hip</td><td>Required</td><td>number</td></tr>
+	<tr><td>name</td><td>Required</td><td>string</td></tr>
+	<tr><td>constellation</td><td>Required</td><td>string</td></tr>
+	<tr><td>overview</td><td>Required</td><td>string</td></tr>
+	<tr><td>rightAscension</td><td>Required</td><td>string</td></tr>
+	<tr><td>declination</td><td>Required</td><td>string</td></tr>
+	<tr><td>type</td><td>Required</td><td>string</td></tr>
+	<tr><td>facts</td><td>Required</td><td>string[]</td></tr>
+</table>
+
+### getTriviaGame
+
+**Request**
+
+<table>
+	<tr><td>id</td><td>Required</td><td>string</td></tr>
+</table>
+
+**Response**
+
+<table>
+	<tr><td>id</td><td>Required</td><td>string</td></tr>
+	<tr><td>title</td><td>Required</td><td>string</td></tr>
+	<tr><td>date</td><td>Required</td><td>string</td></tr>
+	<tr><td>status</td><td>Required</td><td>string</td></tr>
+	<tr><td>questions</td><td>Required</td><td>	<tr><td>id</td><td>Required</td><td>string</td></tr>
+	<tr><td>question</td><td>Required</td><td>string</td></tr>
+	<tr><td>answers</td><td>Required</td><td>string[]</td></tr>[]</td></tr>
+</table>
+
+### listActivities
+
+**Request**
+
+<table>
+	<tr><td>filter</td><td>Optional</td>	<tr><td>categoryIds</td><td>Optional</td><td>string[]</td></tr></tr>
+</table>
+
+**Response**
+
+<table>
+	<tr><td>results</td><td>Required</td><td>	<tr><td>id</td><td>Required</td><td>string</td></tr>
+	<tr><td>slug</td><td>Required</td><td>string</td></tr>
+	<tr><td>image</td><td>Required</td><td>string</td></tr>
+	<tr><td>title</td><td>Required</td><td>string</td></tr>
+	<tr><td>overview</td><td>Required</td><td>string</td></tr>
+	<tr><td>publishedAt</td><td>Required</td><td>string</td></tr>[]</td></tr>
 </table>
 
 ### listNewsArticles
@@ -248,6 +439,23 @@
 	<tr><td>tokenId</td><td>Required</td><td>number</td></tr>[]</td></tr>
 </table>
 
+### listNotifications
+
+**Request**
+
+<table>
+
+</table>
+
+**Response**
+
+<table>
+	<tr><td>results</td><td>Required</td><td>	<tr><td>id</td><td>Required</td><td>string</td></tr>
+	<tr><td>title</td><td>Required</td><td>string</td></tr>
+	<tr><td>message</td><td>Required</td><td>string</td></tr>
+	<tr><td>isUnread</td><td>Required</td><td>boolean</td></tr>[]</td></tr>
+</table>
+
 ### listOwnedTokens
 
 **Request**
@@ -266,6 +474,45 @@
 	<tr><td>rarity</td><td>Required</td><td>string</td></tr>
 	<tr><td>name</td><td>Required</td><td>string</td></tr>
 	<tr><td>tokenId</td><td>Required</td><td>number</td></tr>[]</td></tr>
+</table>
+
+### listSpaceObjects
+
+**Request**
+
+<table>
+
+</table>
+
+**Response**
+
+<table>
+	<tr><td>results</td><td>Required</td><td>	<tr><td>identifier</td><td>Required</td><td>string</td></tr>
+	<tr><td>hip</td><td>Optional</td><td>number</td></tr>
+	<tr><td>name</td><td>Required</td><td>string</td></tr>
+	<tr><td>constellation</td><td>Required</td><td>string</td></tr>
+	<tr><td>overview</td><td>Optional</td><td>string</td></tr>
+	<tr><td>description</td><td>Optional</td><td>string</td></tr>
+	<tr><td>rightAscension</td><td>Required</td><td>string</td></tr>
+	<tr><td>declination</td><td>Required</td><td>string</td></tr>
+	<tr><td>type</td><td>Required</td><td>string</td></tr>[]</td></tr>
+</table>
+
+### listTriviaGames
+
+**Request**
+
+<table>
+
+</table>
+
+**Response**
+
+<table>
+	<tr><td>results</td><td>Required</td><td>	<tr><td>id</td><td>Required</td><td>string</td></tr>
+	<tr><td>title</td><td>Required</td><td>string</td></tr>
+	<tr><td>date</td><td>Required</td><td>string</td></tr>
+	<tr><td>status</td><td>Required</td><td>string</td></tr>[]</td></tr>
 </table>
 
 ### loginWithEmail
@@ -330,43 +577,72 @@
 	<tr><td>name</td><td>Required</td><td>string</td></tr>[]</td></tr>
 </table>
 
-### updateArticle
+### updateNewsArticle
 
 **Request**
+
+<table>
+	<tr><td>id</td><td>Required</td><td>string</td></tr>
+	<tr><td>slug</td><td>Optional</td><td>string</td></tr>
+	<tr><td>image</td><td>Optional</td><td>string</td></tr>
+	<tr><td>title</td><td>Optional</td><td>string</td></tr>
+	<tr><td>content</td><td>Optional</td><td>string</td></tr>
+	<tr><td>overview</td><td>Optional</td><td>string</td></tr>
+	<tr><td>publishedAt</td><td>Optional</td><td>string</td></tr>
+	<tr><td>status</td><td>Optional</td><td>draft | published</td></tr>
+</table>
+
+**Response**
 
 <table>
 	<tr><td>id</td><td>Required</td><td>string</td></tr>
 	<tr><td>slug</td><td>Required</td><td>string</td></tr>
 	<tr><td>image</td><td>Required</td><td>string</td></tr>
 	<tr><td>title</td><td>Required</td><td>string</td></tr>
-	<tr><td>content</td><td>Optional</td><td>string</td></tr>
-	<tr><td>overview</td><td>Optional</td><td>string</td></tr>
-	<tr><td>publishedAt</td><td>Optional</td><td>string</td></tr>
-	<tr><td>status</td><td>Required</td><td>draft | published</td></tr>
+	<tr><td>overview</td><td>Required</td><td>string</td></tr>
+	<tr><td>content</td><td>Required</td><td>string</td></tr>
+	<tr><td>publishedAt</td><td>Required</td><td>string</td></tr>
+	<tr><td>status</td><td>Required</td><td>string</td></tr>
 </table>
 
-**Response**
-
-<table>
-
-</table>
-
-### updateDso
+### updateNewsCategory
 
 **Request**
 
 <table>
-	<tr><td>identifier</td><td>Required</td><td>string</td></tr>
-	<tr><td>overview</td><td>Required</td><td>string</td></tr>
-	<tr><td>description</td><td>Required</td><td>string</td></tr>
-	<tr><td>bvColor</td><td>Required</td><td>string</td></tr>
-	<tr><td>stellarClassification</td><td>Required</td><td>string</td></tr>
+	<tr><td>id</td><td>Required</td><td>string</td></tr>
+	<tr><td>slug</td><td>Optional</td><td>string</td></tr>
+	<tr><td>title</td><td>Optional</td><td>string</td></tr>
 </table>
 
 **Response**
 
 <table>
+	<tr><td>id</td><td>Required</td><td>string</td></tr>
+	<tr><td>slug</td><td>Required</td><td>string</td></tr>
+	<tr><td>title</td><td>Required</td><td>string</td></tr>
+	<tr><td>status</td><td>Required</td><td>string</td></tr>
+	<tr><td>authorUserId</td><td>Required</td><td>string</td></tr>
+</table>
 
+### updateNotification
+
+**Request**
+
+<table>
+	<tr><td>id</td><td>Required</td><td>string</td></tr>
+	<tr><td>title</td><td>Optional</td><td>string</td></tr>
+	<tr><td>message</td><td>Optional</td><td>string</td></tr>
+</table>
+
+**Response**
+
+<table>
+	<tr><td>id</td><td>Required</td><td>string</td></tr>
+	<tr><td>title</td><td>Required</td><td>string</td></tr>
+	<tr><td>message</td><td>Required</td><td>string</td></tr>
+	<tr><td>authorUserId</td><td>Required</td><td>string</td></tr>
+	<tr><td>recipientUserIds</td><td>Required</td><td>string[]</td></tr>
 </table>
 
 ### updateProfile
@@ -374,13 +650,53 @@
 **Request**
 
 <table>
-	<tr><td>email</td><td>Required</td><td>string</td></tr>
-	<tr><td>discord</td><td>Required</td><td>string</td></tr>
-	<tr><td>telegram</td><td>Required</td><td>string</td></tr>
+	<tr><td>email</td><td>Optional</td><td>string</td></tr>
+	<tr><td>discord</td><td>Optional</td><td>string</td></tr>
+	<tr><td>telegram</td><td>Optional</td><td>string</td></tr>
 </table>
 
 **Response**
 
 <table>
 
+</table>
+
+### updateSpaceObject
+
+**Request**
+
+<table>
+	<tr><td>id</td><td>Required</td><td>string</td></tr>
+	<tr><td>identifier</td><td>Optional</td><td>string</td></tr>
+	<tr><td>hip</td><td>Optional</td><td>number</td></tr>
+	<tr><td>name</td><td>Optional</td><td>string</td></tr>
+	<tr><td>constellation</td><td>Optional</td><td>string</td></tr>
+	<tr><td>overview</td><td>Optional</td><td>string</td></tr>
+	<tr><td>description</td><td>Optional</td><td>string</td></tr>
+	<tr><td>rightAscension</td><td>Optional</td><td>string</td></tr>
+	<tr><td>declination</td><td>Optional</td><td>string</td></tr>
+	<tr><td>type</td><td>Optional</td><td>string</td></tr>
+</table>
+
+**Response**
+
+<table>
+
+</table>
+
+### updateTriviaGame
+
+**Request**
+
+<table>
+	<tr><td>id</td><td>Optional</td><td>string</td></tr>
+	<tr><td>date</td><td>Optional</td><td>string</td></tr>
+	<tr><td>title</td><td>Optional</td><td>string</td></tr>
+	<tr><td>status</td><td>Optional</td><td>draft | live | ended</td></tr>
+</table>
+
+**Response**
+
+<table>
+	<tr><td>id</td><td>Required</td><td>string</td></tr>
 </table>

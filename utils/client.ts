@@ -37,6 +37,11 @@ const handleCall: ICall = async (call, data, opts) => {
   }
 };
 
+const createErrorLog = (
+  data?: { code: string; message: string; notes: string },
+  opts?: { token?: string },
+) => handleCall<{}>('createErrorLog', data, opts);
+
 const createNewsArticle = (
   data?: {
     slug: string;
@@ -74,10 +79,32 @@ const createNewsCategory = (
     authorUserId: string;
   }>('createNewsCategory', data, opts);
 
-const createErrorLog = (
-  data?: { code: string; message: string; notes: string },
+const createNotification = (
+  data?: { title: string; message?: string },
   opts?: { token?: string },
-) => handleCall<{}>('createErrorLog', data, opts);
+) =>
+  handleCall<{
+    id: string;
+    title: string;
+    message: string;
+    authorUserId: string;
+  }>('createNotification', data, opts);
+
+const createSpaceObject = (
+  data?: { title: string; message?: string },
+  opts?: { token?: string },
+) =>
+  handleCall<{
+    identifier: string;
+    hip?: number;
+    name: string;
+    constellation: string;
+    overview?: string;
+    description?: string;
+    rightAscension: string;
+    declination: string;
+    type: string;
+  }>('createSpaceObject', data, opts);
 
 const createTriviaGame = (
   data?: {
@@ -95,22 +122,20 @@ const createTriviaGame = (
     authorUserId: string;
   }>('createTriviaGame', data, opts);
 
+const deleteActivity = (data?: { id: string }, opts?: { token?: string }) =>
+  handleCall<{}>('deleteActivity', data, opts);
+
 const deleteNewsArticle = (data?: { id: string }, opts?: { token?: string }) =>
   handleCall<{}>('deleteNewsArticle', data, opts);
 
-const getDso = (data?: { identifier: string }, opts?: { token?: string }) =>
-  handleCall<{
-    id: string;
-    identifier: string;
-    hip: number;
-    name: string;
-    constellation: string;
-    overview: string;
-    rightAscension: string;
-    declination: string;
-    type: string;
-    facts: string[];
-  }>('getDso', data, opts);
+const deleteNotification = (data?: { id: string }, opts?: { token?: string }) =>
+  handleCall<{}>('deleteNotification', data, opts);
+
+const deleteSpaceObject = (data?: { id: string }, opts?: { token?: string }) =>
+  handleCall<{}>('deleteSpaceObject', data, opts);
+
+const deleteTriviaGame = (data?: { id: string }, opts?: { token?: string }) =>
+  handleCall<{}>('deleteTriviaGame', data, opts);
 
 const getNewsArticle = (data?: { slug: string }, opts?: { token?: string }) =>
   handleCall<{
@@ -127,6 +152,13 @@ const getNewsArticle = (data?: { slug: string }, opts?: { token?: string }) =>
 const getNft = (data?: { hip: number }, opts?: { token?: string }) =>
   handleCall<{ tokenId: number }>('getNft', data, opts);
 
+const getNotification = (data?: { id: string }, opts?: { token?: string }) =>
+  handleCall<{ id: string; title: string; message: string; isUnread: boolean }>(
+    'getNotification',
+    data,
+    opts,
+  );
+
 const getProfile = (data?: {}, opts?: { token?: string }) =>
   handleCall<{ email: string; discord: string; telegram: string }>(
     'getProfile',
@@ -136,6 +168,44 @@ const getProfile = (data?: {}, opts?: { token?: string }) =>
 
 const getSetting = (data?: { key: string }, opts?: { token?: string }) =>
   handleCall<{ key: string; value: string }>('getSetting', data, opts);
+
+const getSpaceObject = (data?: { id: string }, opts?: { token?: string }) =>
+  handleCall<{
+    id: string;
+    identifier: string;
+    hip: number;
+    name: string;
+    constellation: string;
+    overview: string;
+    rightAscension: string;
+    declination: string;
+    type: string;
+    facts: string[];
+  }>('getSpaceObject', data, opts);
+
+const getTriviaGame = (data?: { id: string }, opts?: { token?: string }) =>
+  handleCall<{
+    id: string;
+    title: string;
+    date: string;
+    status: string;
+    questions: { id: string; question: string; answers: string[] }[];
+  }>('getTriviaGame', data, opts);
+
+const listActivities = (
+  data?: { filter?: { categoryIds?: string[] } },
+  opts?: { token?: string },
+) =>
+  handleCall<{
+    results: {
+      id: string;
+      slug: string;
+      image: string;
+      title: string;
+      overview: string;
+      publishedAt: string;
+    }[];
+  }>('listActivities', data, opts);
 
 const listNewsArticles = (
   data?: { filter?: { categoryIds?: string[] } },
@@ -176,6 +246,16 @@ const listNfts = (data?: {}, opts?: { token?: string }) =>
     }[];
   }>('listNfts', data, opts);
 
+const listNotifications = (data?: {}, opts?: { token?: string }) =>
+  handleCall<{
+    results: {
+      id: string;
+      title: string;
+      message: string;
+      isUnread: boolean;
+    }[];
+  }>('listNotifications', data, opts);
+
 const listOwnedTokens = (data?: {}, opts?: { token?: string }) =>
   handleCall<{
     results: {
@@ -188,6 +268,21 @@ const listOwnedTokens = (data?: {}, opts?: { token?: string }) =>
       tokenId: number;
     }[];
   }>('listOwnedTokens', data, opts);
+
+const listSpaceObjects = (data?: {}, opts?: { token?: string }) =>
+  handleCall<{
+    results: {
+      identifier: string;
+      hip?: number;
+      name: string;
+      constellation: string;
+      overview?: string;
+      description?: string;
+      rightAscension: string;
+      declination: string;
+      type: string;
+    }[];
+  }>('listSpaceObjects', data, opts);
 
 const listTriviaGames = (data?: {}, opts?: { token?: string }) =>
   handleCall<{
@@ -226,27 +321,16 @@ const search = (data?: { query: string }, opts?: { token?: string }) =>
     opts,
   );
 
-const updateDso = (
-  data?: {
-    identifier: string;
-    overview: string;
-    description: string;
-    bvColor: string;
-    stellarClassification: string;
-  },
-  opts?: { token?: string },
-) => handleCall<{}>('updateDso', data, opts);
-
 const updateNewsArticle = (
   data?: {
     id: string;
-    slug: string;
-    image: string;
-    title: string;
+    slug?: string;
+    image?: string;
+    title?: string;
     content?: string;
     overview?: string;
     publishedAt?: string;
-    status: 'draft' | 'published';
+    status?: 'draft' | 'published';
   },
   opts?: { token?: string },
 ) =>
@@ -261,32 +345,96 @@ const updateNewsArticle = (
     status: string;
   }>('updateNewsArticle', data, opts);
 
+const updateNewsCategory = (
+  data?: { id: string; slug?: string; title?: string },
+  opts?: { token?: string },
+) =>
+  handleCall<{
+    id: string;
+    slug: string;
+    title: string;
+    status: string;
+    authorUserId: string;
+  }>('updateNewsCategory', data, opts);
+
+const updateNotification = (
+  data?: { id: string; title?: string; message?: string },
+  opts?: { token?: string },
+) =>
+  handleCall<{
+    id: string;
+    title: string;
+    message: string;
+    authorUserId: string;
+    recipientUserIds: string[];
+  }>('updateNotification', data, opts);
+
 const updateProfile = (
-  data?: { email: string; discord: string; telegram: string },
+  data?: { email?: string; discord?: string; telegram?: string },
   opts?: { token?: string },
 ) => handleCall<{}>('updateProfile', data, opts);
 
+const updateSpaceObject = (
+  data?: {
+    id: string;
+    identifier?: string;
+    hip?: number;
+    name?: string;
+    constellation?: string;
+    overview?: string;
+    description?: string;
+    rightAscension?: string;
+    declination?: string;
+    type?: string;
+  },
+  opts?: { token?: string },
+) => handleCall<{}>('updateSpaceObject', data, opts);
+
+const updateTriviaGame = (
+  data?: {
+    id?: string;
+    date?: string;
+    title?: string;
+    status?: 'draft' | 'live' | 'ended';
+  },
+  opts?: { token?: string },
+) => handleCall<{ id: string }>('updateTriviaGame', data, opts);
+
 export const client = {
+  createErrorLog,
   createNewsArticle,
   createNewsCategory,
-  createErrorLog,
+  createNotification,
+  createSpaceObject,
   createTriviaGame,
+  deleteActivity,
   deleteNewsArticle,
-  getDso,
+  deleteNotification,
+  deleteSpaceObject,
+  deleteTriviaGame,
   getNewsArticle,
   getNft,
+  getNotification,
   getProfile,
   getSetting,
+  getSpaceObject,
+  getTriviaGame,
+  listActivities,
   listNewsArticles,
   listNewsCategories,
   listNfts,
+  listNotifications,
   listOwnedTokens,
+  listSpaceObjects,
   listTriviaGames,
   loginWithEmail,
   loginWithWallet,
   registerWithEmail,
   search,
-  updateDso,
   updateNewsArticle,
+  updateNewsCategory,
+  updateNotification,
   updateProfile,
+  updateSpaceObject,
+  updateTriviaGame,
 };
