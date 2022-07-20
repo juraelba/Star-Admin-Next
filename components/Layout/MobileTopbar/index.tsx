@@ -7,7 +7,7 @@ import {
   MenuButton,
   MobileTopbarContainer,
   Notification,
-} from "./styles";
+} from './styles';
 
 interface MobileTopbarProps {
   onOpen: () => void;

@@ -79,19 +79,24 @@ const createErrorLog = (
   opts?: { token?: string },
 ) => handleCall<{}>('createErrorLog', data, opts);
 
-const deleteNewsArticle = (data?: { id: string }, opts?: { token?: string }) =>
-  handleCall<{}>('deleteNewsArticle', data, opts);
-
-const getArticle = (data?: { slug: string }, opts?: { token?: string }) =>
+const createTriviaGame = (
+  data?: {
+    date: string;
+    title: string;
+    questions: { question: string; answers: string[] }[];
+  },
+  opts?: { token?: string },
+) =>
   handleCall<{
     id: string;
-    slug: string;
-    image: string;
+    date: string;
     title: string;
-    overview: string;
-    content: string;
-    publishedAt: string;
-  }>('getArticle', data, opts);
+    status: string;
+    authorUserId: string;
+  }>('createTriviaGame', data, opts);
+
+const deleteNewsArticle = (data?: { id: string }, opts?: { token?: string }) =>
+  handleCall<{}>('deleteNewsArticle', data, opts);
 
 const getDso = (data?: { identifier: string }, opts?: { token?: string }) =>
   handleCall<{
@@ -106,6 +111,18 @@ const getDso = (data?: { identifier: string }, opts?: { token?: string }) =>
     type: string;
     facts: string[];
   }>('getDso', data, opts);
+
+const getNewsArticle = (data?: { slug: string }, opts?: { token?: string }) =>
+  handleCall<{
+    id: string;
+    slug: string;
+    image: string;
+    title: string;
+    overview: string;
+    content: string;
+    publishedAt: string;
+    status: string;
+  }>('getNewsArticle', data, opts);
 
 const getNft = (data?: { hip: number }, opts?: { token?: string }) =>
   handleCall<{ tokenId: number }>('getNft', data, opts);
@@ -172,6 +189,11 @@ const listOwnedTokens = (data?: {}, opts?: { token?: string }) =>
     }[];
   }>('listOwnedTokens', data, opts);
 
+const listTriviaGames = (data?: {}, opts?: { token?: string }) =>
+  handleCall<{
+    results: { id: string; title: string; date: string; status: string }[];
+  }>('listTriviaGames', data, opts);
+
 const loginWithEmail = (
   data?: { email: string; password: string },
   opts?: { token?: string },
@@ -204,20 +226,6 @@ const search = (data?: { query: string }, opts?: { token?: string }) =>
     opts,
   );
 
-const updateArticle = (
-  data?: {
-    id: string;
-    slug: string;
-    image: string;
-    title: string;
-    content?: string;
-    overview?: string;
-    publishedAt?: string;
-    status: 'draft' | 'published';
-  },
-  opts?: { token?: string },
-) => handleCall<{}>('updateArticle', data, opts);
-
 const updateDso = (
   data?: {
     identifier: string;
@@ -229,6 +237,30 @@ const updateDso = (
   opts?: { token?: string },
 ) => handleCall<{}>('updateDso', data, opts);
 
+const updateNewsArticle = (
+  data?: {
+    id: string;
+    slug: string;
+    image: string;
+    title: string;
+    content?: string;
+    overview?: string;
+    publishedAt?: string;
+    status: 'draft' | 'published';
+  },
+  opts?: { token?: string },
+) =>
+  handleCall<{
+    id: string;
+    slug: string;
+    image: string;
+    title: string;
+    overview: string;
+    content: string;
+    publishedAt: string;
+    status: string;
+  }>('updateNewsArticle', data, opts);
+
 const updateProfile = (
   data?: { email: string; discord: string; telegram: string },
   opts?: { token?: string },
@@ -238,9 +270,10 @@ export const client = {
   createNewsArticle,
   createNewsCategory,
   createErrorLog,
+  createTriviaGame,
   deleteNewsArticle,
-  getArticle,
   getDso,
+  getNewsArticle,
   getNft,
   getProfile,
   getSetting,
@@ -248,11 +281,12 @@ export const client = {
   listNewsCategories,
   listNfts,
   listOwnedTokens,
+  listTriviaGames,
   loginWithEmail,
   loginWithWallet,
   registerWithEmail,
   search,
-  updateArticle,
   updateDso,
+  updateNewsArticle,
   updateProfile,
 };

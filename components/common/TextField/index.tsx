@@ -35,7 +35,7 @@ const TextField: React.FC<TextFieldProps> = (props) => {
     placeholder,
     value,
     readonly = false,
-    onChange = () => { },
+    onChange = () => {},
     mb = isMobile ? 32 : 40,
     helperText,
     status = 'default',

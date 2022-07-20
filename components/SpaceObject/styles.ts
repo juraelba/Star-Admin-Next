@@ -109,6 +109,7 @@ export const AvatarContainer = styled.div`
 
 export const ActionContainer = styled.div`
   display: flex;
+
   @media (max-width: 768px) {
     margin-left: -6px;
     margin-right: -6px;

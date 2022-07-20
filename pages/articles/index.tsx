@@ -127,17 +127,15 @@ const Articles: React.FC = () => {
         </DetailViewContainer>
       ) : (
         <>
-          {
-            selectedTab !== 'list' ? (
-              <DetailViewContainer>
-                <CardView rows={rows} renderCard={Article} />
-              </DetailViewContainer>
-            ) : (
-              <TableContainer>
-                <DataGrid cols={cols} rows={rows} renderRow={renderRow} />
-              </TableContainer>
-            )
-          }
+          {selectedTab !== 'list' ? (
+            <DetailViewContainer>
+              <CardView rows={rows} renderCard={Article} />
+            </DetailViewContainer>
+          ) : (
+            <TableContainer>
+              <DataGrid cols={cols} rows={rows} renderRow={renderRow} />
+            </TableContainer>
+          )}
         </>
       )}
       <DeleteModal
@@ -145,7 +143,7 @@ const Articles: React.FC = () => {
         onClose={() => setIsOpen(false)}
         onDelete={handleDelete}
       />
-    </ArticlesContainer >
+    </ArticlesContainer>
   );
 };
 
