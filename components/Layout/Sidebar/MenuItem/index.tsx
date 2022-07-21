@@ -38,7 +38,8 @@ const MenuItem: React.FC<MenuProps> = ({
   };
 
   const isActive = (path: string) => {
-    if (path === '/') return router.pathname === path;
+    // if (path === '/') 
+    return router.pathname === path;
     return router.pathname.indexOf(path) > -1;
   };
   const active = isActive(props.path);

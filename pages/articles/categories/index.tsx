@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import AddNewButton from '../../../components/AddNewButton';
 import Breadcrumb from '../../../components/common/Breadcrumb';
@@ -8,6 +7,7 @@ import Filter from '../../../components/common/Filter';
 import DataGrid, { Row, Col } from '../../../components/common/DataGrid';
 import CardView from '../../../components/common/CardView';
 import Article from '../../../components/Article';
+import Pagination from '../../../components/common/Pagination';
 import DeleteModal from '../../../components/DeleteModal';
 import {
   CategoriesContainer,
@@ -22,7 +22,7 @@ import Router from 'next/router';
 import useIsMobile from '../../../hooks/useIsMobile';
 import { client } from '../../../utils/client';
 
-const Categories: React.FC = () => {
+const Articles: React.FC = () => {
   const isMobile = useIsMobile();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedRowId, setSelectedRowId] = useState('');
@@ -38,10 +38,9 @@ const Categories: React.FC = () => {
     },
   ];
   const [rows, setRows] = useState<CategoryType[]>([]);
-  const [pageRowCount, setPageRowCount] = useState(10);
   const [pageCount, setPageCount] = useState(0);
   const [pageNum, setPageNum] = useState(1);
-  const cols: string[] = ['Title', 'Slug', 'Status'];
+  const cols: string[] = ['Title', 'Author', 'Status'];
 
   const handleChangeTab = (id: string) => setSelectedTab(id);
   const handleEdit = (
@@ -60,32 +59,28 @@ const Categories: React.FC = () => {
     setIsOpen(true);
   };
   const handleDelete = () => {
-    client.deleteNewsArticle({ id: selectedRowId }).then(() => {
+    client.deleteNewsCategory({ id: selectedRowId }).then(() => {
       setIsOpen(false);
       init();
     });
   };
 
   const handleRedirect = (slug: string) => {
-    Router.push(`/articles/${slug}/view`);
+    Router.push(`/articles/categories/${slug}/view`);
   };
 
   const init = async () => {
-    const { results: newsArticles, maxPages } = await client.listNewsArticles({
-      page: pageNum,
-      limit: 10,
-    });
+    const { results: newsCategories, maxPages } =
+      await client.listNewsCategories({
+        page: pageNum,
+        limit: 10,
+      });
 
     setRows(
-      newsArticles.map((newsArticle) => ({
-        id: newsArticle.id,
-        date: '',
-        title: newsArticle.title,
-        author: 'Unknown',
-        content: '',
-        slug: newsArticle.slug,
-        image: newsArticle.image,
-        publishedAt: newsArticle.publishedAt,
+      newsCategories.map((newsCategory) => ({
+        id: newsCategory.id,
+        title: newsCategory.title,
+        slug: newsCategory.slug,
       })),
     );
 
@@ -121,7 +116,7 @@ const Categories: React.FC = () => {
     );
   };
 
-  const breadcrumbs = ['Home', 'Categories'];
+  const breadcrumbs = ['Home', 'News Articles'];
 
   useEffect(() => {
     init();
@@ -140,7 +135,7 @@ const Categories: React.FC = () => {
       <Breadcrumb breadcrumbs={breadcrumbs} />
       <Header>
         <Title>Categories</Title>
-        <AddNewButton url="/articles/new/create" />
+        <AddNewButton url="/articles/categories/new/create" />
       </Header>
       <Toolbar>
         <Filter />
@@ -165,6 +160,11 @@ const Categories: React.FC = () => {
           )}
         </>
       )}
+      <Pagination
+        pageNum={pageNum}
+        pageCount={pageCount}
+        onPaginate={handleChangePageNumber}
+      />
       <DeleteModal
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
@@ -174,4 +174,4 @@ const Categories: React.FC = () => {
   );
 };
 
-export default Categories;
+export default Articles;

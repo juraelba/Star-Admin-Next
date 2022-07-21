@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Breadcrumb from '../../../../components/common/Breadcrumb';
 import Col from '../../../../components/common/Col';
@@ -19,18 +19,11 @@ const Category: React.FC = observer(() => {
   const router = useRouter();
   const { id, mode } = router.query;
   const readonly = !(mode === 'create' || mode === 'edit');
-  const initialForm: CategoryType =
-    mode === 'create'
-      ? {
-          id: 'a',
-          title: '',
-          slug: '',
-        }
-      : {
-          id: 'a',
-          title: 'SpaceX',
-          slug: 'https://news.starledger.org/category/name',
-        };
+  const initialForm: CategoryType = {
+    id: '',
+    title: '',
+    slug: '',
+  };
   const [isOpenUnSaveModal, setIsOpenUnSaveModal] = useState(false);
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
   const [pastForm, setPastForm] = useState<CategoryType>(initialForm);
@@ -47,14 +40,27 @@ const Category: React.FC = observer(() => {
     router.push(`/articles/categories/${id}/edit`);
   };
   const handleDelete = () => {
-    setIsOpenDeleteModal(false);
+    client.deleteNewsCategory({ id: form.id }).then(() => {
+      router.push('/articles/categories');
+    });
   };
   const handleSave = async () => {
-    await client.createNewsArticle({
-      title: form.title,
-      slug: form.slug,
-    });
+    if (id === 'new') {
+      await client.createNewsCategory({
+        title: form.title,
+        slug: form.slug,
+      });
+    }
 
+    if (id === 'edit') {
+      await client.updateNewsCategory({
+        title: form.title,
+        slug: form.slug,
+        id: form.id,
+      });
+    }
+
+    router.push('/articles/categories');
     setIsOpenUnSaveModal(false);
   };
   const handleCancelSave = () => {
@@ -62,6 +68,13 @@ const Category: React.FC = observer(() => {
     router.push(`/articles/categories/${id}/view`);
     setIsOpenUnSaveModal(false);
   };
+
+  useEffect(() => {
+    if (id && id !== 'new')
+      client.getNewsCategory({ slug: id }).then((res) => {
+        setForm(res);
+      });
+  }, [router]);
 
   const breadcrumbs = ['home', 'News Articles', 'Categories', 'Add New'];
 
