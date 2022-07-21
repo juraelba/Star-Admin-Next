@@ -12,10 +12,12 @@
 - createTriviaGame
 - deleteActivity
 - deleteNewsArticle
+- deleteNewsCategory
 - deleteNotification
 - deleteSpaceObject
 - deleteTriviaGame
 - getNewsArticle
+- getNewsCategory
 - getNft
 - getNotification
 - getProfile
@@ -195,6 +197,20 @@
 
 </table>
 
+### deleteNewsCategory
+
+**Request**
+
+<table>
+	<tr><td>id</td><td>Required</td><td>string</td></tr>
+</table>
+
+**Response**
+
+<table>
+
+</table>
+
 ### deleteNotification
 
 **Request**
@@ -256,6 +272,23 @@
 	<tr><td>content</td><td>Required</td><td>string</td></tr>
 	<tr><td>publishedAt</td><td>Required</td><td>string</td></tr>
 	<tr><td>status</td><td>Required</td><td>string</td></tr>
+</table>
+
+### getNewsCategory
+
+**Request**
+
+<table>
+	<tr><td>slug</td><td>Required</td><td>string</td></tr>
+</table>
+
+**Response**
+
+<table>
+	<tr><td>id</td><td>Required</td><td>string</td></tr>
+	<tr><td>slug</td><td>Required</td><td>string</td></tr>
+	<tr><td>title</td><td>Required</td><td>string</td></tr>
+	<tr><td>authorUserId</td><td>Required</td><td>string</td></tr>
 </table>
 
 ### getNft

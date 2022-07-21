@@ -128,6 +128,9 @@ const deleteActivity = (data?: { id: string }, opts?: { token?: string }) =>
 const deleteNewsArticle = (data?: { id: string }, opts?: { token?: string }) =>
   handleCall<{}>('deleteNewsArticle', data, opts);
 
+const deleteNewsCategory = (data?: { id: string }, opts?: { token?: string }) =>
+  handleCall<{}>('deleteNewsCategory', data, opts);
+
 const deleteNotification = (data?: { id: string }, opts?: { token?: string }) =>
   handleCall<{}>('deleteNotification', data, opts);
 
@@ -148,6 +151,13 @@ const getNewsArticle = (data?: { slug: string }, opts?: { token?: string }) =>
     publishedAt: string;
     status: string;
   }>('getNewsArticle', data, opts);
+
+const getNewsCategory = (data?: { slug: string }, opts?: { token?: string }) =>
+  handleCall<{ id: string; slug: string; title: string; authorUserId: string }>(
+    'getNewsCategory',
+    data,
+    opts,
+  );
 
 const getNft = (data?: { hip: number }, opts?: { token?: string }) =>
   handleCall<{ tokenId: number }>('getNft', data, opts);
@@ -443,10 +453,12 @@ export const client = {
   createTriviaGame,
   deleteActivity,
   deleteNewsArticle,
+  deleteNewsCategory,
   deleteNotification,
   deleteSpaceObject,
   deleteTriviaGame,
   getNewsArticle,
+  getNewsCategory,
   getNft,
   getNotification,
   getProfile,
