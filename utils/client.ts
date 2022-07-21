@@ -193,7 +193,7 @@ const getTriviaGame = (data?: { id: string }, opts?: { token?: string }) =>
   }>('getTriviaGame', data, opts);
 
 const listActivities = (
-  data?: { filter?: { categoryIds?: string[] } },
+  data?: { filter?: {}; page?: number; limit?: number },
   opts?: { token?: string },
 ) =>
   handleCall<{
@@ -208,7 +208,7 @@ const listActivities = (
   }>('listActivities', data, opts);
 
 const listNewsArticles = (
-  data?: { filter?: { categoryIds?: string[] } },
+  data?: { filter?: { categoryIds?: string[] }; page?: number; limit?: number },
   opts?: { token?: string },
 ) =>
   handleCall<{
@@ -222,7 +222,10 @@ const listNewsArticles = (
     }[];
   }>('listNewsArticles', data, opts);
 
-const listNewsCategories = (data?: {}, opts?: { token?: string }) =>
+const listNewsCategories = (
+  data?: { filter?: {}; page?: number; limit?: number },
+  opts?: { token?: string },
+) =>
   handleCall<{
     results: {
       id: string;
@@ -233,7 +236,10 @@ const listNewsCategories = (data?: {}, opts?: { token?: string }) =>
     }[];
   }>('listNewsCategories', data, opts);
 
-const listNfts = (data?: {}, opts?: { token?: string }) =>
+const listNfts = (
+  data?: { filter?: {}; page?: number; limit?: number },
+  opts?: { token?: string },
+) =>
   handleCall<{
     results: {
       hip: number;
@@ -246,7 +252,10 @@ const listNfts = (data?: {}, opts?: { token?: string }) =>
     }[];
   }>('listNfts', data, opts);
 
-const listNotifications = (data?: {}, opts?: { token?: string }) =>
+const listNotifications = (
+  data?: { filter?: {}; page?: number; limit?: number },
+  opts?: { token?: string },
+) =>
   handleCall<{
     results: {
       id: string;
@@ -256,7 +265,10 @@ const listNotifications = (data?: {}, opts?: { token?: string }) =>
     }[];
   }>('listNotifications', data, opts);
 
-const listOwnedTokens = (data?: {}, opts?: { token?: string }) =>
+const listOwnedTokens = (
+  data?: { filter?: {}; page?: number; limit?: number },
+  opts?: { token?: string },
+) =>
   handleCall<{
     results: {
       hip: number;
@@ -269,7 +281,10 @@ const listOwnedTokens = (data?: {}, opts?: { token?: string }) =>
     }[];
   }>('listOwnedTokens', data, opts);
 
-const listSpaceObjects = (data?: {}, opts?: { token?: string }) =>
+const listSpaceObjects = (
+  data?: { filter?: {}; page?: number; limit?: number },
+  opts?: { token?: string },
+) =>
   handleCall<{
     results: {
       identifier: string;
@@ -284,7 +299,10 @@ const listSpaceObjects = (data?: {}, opts?: { token?: string }) =>
     }[];
   }>('listSpaceObjects', data, opts);
 
-const listTriviaGames = (data?: {}, opts?: { token?: string }) =>
+const listTriviaGames = (
+  data?: { filter?: {}; page?: number; limit?: number },
+  opts?: { token?: string },
+) =>
   handleCall<{
     results: { id: string; title: string; date: string; status: string }[];
   }>('listTriviaGames', data, opts);

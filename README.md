@@ -368,7 +368,9 @@
 **Request**
 
 <table>
-	<tr><td>filter</td><td>Optional</td>	<tr><td>categoryIds</td><td>Optional</td><td>string[]</td></tr></tr>
+	<tr><td>filter</td><td>Optional</td></tr>
+	<tr><td>page</td><td>Optional</td><td>number</td></tr>
+	<tr><td>limit</td><td>Optional</td><td>number</td></tr>
 </table>
 
 **Response**
@@ -388,6 +390,8 @@
 
 <table>
 	<tr><td>filter</td><td>Optional</td>	<tr><td>categoryIds</td><td>Optional</td><td>string[]</td></tr></tr>
+	<tr><td>page</td><td>Optional</td><td>number</td></tr>
+	<tr><td>limit</td><td>Optional</td><td>number</td></tr>
 </table>
 
 **Response**
@@ -406,7 +410,9 @@
 **Request**
 
 <table>
-
+	<tr><td>filter</td><td>Optional</td></tr>
+	<tr><td>page</td><td>Optional</td><td>number</td></tr>
+	<tr><td>limit</td><td>Optional</td><td>number</td></tr>
 </table>
 
 **Response**
@@ -424,7 +430,9 @@
 **Request**
 
 <table>
-
+	<tr><td>filter</td><td>Optional</td></tr>
+	<tr><td>page</td><td>Optional</td><td>number</td></tr>
+	<tr><td>limit</td><td>Optional</td><td>number</td></tr>
 </table>
 
 **Response**
@@ -444,7 +452,9 @@
 **Request**
 
 <table>
-
+	<tr><td>filter</td><td>Optional</td></tr>
+	<tr><td>page</td><td>Optional</td><td>number</td></tr>
+	<tr><td>limit</td><td>Optional</td><td>number</td></tr>
 </table>
 
 **Response**
@@ -461,7 +471,9 @@
 **Request**
 
 <table>
-
+	<tr><td>filter</td><td>Optional</td></tr>
+	<tr><td>page</td><td>Optional</td><td>number</td></tr>
+	<tr><td>limit</td><td>Optional</td><td>number</td></tr>
 </table>
 
 **Response**
@@ -481,7 +493,9 @@
 **Request**
 
 <table>
-
+	<tr><td>filter</td><td>Optional</td></tr>
+	<tr><td>page</td><td>Optional</td><td>number</td></tr>
+	<tr><td>limit</td><td>Optional</td><td>number</td></tr>
 </table>
 
 **Response**
@@ -503,7 +517,9 @@
 **Request**
 
 <table>
-
+	<tr><td>filter</td><td>Optional</td></tr>
+	<tr><td>page</td><td>Optional</td><td>number</td></tr>
+	<tr><td>limit</td><td>Optional</td><td>number</td></tr>
 </table>
 
 **Response**
