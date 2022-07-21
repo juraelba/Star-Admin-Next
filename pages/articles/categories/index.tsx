@@ -17,14 +17,15 @@ import {
   Title,
   Toolbar,
 } from './categories.styles';
-import { Tab as TabType, Article as ArticleType } from '../../../types';
+import { Tab as TabType, Category as CategoryType } from '../../../types';
 import Router from 'next/router';
 import useIsMobile from '../../../hooks/useIsMobile';
 import { client } from '../../../utils/client';
 
-const Articles: React.FC = () => {
+const Categories: React.FC = () => {
   const isMobile = useIsMobile();
   const [isOpen, setIsOpen] = useState(false);
+  const [selectedRowId, setSelectedRowId] = useState('');
   const [selectedTab, setSelectedTab] = useState('list');
   const tabs: TabType[] = [
     {
@@ -36,8 +37,11 @@ const Articles: React.FC = () => {
       name: 'Detail View',
     },
   ];
-  const [rows, setRows] = useState<ArticleType[]>([]);
-  const cols: string[] = ['Title', 'Slug'];
+  const [rows, setRows] = useState<CategoryType[]>([]);
+  const [pageRowCount, setPageRowCount] = useState(10);
+  const [pageCount, setPageCount] = useState(0);
+  const [pageNum, setPageNum] = useState(1);
+  const cols: string[] = ['Title', 'Slug', 'Status'];
 
   const handleChangeTab = (id: string) => setSelectedTab(id);
   const handleEdit = (
@@ -47,48 +51,69 @@ const Articles: React.FC = () => {
     event.stopPropagation();
     Router.push(`/articles/categories/${rowID}/edit`);
   };
-  const handleOpenModal = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleOpenModal = (
+    event: React.MouseEvent<HTMLButtonElement>,
+    id: string,
+  ) => {
+    setSelectedRowId(id);
     event.stopPropagation();
     setIsOpen(true);
   };
   const handleDelete = () => {
-    setIsOpen(false);
+    client.deleteNewsArticle({ id: selectedRowId }).then(() => {
+      setIsOpen(false);
+      init();
+    });
   };
 
-  const handleRedirect = (id: string) => {
-    Router.push(`/articles/categories/${id}/view`);
+  const handleRedirect = (slug: string) => {
+    Router.push(`/articles/${slug}/view`);
   };
 
   const init = async () => {
-    const { results: newsCategories } = await client.listNewsCategories();
-    console.log(newsCategories);
+    const { results: newsArticles, maxPages } = await client.listNewsArticles({
+      page: pageNum,
+      limit: 10,
+    });
 
-    // setRows(
-    //   newsCategories.map((newsCategories) => ({
-    //     id: newsCategories.id,
-    //     title: newsCategories.title,
-    //     slug: newsCategories.slug,
-    //   })),
-    // );
+    setRows(
+      newsArticles.map((newsArticle) => ({
+        id: newsArticle.id,
+        date: '',
+        title: newsArticle.title,
+        author: 'Unknown',
+        content: '',
+        slug: newsArticle.slug,
+        image: newsArticle.image,
+        publishedAt: newsArticle.publishedAt,
+      })),
+    );
+
+    setPageCount(maxPages);
   };
 
-  const renderRow = (row: ArticleType) => {
+  const renderRow = (row: CategoryType) => {
     return (
-      <Row onClick={() => handleRedirect(row.id)}>
+      <Row onClick={() => handleRedirect(row.slug)}>
         <Col>{row.title}</Col>
-        <Col>{row.author}</Col>
-        <Col>{row.date}</Col>
+        <Col>{row.slug}</Col>
         <Col>
           <Button
             size="xs"
             onClick={(event: React.MouseEvent<HTMLButtonElement>) =>
-              handleEdit(event, row.id)
+              handleEdit(event, row.slug)
             }
             style={{ marginRight: '10px' }}
           >
             Edit
           </Button>
-          <Button size="xs" color="light-danger" onClick={handleOpenModal}>
+          <Button
+            size="xs"
+            color="light-danger"
+            onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
+              handleOpenModal(e, row.id)
+            }
+          >
             Delete
           </Button>
         </Col>
@@ -102,12 +127,20 @@ const Articles: React.FC = () => {
     init();
   }, []);
 
+  const handleChangePageNumber = (index: number) => {
+    setPageNum(index);
+  };
+
+  useEffect(() => {
+    init();
+  }, [pageNum]);
+
   return (
     <CategoriesContainer>
       <Breadcrumb breadcrumbs={breadcrumbs} />
       <Header>
         <Title>Categories</Title>
-        <AddNewButton url="/articles/categories/new/create" />
+        <AddNewButton url="/articles/new/create" />
       </Header>
       <Toolbar>
         <Filter />
@@ -141,4 +174,4 @@ const Articles: React.FC = () => {
   );
 };
 
-export default Articles;
+export default Categories;

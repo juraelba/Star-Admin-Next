@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import AddNewButton from '../../components/AddNewButton';
 import Breadcrumb from '../../components/common/Breadcrumb';
@@ -8,6 +7,7 @@ import Filter from '../../components/common/Filter';
 import DataGrid, { Row, Col } from '../../components/common/DataGrid';
 import CardView from '../../components/common/CardView';
 import Article from '../../components/Article';
+import Pagination from '../../components/common/Pagination';
 import DeleteModal from '../../components/DeleteModal';
 import {
   ArticlesContainer,
@@ -38,7 +38,6 @@ const Articles: React.FC = () => {
     },
   ];
   const [rows, setRows] = useState<ArticleType[]>([]);
-  const [pageRowCount, setPageRowCount] = useState(10);
   const [pageCount, setPageCount] = useState(0);
   const [pageNum, setPageNum] = useState(1);
   const cols: string[] = ['Title', 'Author', 'Published Date', 'Status'];
@@ -161,19 +160,16 @@ const Articles: React.FC = () => {
             </DetailViewContainer>
           ) : (
             <TableContainer>
-              <DataGrid
-                cols={cols}
-                rows={rows}
-                renderRow={renderRow}
-                pageCount={pageCount}
-                pageNum={pageNum}
-                onChangePageNumber={handleChangePageNumber}
-                pageRowCount={pageRowCount}
-              />
+              <DataGrid cols={cols} rows={rows} renderRow={renderRow} />
             </TableContainer>
           )}
         </>
       )}
+      <Pagination
+        pageNum={pageNum}
+        pageCount={pageCount}
+        onPaginate={handleChangePageNumber}
+      />
       <DeleteModal
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}

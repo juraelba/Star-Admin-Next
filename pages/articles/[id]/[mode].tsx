@@ -44,7 +44,9 @@ const Article: React.FC = observer(() => {
     router.push(`/articles/${id}/edit`);
   };
   const handleDelete = () => {
-    setIsOpenDeleteModal(false);
+    client.deleteNewsArticle({ id: form.id }).then(() => {
+      router.push('/articles');
+    });
   };
   const handleSave = async () => {
     if (id === 'new') {
