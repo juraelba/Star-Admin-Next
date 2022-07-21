@@ -197,6 +197,8 @@ const listActivities = (
   opts?: { token?: string },
 ) =>
   handleCall<{
+    maxCount: number;
+    maxPages: number;
     results: {
       id: string;
       slug: string;
@@ -212,6 +214,8 @@ const listNewsArticles = (
   opts?: { token?: string },
 ) =>
   handleCall<{
+    maxCount: number;
+    maxPages: number;
     results: {
       id: string;
       slug: string;
@@ -227,6 +231,8 @@ const listNewsCategories = (
   opts?: { token?: string },
 ) =>
   handleCall<{
+    maxCount: number;
+    maxPages: number;
     results: {
       id: string;
       slug: string;
@@ -241,6 +247,8 @@ const listNfts = (
   opts?: { token?: string },
 ) =>
   handleCall<{
+    maxCount: number;
+    maxPages: number;
     results: {
       hip: number;
       constellation: string;
@@ -257,6 +265,8 @@ const listNotifications = (
   opts?: { token?: string },
 ) =>
   handleCall<{
+    maxCount: number;
+    maxPages: number;
     results: {
       id: string;
       title: string;
@@ -270,6 +280,8 @@ const listOwnedTokens = (
   opts?: { token?: string },
 ) =>
   handleCall<{
+    maxCount: number;
+    maxPages: number;
     results: {
       hip: number;
       constellation: string;
@@ -286,6 +298,8 @@ const listSpaceObjects = (
   opts?: { token?: string },
 ) =>
   handleCall<{
+    maxCount: number;
+    maxPages: number;
     results: {
       identifier: string;
       hip?: number;
@@ -304,6 +318,8 @@ const listTriviaGames = (
   opts?: { token?: string },
 ) =>
   handleCall<{
+    maxCount: number;
+    maxPages: number;
     results: { id: string; title: string; date: string; status: string }[];
   }>('listTriviaGames', data, opts);
 

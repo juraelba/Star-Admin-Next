@@ -376,6 +376,8 @@
 **Response**
 
 <table>
+	<tr><td>maxCount</td><td>Required</td><td>number</td></tr>
+	<tr><td>maxPages</td><td>Required</td><td>number</td></tr>
 	<tr><td>results</td><td>Required</td><td>	<tr><td>id</td><td>Required</td><td>string</td></tr>
 	<tr><td>slug</td><td>Required</td><td>string</td></tr>
 	<tr><td>image</td><td>Required</td><td>string</td></tr>
@@ -397,6 +399,8 @@
 **Response**
 
 <table>
+	<tr><td>maxCount</td><td>Required</td><td>number</td></tr>
+	<tr><td>maxPages</td><td>Required</td><td>number</td></tr>
 	<tr><td>results</td><td>Required</td><td>	<tr><td>id</td><td>Required</td><td>string</td></tr>
 	<tr><td>slug</td><td>Required</td><td>string</td></tr>
 	<tr><td>image</td><td>Required</td><td>string</td></tr>
@@ -418,6 +422,8 @@
 **Response**
 
 <table>
+	<tr><td>maxCount</td><td>Required</td><td>number</td></tr>
+	<tr><td>maxPages</td><td>Required</td><td>number</td></tr>
 	<tr><td>results</td><td>Required</td><td>	<tr><td>id</td><td>Required</td><td>string</td></tr>
 	<tr><td>slug</td><td>Required</td><td>string</td></tr>
 	<tr><td>title</td><td>Required</td><td>string</td></tr>
@@ -438,6 +444,8 @@
 **Response**
 
 <table>
+	<tr><td>maxCount</td><td>Required</td><td>number</td></tr>
+	<tr><td>maxPages</td><td>Required</td><td>number</td></tr>
 	<tr><td>results</td><td>Required</td><td>	<tr><td>hip</td><td>Required</td><td>number</td></tr>
 	<tr><td>constellation</td><td>Required</td><td>string</td></tr>
 	<tr><td>coordinates</td><td>Required</td><td>string</td></tr>
@@ -460,6 +468,8 @@
 **Response**
 
 <table>
+	<tr><td>maxCount</td><td>Required</td><td>number</td></tr>
+	<tr><td>maxPages</td><td>Required</td><td>number</td></tr>
 	<tr><td>results</td><td>Required</td><td>	<tr><td>id</td><td>Required</td><td>string</td></tr>
 	<tr><td>title</td><td>Required</td><td>string</td></tr>
 	<tr><td>message</td><td>Required</td><td>string</td></tr>
@@ -479,6 +489,8 @@
 **Response**
 
 <table>
+	<tr><td>maxCount</td><td>Required</td><td>number</td></tr>
+	<tr><td>maxPages</td><td>Required</td><td>number</td></tr>
 	<tr><td>results</td><td>Required</td><td>	<tr><td>hip</td><td>Required</td><td>number</td></tr>
 	<tr><td>constellation</td><td>Required</td><td>string</td></tr>
 	<tr><td>coordinates</td><td>Required</td><td>string</td></tr>
@@ -501,6 +513,8 @@
 **Response**
 
 <table>
+	<tr><td>maxCount</td><td>Required</td><td>number</td></tr>
+	<tr><td>maxPages</td><td>Required</td><td>number</td></tr>
 	<tr><td>results</td><td>Required</td><td>	<tr><td>identifier</td><td>Required</td><td>string</td></tr>
 	<tr><td>hip</td><td>Optional</td><td>number</td></tr>
 	<tr><td>name</td><td>Required</td><td>string</td></tr>
@@ -525,6 +539,8 @@
 **Response**
 
 <table>
+	<tr><td>maxCount</td><td>Required</td><td>number</td></tr>
+	<tr><td>maxPages</td><td>Required</td><td>number</td></tr>
 	<tr><td>results</td><td>Required</td><td>	<tr><td>id</td><td>Required</td><td>string</td></tr>
 	<tr><td>title</td><td>Required</td><td>string</td></tr>
 	<tr><td>date</td><td>Required</td><td>string</td></tr>
