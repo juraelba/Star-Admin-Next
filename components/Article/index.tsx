@@ -28,11 +28,11 @@ const Article: React.FC<ArticleProps> = (props) => {
   const isMobile = useIsMobile();
   const [isOpen, setIsOpen] = useState(false);
   const handleRedirect = () => {
-    Router.push(`/articles/${props.id}/view`);
+    Router.push(`/articles/${props.slug}/view`);
   };
   const handleEdit = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
-    Router.push(`/articles/${props.id}/edit`);
+    Router.push(`/articles/${props.slug}/edit`);
   };
   const handleDelete = () => setIsOpen(true);
   const handleOpen = (event: React.MouseEvent<HTMLButtonElement>) => {

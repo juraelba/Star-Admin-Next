@@ -25,6 +25,7 @@ import { client } from '../../utils/client';
 const Articles: React.FC = () => {
   const isMobile = useIsMobile();
   const [isOpen, setIsOpen] = useState(false);
+  const [selectedRowId, setSelectedRowId] = useState('');
   const [selectedTab, setSelectedTab] = useState('list');
   const tabs: TabType[] = [
     {
@@ -37,7 +38,10 @@ const Articles: React.FC = () => {
     },
   ];
   const [rows, setRows] = useState<ArticleType[]>([]);
-  const cols: string[] = ['Title', 'Author', 'Date', 'Status'];
+  const [pageRowCount, setPageRowCount] = useState(10);
+  const [pageCount, setPageCount] = useState(0);
+  const [pageNum, setPageNum] = useState(1);
+  const cols: string[] = ['Title', 'Author', 'Published Date', 'Status'];
 
   const handleChangeTab = (id: string) => setSelectedTab(id);
   const handleEdit = (
@@ -47,22 +51,30 @@ const Articles: React.FC = () => {
     event.stopPropagation();
     Router.push(`/articles/${rowID}/edit`);
   };
-  const handleOpenModal = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleOpenModal = (
+    event: React.MouseEvent<HTMLButtonElement>,
+    id: string,
+  ) => {
+    setSelectedRowId(id);
     event.stopPropagation();
     setIsOpen(true);
   };
   const handleDelete = () => {
-    setIsOpen(false);
+    client.deleteNewsArticle({ id: selectedRowId }).then(() => {
+      setIsOpen(false);
+      init();
+    });
   };
 
-  const handleRedirect = (id: string) => {
-    Router.push(`/articles/${id}/view`);
+  const handleRedirect = (slug: string) => {
+    Router.push(`/articles/${slug}/view`);
   };
 
   const init = async () => {
-    const { results: newsArticles } = await client.listNewsArticles();
-
-    console.log(newsArticles);
+    const { results: newsArticles, maxPages } = await client.listNewsArticles({
+      page: pageNum,
+      limit: 10,
+    });
 
     setRows(
       newsArticles.map((newsArticle) => ({
@@ -76,25 +88,33 @@ const Articles: React.FC = () => {
         publishedAt: newsArticle.publishedAt,
       })),
     );
+
+    setPageCount(maxPages);
   };
 
   const renderRow = (row: ArticleType) => {
     return (
-      <Row onClick={() => handleRedirect(row.id)}>
+      <Row onClick={() => handleRedirect(row.slug)}>
         <Col>{row.title}</Col>
         <Col>{row.author}</Col>
-        <Col>{row.date}</Col>
+        <Col>{row.publishedAt}</Col>
         <Col>
           <Button
             size="xs"
             onClick={(event: React.MouseEvent<HTMLButtonElement>) =>
-              handleEdit(event, row.id)
+              handleEdit(event, row.slug)
             }
             style={{ marginRight: '10px' }}
           >
             Edit
           </Button>
-          <Button size="xs" color="light-danger" onClick={handleOpenModal}>
+          <Button
+            size="xs"
+            color="light-danger"
+            onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
+              handleOpenModal(e, row.id)
+            }
+          >
             Delete
           </Button>
         </Col>
@@ -107,6 +127,14 @@ const Articles: React.FC = () => {
   useEffect(() => {
     init();
   }, []);
+
+  const handleChangePageNumber = (index: number) => {
+    setPageNum(index);
+  };
+
+  useEffect(() => {
+    init();
+  }, [pageNum]);
 
   return (
     <ArticlesContainer>
@@ -133,7 +161,15 @@ const Articles: React.FC = () => {
             </DetailViewContainer>
           ) : (
             <TableContainer>
-              <DataGrid cols={cols} rows={rows} renderRow={renderRow} />
+              <DataGrid
+                cols={cols}
+                rows={rows}
+                renderRow={renderRow}
+                pageCount={pageCount}
+                pageNum={pageNum}
+                onChangePageNumber={handleChangePageNumber}
+                pageRowCount={pageRowCount}
+              />
             </TableContainer>
           )}
         </>

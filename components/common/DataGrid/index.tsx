@@ -21,35 +21,30 @@ interface DataGridProps {
   cols: string[];
   renderRow: any;
   pageRowCount?: number;
+  pageCount: number;
+  pageNum: number;
+  onChangePageNumber: (index: number) => void;
 }
 
 const DataGrid: React.FC<DataGridProps> = ({
   rows,
   cols,
   renderRow,
+  pageCount,
+  pageNum,
   pageRowCount = 10,
+  onChangePageNumber,
 }) => {
-  const dataLength = rows.length;
-  const [index, setIndex] = useState(0);
-  const [startIndex, setStartIndex] = useState(0);
-  const [endIndex, setEndIndex] = useState(
-    pageRowCount > dataLength ? dataLength : pageRowCount,
-  );
-  const pageCount: number = Math.ceil(dataLength / pageRowCount);
+  const handlePaginate = (index: number) => {
+    onChangePageNumber(index);
+  };
+
   const handleBack = () => {
-    setIndex(index !== 0 ? index - 1 : 0);
+    if (pageNum !== 1) onChangePageNumber(pageNum - 1);
   };
-
   const handleNext = () => {
-    setIndex(index !== pageCount - 1 ? index + 1 : index);
+    if (pageNum !== pageCount) onChangePageNumber(pageNum + 1);
   };
-
-  useEffect(() => {
-    setStartIndex(index * pageRowCount);
-    const end = (index + 1) * pageRowCount;
-    setEndIndex(end > dataLength ? dataLength : end);
-  }, [index]);
-
   return (
     <DataGridContainer>
       <DataTable>
@@ -61,34 +56,35 @@ const DataGrid: React.FC<DataGridProps> = ({
           </TableHeadRow>
         </TableHead>
         <TableBody>
-          {rows
-            .slice(startIndex, endIndex)
-            .map((row: object, index: number) => (
-              <React.Fragment key={index}>{renderRow(row)}</React.Fragment>
-            ))}
+          {rows.map((row: object, index: number) => (
+            <React.Fragment key={index}>{renderRow(row)}</React.Fragment>
+          ))}
         </TableBody>
       </DataTable>
       <PaginationContainer>
         <Pagination>
-          {Object.keys(Array.from(Array(pageCount))).map((item: string) => (
-            <PaginationItem
-              key={item}
-              active={Number(item) === index}
-              onClick={() => setIndex(Number(item))}
-            >
-              {Number(item) + 1}
-            </PaginationItem>
-          ))}
+          {Object.keys(Array.from(Array(pageCount))).map((item: string) => {
+            const index = Number(item) + 1;
+            return (
+              <PaginationItem
+                key={item}
+                active={index === pageNum}
+                onClick={() => handlePaginate(index)}
+              >
+                {index}
+              </PaginationItem>
+            );
+          })}
         </Pagination>
         <PaginationActionContainer>
-          <PaginationAction active={index !== 0} onClick={handleBack}>
+          <PaginationAction active={pageNum !== 1} onClick={handleBack}>
             <Image
               src="/assets/images/icons/arrow-left-light.svg"
               width={24}
               height={24}
             />
           </PaginationAction>
-          <PaginationAction active={index !== pageCount - 1}>
+          <PaginationAction active={pageNum !== pageCount}>
             <Image
               src="/assets/images/icons/arrow-right-light.svg"
               width={24}

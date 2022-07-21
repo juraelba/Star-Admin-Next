@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Breadcrumb from '../../../components/common/Breadcrumb';
 import Col from '../../../components/common/Col';
@@ -19,26 +19,15 @@ const Article: React.FC = observer(() => {
   const router = useRouter();
   const { id, mode } = router.query;
   const readonly = !(mode === 'create' || mode === 'edit');
-  const initialForm: ArticleType =
-    mode === 'create'
-      ? {
-          id: 'a',
-          date: '',
-          title: '',
-          slug: '',
-          author: '',
-          publishedAt: '',
-          content: '',
-        }
-      : {
-          id: 'a',
-          date: '',
-          title: 'Article Title',
-          slug: 'article-title',
-          author: 'Chris Tate',
-          publishedAt: 'MM/DD/YYYY @ 00:00:00 AM UTC +4',
-          content: 'Enter article text here...',
-        };
+  const initialForm: ArticleType = {
+    id: '',
+    date: '',
+    title: '',
+    slug: '',
+    author: '',
+    publishedAt: '',
+    content: '',
+  };
   const [isOpenUnSaveModal, setIsOpenUnSaveModal] = useState(false);
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
   const [pastForm, setPastForm] = useState<ArticleType>(initialForm);
@@ -58,11 +47,24 @@ const Article: React.FC = observer(() => {
     setIsOpenDeleteModal(false);
   };
   const handleSave = async () => {
-    await client.createNewsArticle({
-      title: form.title,
-      slug: form.slug,
-    });
+    if (id === 'new') {
+      await client.createNewsArticle({
+        title: form.title,
+        slug: form.slug,
+        image: '',
+        content: form.content,
+        overview: '',
+        publishedAt: form.publishedAt,
+        status: 'draft',
+        categoryIds: [''],
+      });
+    }
 
+    if (mode === 'edit') {
+      await client.updateNewsArticle({ ...form });
+    }
+
+    router.push('/articles');
     setIsOpenUnSaveModal(false);
   };
   const handleCancelSave = () => {
@@ -70,6 +72,19 @@ const Article: React.FC = observer(() => {
     router.push(`/articles/${id}/view`);
     setIsOpenUnSaveModal(false);
   };
+
+  useEffect(() => {
+    if (id && id !== 'new')
+      client.getNewsArticle({ slug: id }).then((res) => {
+        console.log(res);
+        setForm({
+          date: '',
+          author: '',
+          ...res,
+          publishedAt: res.publishedAt.slice(0, 16),
+        });
+      });
+  }, [router]);
 
   const breadcrumbs = ['home', 'News Articles', 'Add New'];
 
@@ -81,16 +96,6 @@ const Article: React.FC = observer(() => {
         <Row spacing={60}>
           <Col sm={12} lg={6}>
             <Row>
-              <Col>
-                <TextField
-                  type="date"
-                  label="Date"
-                  name="date"
-                  value={form.date}
-                  onChange={handleChange}
-                  readonly={readonly}
-                />
-              </Col>
               <Col>
                 <TextField
                   label="Title"
@@ -105,15 +110,6 @@ const Article: React.FC = observer(() => {
                   label="Slug"
                   name="slug"
                   value={form.slug}
-                  onChange={handleChange}
-                  readonly={readonly}
-                />
-              </Col>
-              <Col>
-                <TextField
-                  label="Author"
-                  name="author"
-                  value={form.author}
                   onChange={handleChange}
                   readonly={readonly}
                 />

@@ -23,6 +23,12 @@ export interface Article {
   publishedAt: string;
 }
 
+export interface Category {
+  id: string;
+  title: string;
+  slug: string;
+}
+
 export interface NFT {
   id: number;
   name: string;
