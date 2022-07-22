@@ -7,6 +7,7 @@ interface CardViewProps {
 }
 
 const CardView: React.FC<CardViewProps> = ({ rows, renderCard }) => {
+  console.log(rows);
   return (
     <CardViewContainer>
       <CardItems>

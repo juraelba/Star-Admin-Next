@@ -6,7 +6,7 @@ import Tab from '../../../components/common/Tab';
 import Filter from '../../../components/common/Filter';
 import DataGrid, { Row, Col } from '../../../components/common/DataGrid';
 import CardView from '../../../components/common/CardView';
-import Article from '../../../components/Article';
+import Category from '../../../components/Category';
 import Pagination from '../../../components/common/Pagination';
 import DeleteModal from '../../../components/DeleteModal';
 import {
@@ -116,7 +116,11 @@ const Articles: React.FC = () => {
     );
   };
 
-  const breadcrumbs = ['Home', 'News Articles'];
+  const renderCard = (row: CategoryType) => {
+    return <Category {...row} />;
+  };
+
+  const breadcrumbs = ['Home', 'News Articles', 'Categories'];
 
   useEffect(() => {
     init();
@@ -145,13 +149,13 @@ const Articles: React.FC = () => {
       </Toolbar>
       {isMobile ? (
         <DetailViewContainer>
-          <CardView rows={rows} renderCard={Article} />
+          <CardView rows={rows} renderCard={renderCard} />
         </DetailViewContainer>
       ) : (
         <>
           {selectedTab !== 'list' ? (
             <DetailViewContainer>
-              <CardView rows={rows} renderCard={Article} />
+              <CardView rows={rows} renderCard={renderCard} />
             </DetailViewContainer>
           ) : (
             <TableContainer>

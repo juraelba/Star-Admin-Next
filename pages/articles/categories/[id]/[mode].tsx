@@ -45,18 +45,19 @@ const Category: React.FC = observer(() => {
     });
   };
   const handleSave = async () => {
-    if (id === 'new') {
+    console.log(mode)
+    if (mode === 'create') {
       await client.createNewsCategory({
         title: form.title,
         slug: form.slug,
       });
     }
 
-    if (id === 'edit') {
+    if (mode === 'edit') {
       await client.updateNewsCategory({
-        title: form.title,
-        slug: form.slug,
         id: form.id,
+        slug: form.slug,
+        title: form.title,
       });
     }
 
@@ -80,7 +81,7 @@ const Category: React.FC = observer(() => {
 
   return (
     <CategoryContainer>
-      <Breadcrumb redirectURL="/articles" breadcrumbs={breadcrumbs} />
+      <Breadcrumb redirectURL="/articles/categories" breadcrumbs={breadcrumbs} />
       <Title>{isMobile && 'Edit'} Categories</Title>
       <Body>
         <Row spacing={40}>
@@ -110,13 +111,13 @@ const Category: React.FC = observer(() => {
             <Button onClick={() => setIsOpenUnSaveModal(true)}>
               Cancel changes
             </Button>
-            <Button color="success" onClick={() => handleSave()}>
+            <Button color="success" onClick={handleSave}>
               Save changes
             </Button>
           </>
         )}
         {mode === 'create' && (
-          <Button color="success" onClick={() => handleSave()}>
+          <Button color="success" onClick={handleSave}>
             Create category
           </Button>
         )}

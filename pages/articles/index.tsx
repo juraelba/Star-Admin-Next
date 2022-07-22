@@ -121,6 +121,10 @@ const Articles: React.FC = () => {
     );
   };
 
+  const renderCard = (row: ArticleType) => {
+    return <Article {...row} />;
+  };
+
   const breadcrumbs = ['Home', 'News Articles'];
 
   useEffect(() => {
@@ -150,13 +154,13 @@ const Articles: React.FC = () => {
       </Toolbar>
       {isMobile ? (
         <DetailViewContainer>
-          <CardView rows={rows} renderCard={Article} />
+          <CardView rows={rows} renderCard={renderCard} />
         </DetailViewContainer>
       ) : (
         <>
           {selectedTab !== 'list' ? (
             <DetailViewContainer>
-              <CardView rows={rows} renderCard={Article} />
+              <CardView rows={rows} renderCard={renderCard} />
             </DetailViewContainer>
           ) : (
             <TableContainer>
