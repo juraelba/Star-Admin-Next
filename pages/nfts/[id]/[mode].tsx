@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Breadcrumb from '../../../components/common/Breadcrumb';
 import Col from '../../../components/common/Col';
@@ -18,6 +18,8 @@ import {
 } from './nft.styles';
 import { NFT as NFTType } from '../../../types';
 import useIsMobile from '../../../hooks/useIsMobile';
+import { client } from './../../../utils/client';
+import { SpinnerCircular } from 'spinners-react';
 
 const NFT: React.FC = () => {
   const isMobile = useIsMobile();
@@ -59,6 +61,32 @@ const NFT: React.FC = () => {
     image: null,
   });
   const [form, setForm] = useState<NFTType>(initialForm);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    if (id && id !== 'new')
+      setIsLoading(true);
+      // @ts-ignore
+      client.getNft({ hip:  parseInt(id)}).then((res) => {
+        console.log(res);
+        setIsLoading(false)
+        // setForm({
+        //   id: res.hip.toString(),
+        //   name: res.name,
+        //   owner: "",
+        //   chain: "",
+        //   image: '/assets/images/material.png',
+        //   ranking: res.ranking.toString(),
+        //   rarity: res.rarity,
+        //   link: ""
+        // });
+      })
+      .catch(err => console.log(err)
+      );
+  }, [router]);
+
+
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target)
       setForm({ ...form, [event.target.name]: event.target.value });
@@ -91,6 +119,7 @@ const NFT: React.FC = () => {
       <Breadcrumb redirectURL="/nfts" breadcrumbs={breadcrumbs} />
       <Title>{isMobile && 'Edit'} NFTs</Title>
       <Body>
+      {isLoading && <SpinnerCircular style={{  position: "fixed", top: "50%", left:"50%", marginTop:"-80px"}} size={100} thickness={60} speed={121} color="black" secondaryColor="white" />}
         <DropzoneContainer>
           <Dropzone
             label="Star Image"
@@ -186,6 +215,7 @@ const NFT: React.FC = () => {
         onCancel={handleCancelSave}
       />
       <DeleteModal
+        pageName='NFT'
         isOpen={isOpenDeleteModal}
         onClose={() => setIsOpenDeleteModal(false)}
         onDelete={handleDelete}

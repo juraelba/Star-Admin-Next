@@ -18,10 +18,18 @@ import {
   Value,
 } from './styles';
 import useIsMobile from '../../hooks/useIsMobile';
+import { client } from './../../utils/client';
 
-const Category: React.FC<CategoryProps> = (props) => {
+interface CategoryForInitProps {
+  init: () => void;
+}
+
+type CategoryPropsData = CategoryProps & CategoryForInitProps;
+
+const Category: React.FC<CategoryPropsData> = (props, init) => {
   const isMobile = useIsMobile();
   const [isOpen, setIsOpen] = useState(false);
+
   const handleRedirect = () => {
     Router.push(`/articles/categories/${props.slug}/view`);
   };
@@ -29,7 +37,17 @@ const Category: React.FC<CategoryProps> = (props) => {
     event.stopPropagation();
     Router.push(`/articles/categories/${props.slug}/edit`);
   };
-  const handleDelete = () => setIsOpen(true);
+  const handleDelete = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+    client.deleteNewsCategory({ id: props.id }).then(() => {
+      props.init();
+      setIsOpen(false);
+    });
+  };
+  const handleClose = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+    setIsOpen(false);
+  };
   const handleOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
     setIsOpen(true);
@@ -103,9 +121,10 @@ const Category: React.FC<CategoryProps> = (props) => {
         </FormItem>
       </Body>
       <DeleteModal
+        pageName="category"
         isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
-        onDelete={handleDelete}
+        onClose={(e: React.MouseEvent<HTMLButtonElement>) => handleClose(e)}
+        onDelete={(e: React.MouseEvent<HTMLButtonElement>) => handleDelete(e)}
       />
     </CategoryContainer>
   );

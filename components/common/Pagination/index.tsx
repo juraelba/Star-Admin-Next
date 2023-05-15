@@ -30,22 +30,40 @@ const Pagination: React.FC<PaginationProps> = ({
   const handleBack = () => {
     if (pageNum !== 1) onPaginate(pageNum - 1);
   };
+  
   return (
     <PaginationContainer>
       <PaginationUl>
+        {pageNum !== 1 && <PaginationItem active={false}>. . .</PaginationItem>}
         {Object.keys(Array.from(Array(pageCount))).map((item: string) => {
           const index = Number(item) + 1;
-          return (
-            <PaginationItem
-              key={item}
-              active={index === pageNum}
-              onClick={() => handlePaginate(index)}
-            >
-              {index}
-            </PaginationItem>
-          );
+          if(Object.keys(Array.from(Array(pageCount))).length > 10){
+            if(((index - pageNum  <10) && (index - pageNum > 0))  || index === pageNum ){
+              return (
+                <>
+                <PaginationItem
+                  key={item}
+                  active={index === pageNum}
+                  onClick={() => handlePaginate(index)}
+                >
+                  {index}
+                </PaginationItem>
+                </>
+              );
+            }
+          }else {
+            return (<PaginationItem
+                  key={item}
+                  active={index === pageNum}
+                  onClick={() => handlePaginate(index)}
+                >
+                  {index}
+                </PaginationItem>)
+          }
+         
         })}
-      </PaginationUl>
+        {!((Object.keys(Array.from(Array(pageCount))).length - pageNum) < 10)  && <PaginationItem active={false}>. . .</PaginationItem>}
+        </PaginationUl>
       <PaginationActionContainer>
         <PaginationAction active={pageNum !== 1} onClick={handleBack}>
           <Image

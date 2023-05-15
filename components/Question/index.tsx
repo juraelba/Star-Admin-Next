@@ -12,6 +12,8 @@ import {
 } from './styles';
 
 interface QuestionProps {
+  isLoading: boolean;
+  readonly: boolean;
   question: string;
   answers: string[];
   onAddAnswer: () => void;
@@ -30,16 +32,19 @@ const Question: React.FC<QuestionProps> = ({
   onDeleteAnswer,
   onChangeAnswer,
   onChangeQuestion,
+  readonly,
+  isLoading
 }) => {
   return (
     <QuestionContainer>
       <TextField
-        label="Question 1"
+        label="Question"
         value={question}
         onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
           onChangeQuestion(event)
         }
         mb={24}
+        readonly={readonly || isLoading}
       />
       <AnswersContainer>
         {answers.map((answer, index: number) => (
@@ -52,7 +57,8 @@ const Question: React.FC<QuestionProps> = ({
                 }
                 mb={0}
                 placeholder="Answer"
-              />
+                readonly={readonly || isLoading}
+                />
             </Answer>
             <DeleteButton onClick={() => onDeleteAnswer(index)}>
               <Image
@@ -66,9 +72,9 @@ const Question: React.FC<QuestionProps> = ({
         ))}
       </AnswersContainer>
       <Toolbar>
-        <Button size="sm" onClick={onAddAnswer}>
+        {!readonly && <Button size="sm" onClick={onAddAnswer}>
           Add another answer
-        </Button>
+        </Button>}
       </Toolbar>
     </QuestionContainer>
   );

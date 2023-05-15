@@ -23,8 +23,16 @@ import {
   Value,
 } from './styles';
 import useIsMobile from '../../hooks/useIsMobile';
+import { client } from './../../utils/client';
+import { type } from 'os';
 
-const Article: React.FC<ArticleProps> = (props) => {
+interface ArticleForInitProps {
+  init: () => void;
+}
+
+type ArticlePropsData = ArticleProps & ArticleForInitProps;
+
+const Article: React.FC<ArticlePropsData> = (props, init) => {
   const isMobile = useIsMobile();
   const [isOpen, setIsOpen] = useState(false);
   const handleRedirect = () => {
@@ -34,7 +42,17 @@ const Article: React.FC<ArticleProps> = (props) => {
     event.stopPropagation();
     Router.push(`/articles/${props.slug}/edit`);
   };
-  const handleDelete = () => setIsOpen(true);
+  const handleDelete = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+    client.deleteNewsArticle({ id: props.id }).then(() => {
+      props.init();
+      setIsOpen(false);
+    });
+  };
+  const handleClose = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+    setIsOpen(false);
+  };
   const handleOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
     setIsOpen(true);
@@ -139,9 +157,10 @@ const Article: React.FC<ArticleProps> = (props) => {
         </FormItem>
       </Body>
       <DeleteModal
+        pageName="article"
         isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
-        onDelete={handleDelete}
+        onClose={(e: React.MouseEvent<HTMLButtonElement>) => handleClose(e)}
+        onDelete={(e: React.MouseEvent<HTMLButtonElement>) => handleDelete(e)}
       />
     </ArticleContainer>
   );

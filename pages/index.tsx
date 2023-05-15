@@ -14,27 +14,28 @@ const Home: React.FC = () => {
   const isMobile = useIsMobile();
   const latestActivities: Activity[] = [
     {
-      id: 1,
+      id: "1",
       title: 'New NFT Listed',
       date: 'May 23, 2022',
-      status: 'Completed',
+      status: 'completed',
       author: 'Chris Tate',
     },
     {
-      id: 2,
+      id: "2",
       title: 'News Article Edited',
       date: 'May 23, 2022',
-      status: 'Pending',
+      status: 'pending',
       author: 'Chris Tate',
     },
     {
-      id: 3,
+      id: "3",
       title: 'New Space Object Created',
       date: 'May 23, 2022',
-      status: 'Completed',
+      status: 'completed',
       author: 'Chris Tate',
     },
   ];
+  
 
   return (
     <Container>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Router from 'next/router';
 import DeleteModal from '../DeleteModal';
@@ -18,10 +18,20 @@ import {
   Value,
 } from './styles';
 import useIsMobile from '../../hooks/useIsMobile';
+import { client } from '../../utils/client';
+interface PropsForInit {
+  init: () => void;
+}
 
-const Trivia: React.FC<TriviaType> = (props) => {
+type TriviaProps = TriviaType & PropsForInit;
+
+const Trivia: React.FC<TriviaProps> = (props, init) => {
   const isMobile = useIsMobile();
   const [isOpen, setIsOpen] = useState(false);
+  
+ 
+
+
   const handleRedirect = () => {
     Router.push(`/trivia/${props.id}/view`);
   };
@@ -29,7 +39,17 @@ const Trivia: React.FC<TriviaType> = (props) => {
     event.stopPropagation();
     Router.push(`/trivia/${props.id}/edit`);
   };
-  const handleDelete = () => setIsOpen(true);
+  const handleDelete = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+    client.deleteTriviaGame({ id: props.id }).then(() => {
+      props.init();
+      setIsOpen(false);
+    });
+  };
+  const handleClose = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+    setIsOpen(false);
+  };
   const handleOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
     setIsOpen(true);
@@ -96,7 +116,7 @@ const Trivia: React.FC<TriviaType> = (props) => {
           )}
         </ActionContainer>
       </Header>
-      <Body>
+      <Body onClick={handleRedirect}>
         <FormItem>
           <Label>Date</Label>
           <Value>{props.date}</Value>
@@ -115,9 +135,10 @@ const Trivia: React.FC<TriviaType> = (props) => {
         </FormItem>
       </Body>
       <DeleteModal
+        pageName="trivia"
         isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
-        onDelete={handleDelete}
+        onClose={(e: React.MouseEvent<HTMLButtonElement>) => handleClose(e)}
+        onDelete={(e: React.MouseEvent<HTMLButtonElement>) => handleDelete(e)}
       />
     </TriviaContainer>
   );

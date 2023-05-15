@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Router from 'next/router';
 import DeleteModal from '../DeleteModal';
 import Button from '../common/Button';
-import { SpaceObject as SpaceObjectProps } from '../../types';
+import { SpaceObject as SpaceObjectType } from '../../types';
 import {
   ActionContainer,
   Abbreviation,
@@ -25,8 +25,17 @@ import {
   Value,
 } from './styles';
 import useIsMobile from '../../hooks/useIsMobile';
+import { SpaceObject } from './../../types/index';
+import { client } from './../../utils/client';
 
-const SpaceObject: React.FC<SpaceObjectProps> = (props) => {
+interface PropsForInit {
+  init: () => void;
+}
+
+type SpaceObjectProps = SpaceObjectType & PropsForInit;
+
+
+const SObject : React.FC<SpaceObjectProps> = (props) => {
   const isMobile = useIsMobile();
   const [isOpen, setIsOpen] = useState(false);
   const handleRedirect = () => {
@@ -36,7 +45,19 @@ const SpaceObject: React.FC<SpaceObjectProps> = (props) => {
     e.stopPropagation();
     Router.push(`/objects/${props.id}/edit`);
   };
-  const handleDelete = () => setIsOpen(true);
+  const handleDelete = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+    client.deleteSpaceObject({ id: props.id }).then(() => {
+      props.init();
+      setIsOpen(false);
+    });
+  };  
+  
+  const handleClose = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+    setIsOpen(false);
+  };
+
   const handleOpen = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     setIsOpen(true);
@@ -139,12 +160,13 @@ const SpaceObject: React.FC<SpaceObjectProps> = (props) => {
         </FormItem>
       </Body>
       <DeleteModal
+        pageName='space object'
         isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
+        onClose={handleClose}
         onDelete={handleDelete}
       />
     </SpaceObjectContainer>
   );
 };
 
-export default SpaceObject;
+export default SObject;

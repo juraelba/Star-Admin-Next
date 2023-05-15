@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Breadcrumb from '../../components/common/Breadcrumb';
 import CardView from '../../components/common/CardView';
 import Badge from '../../components/common/Badge';
@@ -18,10 +18,17 @@ import {
 } from './activity.styles';
 import useIsMobile from '../../hooks/useIsMobile';
 import { Tab as TabType, Activity as ActivityType } from '../../types';
+import { client } from './../../utils/client';
+import Pagination from '../../components/common/Pagination';
+import { SpinnerCircular } from 'spinners-react';
 
 const Activity: React.FC = () => {
   const isMobile = useIsMobile();
   const [selectedTab, setSelectedTab] = useState('all');
+  const [rows, setRows] = useState<ActivityType[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [pageCount, setPageCount] = useState(0);
+  const [pageNum, setPageNum] = useState(1);
   const tabs: TabType[] = [
     {
       id: 'all',
@@ -40,155 +47,156 @@ const Activity: React.FC = () => {
       name: 'News Articles',
     },
   ];
-  const rows: ActivityType[] = [
-    {
-      id: 1,
-      title: 'New NFT Listed',
-      author: 'Chris Tate',
-      date: 'May 17th, 2022 10:56:41',
-      status: 'Completed',
-    },
-    {
-      id: 2,
-      title: 'Space Object Edited',
-      author: 'Chris Tate',
-      date: 'May 17th, 2022 10:56:41',
-      status: 'Pending',
-    },
-    {
-      id: 3,
-      title: 'New NFT Listed',
-      author: 'Chris Tate',
-      date: 'May 17th, 2022 10:56:41',
-      status: 'Completed',
-    },
-    {
-      id: 4,
-      title: 'Space Object Edited',
-      author: 'Chris Tate',
-      date: 'May 17th, 2022 10:56:41',
-      status: 'Pending',
-    },
-    {
-      id: 5,
-      title: 'New NFT Listed',
-      author: 'Chris Tate',
-      date: 'May 17th, 2022 10:56:41',
-      status: 'Completed',
-    },
-    {
-      id: 6,
-      title: 'Space Object Edited',
-      author: 'Chris Tate',
-      date: 'May 17th, 2022 10:56:41',
-      status: 'Pending',
-    },
-    {
-      id: 7,
-      title: 'New NFT Listed',
-      author: 'Chris Tate',
-      date: 'May 17th, 2022 10:56:41',
-      status: 'Completed',
-    },
-    {
-      id: 8,
-      title: 'Space Object Edited',
-      author: 'Chris Tate',
-      date: 'May 17th, 2022 10:56:41',
-      status: 'Pending',
-    },
-    {
-      id: 9,
-      title: 'New NFT Listed',
-      author: 'Chris Tate',
-      date: 'May 17th, 2022 10:56:41',
-      status: 'Completed',
-    },
-    {
-      id: 10,
-      title: 'Space Object Edited',
-      author: 'Chris Tate',
-      date: 'May 17th, 2022 10:56:41',
-      status: 'Pending',
-    },
-    {
-      id: 11,
-      title: 'New NFT Listed',
-      author: 'Chris Tate',
-      date: 'May 17th, 2022 10:56:41',
-      status: 'Completed',
-    },
-    {
-      id: 12,
-      title: 'Space Object Edited',
-      author: 'Chris Tate',
-      date: 'May 17th, 2022 10:56:41',
-      status: 'Pending',
-    },
-    {
-      id: 13,
-      title: 'New NFT Listed',
-      author: 'Chris Tate',
-      date: 'May 17th, 2022 10:56:41',
-      status: 'Completed',
-    },
-    {
-      id: 14,
-      title: 'Space Object Edited',
-      author: 'Chris Tate',
-      date: 'May 17th, 2022 10:56:41',
-      status: 'Pending',
-    },
-    {
-      id: 15,
-      title: 'New NFT Listed',
-      author: 'Chris Tate',
-      date: 'May 17th, 2022 10:56:41',
-      status: 'Completed',
-    },
-    {
-      id: 16,
-      title: 'Space Object Edited',
-      author: 'Chris Tate',
-      date: 'May 17th, 2022 10:56:41',
-      status: 'Pending',
-    },
-    {
-      id: 17,
-      title: 'New NFT Listed',
-      author: 'Chris Tate',
-      date: 'May 17th, 2022 10:56:41',
-      status: 'Completed',
-    },
-    {
-      id: 18,
-      title: 'Space Object Edited',
-      author: 'Chris Tate',
-      date: 'May 17th, 2022 10:56:41',
-      status: 'Pending',
-    },
-    {
-      id: 19,
-      title: 'New NFT Listed',
-      author: 'Chris Tate',
-      date: 'May 17th, 2022 10:56:41',
-      status: 'Completed',
-    },
-    {
-      id: 20,
-      title: 'Space Object Edited',
-      author: 'Chris Tate',
-      date: 'May 17th, 2022 10:56:41',
-      status: 'Pending',
-    },
-    {
-      id: 21,
-      title: 'New NFT Listed',
-      author: 'Chris Tate',
-      date: 'May 17th, 2022 10:56:41',
-      status: 'Completed',
-    },
-  ];
+  // const rows: ActivityType[] = [
+  //   {
+  //     id: 1,
+  //     title: 'New NFT Listed',
+  //     author: 'Chris Tate',
+  //     date: 'May 17th, 2022 10:56:41',
+  //     status: 'Completed',
+  //   },
+  //   {
+  //     id: 2,
+  //     title: 'Space Object Edited',
+  //     author: 'Chris Tate',
+  //     date: 'May 17th, 2022 10:56:41',
+  //     status: 'Pending',
+  //   },
+  //   {
+  //     id: 3,
+  //     title: 'New NFT Listed',
+  //     author: 'Chris Tate',
+  //     date: 'May 17th, 2022 10:56:41',
+  //     status: 'Completed',
+  //   },
+  //   {
+  //     id: 4,
+  //     title: 'Space Object Edited',
+  //     author: 'Chris Tate',
+  //     date: 'May 17th, 2022 10:56:41',
+  //     status: 'Pending',
+  //   },
+  //   {
+  //     id: 5,
+  //     title: 'New NFT Listed',
+  //     author: 'Chris Tate',
+  //     date: 'May 17th, 2022 10:56:41',
+  //     status: 'Completed',
+  //   },
+  //   {
+  //     id: 6,
+  //     title: 'Space Object Edited',
+  //     author: 'Chris Tate',
+  //     date: 'May 17th, 2022 10:56:41',
+  //     status: 'Pending',
+  //   },
+  //   {
+  //     id: 7,
+  //     title: 'New NFT Listed',
+  //     author: 'Chris Tate',
+  //     date: 'May 17th, 2022 10:56:41',
+  //     status: 'Completed',
+  //   },
+  //   {
+  //     id: 8,
+  //     title: 'Space Object Edited',
+  //     author: 'Chris Tate',
+  //     date: 'May 17th, 2022 10:56:41',
+  //     status: 'Pending',
+  //   },
+  //   {
+  //     id: 9,
+  //     title: 'New NFT Listed',
+  //     author: 'Chris Tate',
+  //     date: 'May 17th, 2022 10:56:41',
+  //     status: 'Completed',
+  //   },
+  //   {
+  //     id: 10,
+  //     title: 'Space Object Edited',
+  //     author: 'Chris Tate',
+  //     date: 'May 17th, 2022 10:56:41',
+  //     status: 'Pending',
+  //   },
+  //   {
+  //     id: 11,
+  //     title: 'New NFT Listed',
+  //     author: 'Chris Tate',
+  //     date: 'May 17th, 2022 10:56:41',
+  //     status: 'Completed',
+  //   },
+  //   {
+  //     id: 12,
+  //     title: 'Space Object Edited',
+  //     author: 'Chris Tate',
+  //     date: 'May 17th, 2022 10:56:41',
+  //     status: 'Pending',
+  //   },
+  //   {
+  //     id: 13,
+  //     title: 'New NFT Listed',
+  //     author: 'Chris Tate',
+  //     date: 'May 17th, 2022 10:56:41',
+  //     status: 'Completed',
+  //   },
+  //   {
+  //     id: 14,
+  //     title: 'Space Object Edited',
+  //     author: 'Chris Tate',
+  //     date: 'May 17th, 2022 10:56:41',
+  //     status: 'Pending',
+  //   },
+  //   {
+  //     id: 15,
+  //     title: 'New NFT Listed',
+  //     author: 'Chris Tate',
+  //     date: 'May 17th, 2022 10:56:41',
+  //     status: 'Completed',
+  //   },
+  //   {
+  //     id: 16,
+  //     title: 'Space Object Edited',
+  //     author: 'Chris Tate',
+  //     date: 'May 17th, 2022 10:56:41',
+  //     status: 'Pending',
+  //   },
+  //   {
+  //     id: 17,
+  //     title: 'New NFT Listed',
+  //     author: 'Chris Tate',
+  //     date: 'May 17th, 2022 10:56:41',
+  //     status: 'Completed',
+  //   },
+  //   {
+  //     id: 18,
+  //     title: 'Space Object Edited',
+  //     author: 'Chris Tate',
+  //     date: 'May 17th, 2022 10:56:41',
+  //     status: 'Pending',
+  //   },
+  //   {
+  //     id: 19,
+  //     title: 'New NFT Listed',
+  //     author: 'Chris Tate',
+  //     date: 'May 17th, 2022 10:56:41',
+  //     status: 'Completed',
+  //   },
+  //   {
+  //     id: 20,
+  //     title: 'Space Object Edited',
+  //     author: 'Chris Tate',
+  //     date: 'May 17th, 2022 10:56:41',
+  //     status: 'Pending',
+  //   },
+  //   {
+  //     id: 21,
+  //     title: 'New NFT Listed',
+  //     author: 'Chris Tate',
+  //     date: 'May 17th, 2022 10:56:41',
+  //     status: 'Completed',
+  //   },
+  // ];
+
   const cols: string[] = isMobile
     ? ['Title', 'Status']
     : ['Title', 'Author', 'Date', 'Status'];
@@ -220,13 +228,48 @@ const Activity: React.FC = () => {
           </>
         )}
         <Col>
-          <Badge color={row.status === 'Completed' ? 'success' : 'warning'}>
+          <Badge color={row.status === 'completed' ? 'success' : 'warning'}>
             {row.status}
           </Badge>
         </Col>
       </Row>
     );
   };
+
+  const init = async () => {
+    setIsLoading(true)
+    const {results : results, maxPages, maxCount}=
+      await client.listActivities({
+        page: pageNum,
+        limit: 25,
+      });
+
+    
+    setRows(
+      results.map(result => ({
+        id : result.id,
+        status : result.status,
+        author: "",
+        date: "",
+        title: result.title
+      })
+    )
+);
+      setIsLoading(false)
+    setPageCount(maxPages);
+  };
+
+  useEffect(() => {
+    init();
+  }, []);
+
+  const handleChangePageNumber = (index: number) => {
+    setPageNum(index);
+  };
+
+  useEffect(() => {
+    init();
+  }, [pageNum]);
 
   const breadcrumbs = ['Home', 'Activity'];
 
@@ -248,9 +291,16 @@ const Activity: React.FC = () => {
           />
         )}
       </Toolbar>
-      <TableContainer>
-        <DataGrid cols={cols} rows={rows} renderRow={renderRow} />
-      </TableContainer>
+      {isLoading ? <SpinnerCircular style={{marginLeft: "auto", marginRight:"auto", display:"block"}} size={100} thickness={60} speed={121} color="black" secondaryColor="white" /> :
+            <TableContainer>
+              <DataGrid cols={cols} rows={rows} renderRow={renderRow} />
+            </TableContainer>
+            }
+      <Pagination
+        pageNum={pageNum}
+        pageCount={pageCount}
+        onPaginate={handleChangePageNumber}
+      />
     </ActivityContainer>
   );
 };

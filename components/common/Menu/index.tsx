@@ -13,7 +13,7 @@ const Menu: React.FC<MenuProps> = ({ actions, label }) => {
     <MenuContainer>
       {label && <Label>{label}</Label>}
       {actions.map((action: Action) => (
-        <MenuItem onClick={() => action.action()}>
+        <MenuItem onClick={() => action.action()} key={action.id}>
           {action.icon && (
             <IconContainer>
               <Image src={action.icon} width={24} height={24} />

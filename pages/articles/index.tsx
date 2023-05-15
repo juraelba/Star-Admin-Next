@@ -21,6 +21,8 @@ import { Tab as TabType, Article as ArticleType } from '../../types';
 import Router from 'next/router';
 import useIsMobile from '../../hooks/useIsMobile';
 import { client } from '../../utils/client';
+import { Loader } from '../../components/Loader/Loader';
+import { SpinnerCircular } from 'spinners-react';
 
 const Articles: React.FC = () => {
   const isMobile = useIsMobile();
@@ -40,6 +42,7 @@ const Articles: React.FC = () => {
   const [rows, setRows] = useState<ArticleType[]>([]);
   const [pageCount, setPageCount] = useState(0);
   const [pageNum, setPageNum] = useState(1);
+  const [isLoading, setIsLoading] =useState(false);
   const cols: string[] = ['Title', 'Author', 'Published Date', 'Status'];
 
   const handleChangeTab = (id: string) => setSelectedTab(id);
@@ -70,11 +73,11 @@ const Articles: React.FC = () => {
   };
 
   const init = async () => {
+    setIsLoading(true)
     const { results: newsArticles, maxPages } = await client.listNewsArticles({
       page: pageNum,
       limit: 10,
     });
-
     setRows(
       newsArticles.map((newsArticle) => ({
         id: newsArticle.id,
@@ -89,6 +92,7 @@ const Articles: React.FC = () => {
     );
 
     setPageCount(maxPages);
+    setIsLoading(false)
   };
 
   const renderRow = (row: ArticleType) => {
@@ -121,8 +125,8 @@ const Articles: React.FC = () => {
     );
   };
 
-  const renderCard = (row: ArticleType) => {
-    return <Article {...row} />;
+  const renderCard = (row: ArticleType, init: () => void) => {
+    return <Article init={init} {...row} />;
   };
 
   const breadcrumbs = ['Home', 'News Articles'];
@@ -149,23 +153,29 @@ const Articles: React.FC = () => {
       <Toolbar>
         <Filter />
         {!isMobile && (
+          <>
           <Tab tabs={tabs} active={selectedTab} onChange={handleChangeTab} />
+          </>
         )}
       </Toolbar>
       {isMobile ? (
         <DetailViewContainer>
-          <CardView rows={rows} renderCard={renderCard} />
+          <CardView rows={rows} init={init} renderCard={renderCard} />
         </DetailViewContainer>
       ) : (
         <>
           {selectedTab !== 'list' ? (
             <DetailViewContainer>
-              <CardView rows={rows} renderCard={renderCard} />
+              <CardView rows={rows} init={init} renderCard={renderCard} />
             </DetailViewContainer>
           ) : (
+            <>
+            {isLoading ? <SpinnerCircular style={{marginLeft: "auto", marginRight:"auto", display:"block"}} size={100} thickness={60} speed={121} color="black" secondaryColor="white" /> :
             <TableContainer>
               <DataGrid cols={cols} rows={rows} renderRow={renderRow} />
             </TableContainer>
+            }
+            </>
           )}
         </>
       )}
@@ -175,6 +185,7 @@ const Articles: React.FC = () => {
         onPaginate={handleChangePageNumber}
       />
       <DeleteModal
+        pageName="article"
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
         onDelete={handleDelete}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Button from '../../../components/common/Button';
 import Breadcrumb from '../../../components/common/Breadcrumb';
@@ -18,6 +18,9 @@ import {
   Title,
 } from './object.styles';
 import { SpaceObject } from '../../../types';
+import { client } from './../../../utils/client';
+import Swal from 'sweetalert2';
+import { SpinnerCircular } from 'spinners-react';
 
 const Object: React.FC = () => {
   const isMobile = useIsMobile();
@@ -39,19 +42,43 @@ const Object: React.FC = () => {
         }
       : {
           id: 1,
-          name: 'Polaris',
-          constellation: 'Ursa Minor',
-          abbreviation: 'UMA',
-          rightAccession: '02h 31m 49.09s',
-          declination: '+89° 15′ 50.8″',
-          stellar: 'Spectral Class F7',
-          bvColor: '0.636',
+          name: '',
+          constellation: '',
+          abbreviation: '',
+          rightAccession: '',
+          declination: '',
+          stellar: '',
+          bvColor: '',
           image: null,
         };
   const [isOpenUnSaveModal, setIsOpenUnSaveModal] = useState(false);
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
   const [pastForm, setPastForm] = useState<SpaceObject>(initialForm);
   const [form, setForm] = useState<SpaceObject>(initialForm);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    if (id && id !== 'new')
+      setIsLoading(true);
+      // @ts-ignore
+      client.getSpaceObject({ id:  id}).then((res) => {
+        setForm({
+        id: res.id,
+        name: res.name,
+        constellation: "",
+        image:"/assets/images/material.png",
+        abbreviation: "",
+        rightAccession: "",
+        declination:"",
+        bvColor: "",
+        stellar:""
+        });
+        setIsLoading(false)
+      })
+      .catch(err => console.log(err)
+      );
+  }, [router]);
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target)
       setForm({ ...form, [event.target.name]: event.target.value });
@@ -65,10 +92,43 @@ const Object: React.FC = () => {
     setPastForm(form);
     router.push(`/objects/${id}/edit`);
   };
+
   const handleDelete = () => {
-    setIsOpenDeleteModal(false);
-  };
-  const handleSave = () => {
+    // @ts-ignore
+    client.deleteSpaceObject({ id: id?.toString() }).then(() => {
+     setIsOpenDeleteModal(false);
+   });
+   
+ };
+  const handleSave = async () => {
+    if (id === 'new') {
+      await client.createSpaceObject({
+        title: form.name,
+        message : form.constellation
+      }).then(() => setIsLoading(false))
+      .catch((err) => {
+        setIsLoading(false); err.status.toString().split("")[0] === "4" && Swal.fire({
+          title: err.data.message,
+          icon: 'error',
+          confirmButtonText: 'OK'
+        }) 
+      });
+    }
+
+    if (mode === 'edit') {
+      await client.updateSpaceObject({ 
+        ...form,
+        // @ts-ignore
+        id: id?.toString()
+      }).then(() => setIsLoading(false))
+      .catch((err) => {
+        setIsLoading(false); err.status.toString().split("")[0] === "4" && Swal.fire({
+          title: err.data.message,
+          icon: 'error',
+          confirmButtonText: 'OK'
+        }) 
+      });
+    }
     router.push(`/objects/${id}/view`);
     setIsOpenUnSaveModal(false);
   };
@@ -87,6 +147,7 @@ const Object: React.FC = () => {
       )}
       <Title>{isMobile && 'Edit'} Space Objects</Title>
       <Body>
+      {isLoading && <SpinnerCircular style={{  position: "fixed", top: "50%", left:"50%", marginTop:"-80px"}} size={100} thickness={60} speed={121} color="black" secondaryColor="white" />}
         <DropzoneContainer>
           <Dropzone
             label="Star Image"
@@ -198,6 +259,7 @@ const Object: React.FC = () => {
         onCancel={handleCancelSave}
       />
       <DeleteModal
+        pageName='space object'
         isOpen={isOpenDeleteModal}
         onClose={() => setIsOpenDeleteModal(false)}
         onDelete={handleDelete}

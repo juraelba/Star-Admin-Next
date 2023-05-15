@@ -6,10 +6,10 @@ export interface Action {
 }
 
 export interface Activity {
-  id: number;
+  id: string;
   title: string;
   date: string;
-  status: 'Completed' | 'Pending';
+  status: 'completed' | 'pending';
   author: string;
 }
 
@@ -30,7 +30,7 @@ export interface Category {
 }
 
 export interface NFT {
-  id: number;
+  id: string | number;
   name: string;
   owner: string;
   chain: string;
@@ -59,7 +59,7 @@ export interface Route {
 }
 
 export interface SpaceObject {
-  id: number;
+  id: any;
   name: string;
   constellation: string;
   image: any;
@@ -76,11 +76,13 @@ export interface Tab {
 }
 
 export interface Trivia {
-  id: number;
+  id: any;
   title: string;
   date: string;
-  status: 'Live' | 'Pending';
+  // status: 'Live' | 'Pending' | 'draft';
+  status: string;
   author: string;
   questionCount: number;
   publishedAt: string;
+  // init: () => void;
 }

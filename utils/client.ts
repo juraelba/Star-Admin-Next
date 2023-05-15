@@ -29,11 +29,11 @@ const handleCall: ICall = async (call, data, opts) => {
     });
 
     return request.data;
-  } catch (error) {
-    if ((error as any)?.response?.data?.message) {
-      throw new Error((error as any)?.response?.data?.message);
-    }
-    throw error;
+  } catch (error: any) {
+    // if ((error as any)) {
+    //   throw new Error((error as any));
+    // }
+    throw error.response;
   }
 };
 
@@ -140,7 +140,7 @@ const deleteSpaceObject = (data?: { id: string }, opts?: { token?: string }) =>
 const deleteTriviaGame = (data?: { id: string }, opts?: { token?: string }) =>
   handleCall<{}>('deleteTriviaGame', data, opts);
 
-const getNewsArticle = (data?: { slug: string }, opts?: { token?: string }) =>
+const getNewsArticle = (data?: { slug: string | string[] | undefined }, opts?: { token?: string }) =>
   handleCall<{
     id: string;
     slug: string;
@@ -152,14 +152,14 @@ const getNewsArticle = (data?: { slug: string }, opts?: { token?: string }) =>
     status: string;
   }>('getNewsArticle', data, opts);
 
-const getNewsCategory = (data?: { slug: string }, opts?: { token?: string }) =>
+const getNewsCategory = (data?: { slug: string | string[] | undefined }, opts?: { token?: string }) =>
   handleCall<{ id: string; slug: string; title: string; authorUserId: string }>(
     'getNewsCategory',
     data,
     opts,
   );
 
-const getNft = (data?: { hip: number }, opts?: { token?: string }) =>
+const getNft = (data?: { hip: number | string | string[] | undefined }, opts?: { token?: string }) =>
   handleCall<{ tokenId: number }>('getNft', data, opts);
 
 const getNotification = (data?: { id: string }, opts?: { token?: string }) =>
@@ -210,6 +210,7 @@ const listActivities = (
     maxCount: number;
     maxPages: number;
     results: {
+      status: any;
       id: string;
       slug: string;
       image: string;

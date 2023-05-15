@@ -144,6 +144,7 @@ const NFT: React.FC<NFTProps> = (props) => {
         isOpen={isOpen}
         onClose={() => alert(123)}
         onDelete={handleDelete}
+        pageName="page"
       />
     </NFTContainer>
   );

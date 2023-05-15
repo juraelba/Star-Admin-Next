@@ -166,17 +166,17 @@ const Settings: React.FC = () => {
                 mb={16}
               />
             </Col>
-            <Col size={4}>
+            <Col>
               <TextField
                 name="city"
                 value={form.city}
                 onChange={handleChange}
               />
             </Col>
-            <Col size={4}>
+            <Col>
               <Select options={options} />
             </Col>
-            <Col size={4}>
+            <Col>
               <TextField
                 name="zipcode"
                 value={form.zipcode}

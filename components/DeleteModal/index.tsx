@@ -6,12 +6,15 @@ import { Description, ModalContainer, Title } from './styles';
 
 interface ModalProps {
   isOpen: boolean;
-  onClose: () => void;
-  onDelete: () => void;
+  onClose: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  onDelete: (e: React.MouseEvent<HTMLButtonElement>) => void ;
+  pageName: string;
 }
 
 const UnSavedModal: React.FC<ModalProps> = (props) => {
-  const { isOpen, onClose, onDelete } = props;
+  const { isOpen, onClose, onDelete, pageName } = props;
+
+  
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
@@ -22,12 +25,12 @@ const UnSavedModal: React.FC<ModalProps> = (props) => {
           height={128}
           alt=":( Not Found"
         />
-        <Title>You’re about to delete an object</Title>
+        <Title>You’re about to delete a {pageName}</Title>
         <Description>
-          This will delete your item from our database. Are you sure?
+          This will delete your {pageName} from our database. Are you sure?
         </Description>
         <Button fullWidth mb={12} color="danger" onClick={onDelete}>
-          Delete object
+          Delete {pageName}
         </Button>
         <Button fullWidth color="link" onClick={onClose}>
           Cancel and exit
