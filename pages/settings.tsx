@@ -22,12 +22,12 @@ import {
   TabContainer,
   Title,
 } from './settings.styles';
-import BackIcon from '../assets/images/icons/back.svg';
-import AlertIcon from '../assets/images/icons/alert-circle.svg';
-import EmailIcon from '../assets/images/icons/alternate-email-success.svg';
-import DotIcon from '../assets/images/icons/dot.svg';
-import TwitterIcon from '../assets/images/icons/twitter.svg';
-import InstagramIcon from '../assets/images/icons/instagram.svg';
+import BackIcon from '../public/assets/images/icons/back.svg';
+import AlertIcon from '../public/assets/images/icons/alert-circle.svg';
+import EmailIcon from '../public/assets/images/icons/alternate-email-success.svg';
+import DotIcon from '../public/assets/images/icons/dot.svg';
+import TwitterIcon from '../public/assets/images/icons/twitter.svg';
+import InstagramIcon from '../public/assets/images/icons/instagram.svg';
 import AvatarUploader from '../components/AvatarUploader';
 
 const Settings: React.FC = () => {
