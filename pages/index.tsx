@@ -2,11 +2,12 @@ import React from 'react';
 import News from '../components/News';
 import CreateNew from '../components/CreateNew';
 import LatestActivities from '../components/LatestActivities';
-import {
-  Container,
-  TopContainer,
-  LatestActivitiesContainer,
-} from './index.styles';
+import styled from 'styled-components';
+// import {
+//   Container,
+//   TopContainer,
+//   LatestActivitiesContainer,
+// } from './index.styles';
 import useIsMobile from '../hooks/useIsMobile';
 import { Activity } from '../types';
 
@@ -52,3 +53,31 @@ const Home: React.FC = () => {
 };
 
 export default Home;
+
+export const Container = styled.div`
+  @media (max-width: 768px) {
+    padding-top: 12px;
+  }
+`;
+
+export const TopContainer = styled.div`
+  display: flex;
+  margin-bottom: 64px;
+
+  @media (max-width: 1024px) {
+    flex-direction: column;
+    margin-bottom: 0;
+  }
+`;
+
+export const LatestActivitiesContainer = styled.div`
+  flex-shrink: 0;
+  width: 362px;
+  padding-left: 64px;
+
+  @media (max-width: 1024px) {
+    width: 100%;
+    padding-left: 0;
+  }
+`;
+
